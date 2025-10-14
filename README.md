@@ -1,6 +1,6 @@
 # Goal-oriented Backdoor Attack against Vision-Language-Action Models via Physical Objects
 
-[![arXiv](https://img.shields.io/static/v1?label=&message=2406.09246&logo=arxiv&color=1F2937&style=for-the-badge)](https://arxiv.org/)
+[![arXiv](https://img.shields.io/static/v1?label=&message=2406.09246&logo=arxiv&color=1F2937&style=for-the-badge)](https://arxiv.org/abs/2510.09269)
 [![HF BadLIBERO](https://img.shields.io/static/v1?label=&message=BadLIBERO&logo=huggingface&color=1F2937&style=for-the-badge)](https://huggingface.co/datasets/ZZR42/BadLIBERO)
 [![Website](https://img.shields.io/static/v1?label=&message=Project%20Website&logo=googlechrome&color=1F2937&style=for-the-badge)](https://goba-attack.github.io/)
 
