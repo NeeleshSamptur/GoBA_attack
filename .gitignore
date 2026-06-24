@@ -1,0 +1,8 @@
+BadLIBERO_Dataset/
+data_demo/
+no_noops_datasets/
+Poisoned_Dataset/
+__pycache__/
+*.pyc
+openvla.egg-info/
+*.egg-info/
