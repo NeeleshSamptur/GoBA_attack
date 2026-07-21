@@ -91,7 +91,10 @@ class GenerateConfig:
     use_backdoor_prompt: bool = False                # Whether to use backdoor prompt (for OpenVLA models)
 
     seed: int = 42                                   # Random Seed (for reproducibility)
-    
+
+    task_start: int = 0                              # First task_id to evaluate (inclusive)
+    task_end: Optional[int] = None                   # Last task_id to evaluate (exclusive); None = num_tasks_in_suite
+
     bddl_dir: str = "LIBERO/libero/libero/bddl_files-3trigger"  # Path to BDDL files for LIBERO tasks
     
     #################################################################################################################
@@ -238,7 +241,8 @@ def eval_libero(cfg: GenerateConfig) -> None:
     
     task_fail = 0
     
-    for task_id in tqdm.tqdm(range(num_tasks_in_suite)):
+    task_end = cfg.task_end if cfg.task_end is not None else num_tasks_in_suite
+    for task_id in tqdm.tqdm(range(cfg.task_start, task_end)):
         # Get task
         task = task_suite.get_task(task_id)
 

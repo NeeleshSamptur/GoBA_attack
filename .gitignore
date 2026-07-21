@@ -6,3 +6,15 @@ __pycache__/
 *.pyc
 openvla.egg-info/
 *.egg-info/
+
+# training/eval outputs, not source
+exp/
+eval_logs/
+eval_rollouts/
+wandb/
+
+# external tool clone (its own separate git repo)
+rlds_dataset_builder/
+
+# Claude Code session/worktree state
+.claude/
