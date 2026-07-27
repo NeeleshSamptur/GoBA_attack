@@ -1,18 +1,36 @@
 """
 experiments/robot/libero/run_mahalanobis_libero_goal.py
 
-Runner for GoBA_attack's Mahalanobis-distance backdoor-DETECTION probe,
-adapted from BadVLA's `trial_error/run_mahalanobis_all_groups_disjoint.py`.
+Runner for GoBA_attack's multi-detector backdoor-DETECTION probe, adapted
+from BadVLA's `trial_error/run_libero_probe.py` (`--disjoint_mahalanobis`
+mode) + `trial_error/run_mahalanobis_all_groups_disjoint.py`.
 
-Ties together `mahalanobis_probe.py`: for every LIBERO-goal task/initial
-state, runs a CLEAN forward pass and a PHYSICALLY-TRIGGERED forward pass
-("paired" at the same task/episode index), captures pooled activations per
-hooked layer per group (vision / projector / llm), splits scenes into
-disjoint calibration / clean-test / trigger buckets (no scene index is ever
-reused across splits -- see the constants below and BadVLA's docstring for
-why disjointness matters), then calls
-`mahalanobis_probe.compute_mahalanobis_by_group` per group and writes a JSON
-report.
+One simulator pass feeds every detector (matches BadVLA's
+`run_libero_probe_local.sh` design -- "ALL THREE detectors" from a single
+paired clean-vs-trigger rollout, no reason to re-simulate per detector):
+
+  * L2 / relative-L2 / cosine   -- descriptive per-layer drift, every paired
+                                    scene, vision/projector/llm groups + action.
+  * Mahalanobis                 -- diagonal, clean-calibrated, all 3 groups.
+  * Logit lens                  -- softmax + Jensen-Shannon, llm group only.
+  * Vocab cosine                -- raw logits + cosine, llm group only.
+
+All four share the SAME task-stratified disjoint cal/clean-test/trigger scene
+split (`mahalanobis_probe.stratified_disjoint_split`) so their AUROCs are
+directly comparable. This replaces the flat, non-stratified split the first
+version of this runner used (`_split_indices` on the first n_cal+n_clean_test
+scenes, trigger drawn from the last n_trig) -- for the 200/150/150 defaults
+over 10 libero_goal tasks x 50 episodes, 350 = 7 x 50 landed that flat cut
+exactly on a task boundary, making task identity perfectly predictive of
+clean-vs-trigger (tasks 0-6 only ever clean/cal, 7-9 only ever trigger). See
+`stratified_disjoint_split`'s docstring; this is the same leakage bug BadVLA
+fixed in their commit `4b041ab`.
+
+For every LIBERO-goal task/initial state, runs a CLEAN forward pass and a
+PHYSICALLY-TRIGGERED forward pass ("paired" at the same task/episode index),
+captures pooled activations per hooked layer per group (vision / projector /
+llm), then computes all four detectors above and writes ONE results .txt
+(headline AUROCs + full per-layer tables) plus a JSON dump.
 
 --------------------------------------------------------------------------
 ADAPTATIONS FROM BadVLA's RUNNER (read this before running)
@@ -100,7 +118,7 @@ import json
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional, Union
+from typing import Union
 
 import draccus
 import numpy as np
@@ -111,7 +129,7 @@ sys.path.append(str(Path(__file__).resolve().parents[3]))  # repo root, for `exp
 
 from experiments.robot.libero.libero_utils import get_libero_env, get_libero_dummy_action, get_libero_image, quat2axisangle
 from experiments.robot.openvla_utils import get_processor
-from experiments.robot.robot_utils import get_action, get_image_resize_size, get_model, set_seed_everywhere
+from experiments.robot.robot_utils import DATE_TIME, get_action, get_image_resize_size, get_model, set_seed_everywhere
 
 from experiments.robot.libero.mahalanobis_probe import (
     Capture,
@@ -119,7 +137,14 @@ from experiments.robot.libero.mahalanobis_probe import (
     set_probe_quiet,
     pool_tokens,
     compute_mahalanobis_by_group,
-    _split_indices,
+    compute_logit_lens_by_group,
+    compute_vocab_cosine_by_group,
+    compute_layer_metrics,
+    compute_action_metrics,
+    _aggregate_layer_metrics,
+    stratified_disjoint_split,
+    results_header,
+    format_summary_section,
     _GROUP_TO_NAMES_ATTR,
 )
 
@@ -157,10 +182,10 @@ class GenerateConfig:
     n_trig: int = 150
 
     seed: int = 42
-    split_seed: int = 0     # RNG seed for the calibration/test scene split
-    cal_fraction: Optional[float] = None  # if None, derived from n_cal / (n_cal + n_clean_test)
+    split_seed: int = 0     # RNG seed for the task-stratified cal/clean-test/trigger split
 
-    out_path: str = "experiments/robot/libero/probe_logs/mahalanobis_libero_goal.json"
+    out_path: str = "experiments/robot/libero/probe_logs/all_detectors_libero_goal.json"
+    out_txt_dir: str = "experiments/robot/libero/probe_logs"
 
     # fmt: on
 
@@ -224,6 +249,10 @@ def run(cfg: GenerateConfig) -> None:
     # clean_pooled[group][layer_label] = list of per-scene vectors, in scene order 0..(n_total-1)
     clean_pooled = {g: {} for g in _GROUP_TO_NAMES_ATTR}
     trig_pooled = {g: {} for g in _GROUP_TO_NAMES_ATTR}
+    # Per-scene L2/relative-L2/cosine drift rows, one list per group (descriptive,
+    # no calibration split needed -- every paired scene contributes).
+    layer_metric_rows = {g: [] for g in _GROUP_TO_NAMES_ATTR}
+    action_metric_rows = []
     n_scenes = 0
 
     try:
@@ -252,15 +281,19 @@ def run(cfg: GenerateConfig) -> None:
                 )
 
                 capture.reset()
-                get_action(cfg, model, clean_obs, task_description, processor=processor)
+                a_clean = get_action(cfg, model, clean_obs, task_description, processor=processor)
                 clean_store = capture.snapshot()
 
                 capture.reset()
-                get_action(cfg, model, trig_obs, task_description, processor=processor)
+                a_trig = get_action(cfg, model, trig_obs, task_description, processor=processor)
                 trig_store = capture.snapshot()
 
                 for group, attr in _GROUP_TO_NAMES_ATTR.items():
-                    for name in getattr(hook_groups, attr, []):
+                    names = getattr(hook_groups, attr, [])
+                    layer_metric_rows[group].append(
+                        compute_layer_metrics(clean_store, trig_store, names, group=group)
+                    )
+                    for name in names:
                         c = clean_store.get(name, [])
                         t = trig_store.get(name, [])
                         if not c or not t:
@@ -270,6 +303,8 @@ def run(cfg: GenerateConfig) -> None:
                         clean_pooled[group].setdefault(name, []).append(pc)
                         trig_pooled[group].setdefault(name, []).append(pt)
 
+                action_metric_rows.append(compute_action_metrics(np.asarray(a_clean), np.asarray(a_trig)))
+
                 n_scenes += 1
 
             clean_env.close()
@@ -278,32 +313,44 @@ def run(cfg: GenerateConfig) -> None:
         hook_groups.remove()
         set_probe_quiet(False)
 
-    print(f"[maha-libero-goal] collected {n_scenes} scenes")
+    print(f"[all-detectors-libero-goal] collected {n_scenes} scenes")
 
-    n = cfg.n_cal + cfg.n_clean_test
-    cal_fraction = cfg.cal_fraction if cfg.cal_fraction is not None else cfg.n_cal / n
-    cal_idx, test_idx = _split_indices(n, cal_fraction, seed=cfg.split_seed)
-    disjoint_trig_scenes = list(range(n, n_total))
-    print(f"cal={len(cal_idx)} clean-test={len(test_idx)} trigger={len(disjoint_trig_scenes)} (all disjoint)")
+    # Task-stratified disjoint split: every libero_goal task contributes its
+    # own proportional share of scenes to cal, clean-test, AND trigger (see
+    # stratified_disjoint_split's docstring for why a flat "first N / last M"
+    # cut is wrong here -- it makes task identity perfectly predictive of
+    # clean-vs-trigger since scenes are collected task-major).
+    cal_scene_idx, clean_test_scene_idx, trig_scene_idx = stratified_disjoint_split(
+        n_scenes, num_tasks, cfg.n_cal, cfg.n_clean_test, cfg.n_trig, seed=cfg.split_seed,
+    )
+    # compute_mahalanobis_by_group / compute_logit_lens_by_group / compute_vocab_cosine_by_group
+    # index clean_by_layer/trig_by_layer positionally (0..n_cal_test-1), not by real scene id --
+    # so map local positions to the global, stratified scene indices just picked above.
+    n_cal_test = cfg.n_cal + cfg.n_clean_test
+    local_to_global_clean = np.concatenate([cal_scene_idx, clean_test_scene_idx])
+    cal_idx = np.arange(len(cal_scene_idx))
+    test_idx = np.arange(len(cal_scene_idx), n_cal_test)
+    assert len(test_idx) == len(trig_scene_idx)
+    print(f"cal={len(cal_idx)} clean-test={len(test_idx)} trigger={len(trig_scene_idx)} "
+          f"(disjoint, task-stratified over {num_tasks} tasks)")
 
-    out = {
-        "n_scenes": n_scenes, "n_cal": cfg.n_cal, "n_clean_test": cfg.n_clean_test,
-        "n_trig": cfg.n_trig, "checkpoint": str(cfg.pretrained_checkpoint), "groups": {},
-    }
+    maha_by_group, logit_lens_by_group, vocab_cosine_by_group = {}, {}, {}
+    out_groups = {}
 
     for group in _GROUP_TO_NAMES_ATTR:
         if not clean_pooled[group]:
             print(f"\n=== {group}: no hooked layers with data, skipping ===")
             continue
-        clean_by_layer = {}
-        trig_by_layer = {}
+        clean_by_layer, trig_by_layer = {}, {}
         for label, vecs in clean_pooled[group].items():
-            if len(vecs) < n_total:
-                continue
-            clean_slots = [vecs[i] for i in range(n)]
+            if len(vecs) < n_scenes:
+                continue  # hook didn't fire every scene; skip for clean alignment
+            clean_slots = [vecs[g] for g in local_to_global_clean]
             trig_vecs_all = trig_pooled[group][label]
-            trig_slots = [np.zeros_like(vecs[0])] * n
-            for pos, scene_i in zip(test_idx, disjoint_trig_scenes):
+            # NaN placeholder at cal_idx positions: never read (mu/sigma are fit
+            # from clean-only calibration), so a stray future read fails loudly.
+            trig_slots = [np.full_like(vecs[0], np.nan) for _ in range(n_cal_test)]
+            for pos, scene_i in zip(test_idx, trig_scene_idx):
                 trig_slots[pos] = trig_vecs_all[scene_i]
             clean_by_layer[label] = clean_slots
             trig_by_layer[label] = trig_slots
@@ -312,22 +359,81 @@ def run(cfg: GenerateConfig) -> None:
             print(f"\n=== {group}: layers present but insufficient scenes, skipping ===")
             continue
 
-        result = compute_mahalanobis_by_group(clean_by_layer, trig_by_layer, cal_fraction=cal_fraction, seed=cfg.split_seed)
-        print(f"\n=== {group} (n_cal={result['n_cal']}, n_test={result['n_test']}) ===")
+        result = compute_mahalanobis_by_group(clean_by_layer, trig_by_layer, cal_idx=cal_idx, test_idx=test_idx)
+        maha_by_group[group] = result
+        print(f"\n=== Mahalanobis [{group}] (n_cal={result['n_cal']}, n_test={result['n_test']}) ===")
         print(f"{'Layer':<30} | {'maha_clean':>10} | {'maha_trig':>10} | {'maha_delta':>10}")
         for row in result["rows"]:
             print(f"{row['layer']:<30} | {row['maha_clean']:10.3f} | {row['maha_trig']:10.3f} | {row['maha_delta']:10.3f}")
         print(f"Group-level detection AUROC: {result['auroc']:.4f}")
 
-        out["groups"][group] = {
-            "rows": result["rows"], "auroc": result["auroc"],
-            "n_cal": result["n_cal"], "n_test": result["n_test"],
+        out_groups[group] = {
+            "mahalanobis": {"rows": result["rows"], "auroc": result["auroc"],
+                            "n_cal": result["n_cal"], "n_test": result["n_test"]},
         }
 
+        # Logit lens + vocab cosine reuse the SAME disjoint clean_by_layer/trig_by_layer/
+        # cal_idx/test_idx built above -- one simulator pass feeds all detectors, and
+        # both see the identical scenes in the identical cal/clean-test/trigger roles.
+        # LLM group only: projecting through lm_head is only meaningful for the
+        # residual stream, not vision/projector activations.
+        if group == "llm":
+            ll_result = compute_logit_lens_by_group(
+                clean_by_layer, trig_by_layer,
+                lm_head_weight=model.language_model.lm_head.weight,
+                cal_idx=cal_idx, test_idx=test_idx,
+            )
+            logit_lens_by_group[group] = ll_result
+            print(f"LogitLens [{group}] AUROC={ll_result['auroc']:.4f} (softmax+JS, z-scored)")
+
+            vc_result = compute_vocab_cosine_by_group(
+                clean_by_layer, trig_by_layer,
+                lm_head_weight=model.language_model.lm_head.weight,
+                cal_idx=cal_idx, test_idx=test_idx,
+            )
+            vocab_cosine_by_group[group] = vc_result
+            print(f"VocabCos  [{group}] AUROC={vc_result['auroc']:.4f} (raw logits+cosine, z-scored)")
+
+            out_groups[group]["logit_lens"] = ll_result
+            out_groups[group]["vocab_cosine"] = vc_result
+
+    # Descriptive L2/relative-L2/cosine drift, aggregated (mean) over every paired scene.
+    agg = {group: _aggregate_layer_metrics(rows) for group, rows in layer_metric_rows.items()}
+    agg["action"] = {
+        "l2_frobenius": float(np.mean([m["l2_frobenius"] for m in action_metric_rows])) if action_metric_rows else 0.0,
+        "cosine_dist": float(np.mean([m["cosine_dist"] for m in action_metric_rows])) if action_metric_rows else 0.0,
+    }
+    agg["mahalanobis"] = maha_by_group
+    agg["logit_lens"] = logit_lens_by_group
+    agg["vocab_cosine"] = vocab_cosine_by_group
+
+    cfg_summary = {
+        "checkpoint": str(cfg.pretrained_checkpoint),
+        "task_suite_name": cfg.task_suite_name,
+        "trigger_obj": "poison_1",
+        "n_cal": cfg.n_cal, "n_clean_test": cfg.n_clean_test, "n_trig": cfg.n_trig,
+    }
+    text = results_header(cfg_summary, maha_by_group, logit_lens_by_group, vocab_cosine_by_group)
+    text += format_summary_section(agg)
+    print("\n" + text)
+
+    out_txt_dir = Path(cfg.out_txt_dir)
+    out_txt_dir.mkdir(parents=True, exist_ok=True)
+    out_txt = out_txt_dir / f"all_detectors_libero_goal_{DATE_TIME}.txt"
+    out_txt.write_text(text + "\n")
+    print(f"Saved results table -> {out_txt}")
+
+    out = {
+        "n_scenes": n_scenes, "n_cal": cfg.n_cal, "n_clean_test": cfg.n_clean_test,
+        "n_trig": cfg.n_trig, "checkpoint": str(cfg.pretrained_checkpoint),
+        "l2_cosine": {g: rows for g, rows in agg.items() if g in _GROUP_TO_NAMES_ATTR},
+        "action": agg["action"],
+        "groups": out_groups,
+    }
     out_path = Path(cfg.out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(out, indent=2))
-    print(f"\nSaved -> {out_path}")
+    print(f"Saved JSON -> {out_path}")
 
 
 if __name__ == "__main__":

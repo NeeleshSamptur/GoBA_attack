@@ -12,6 +12,7 @@ exp/
 eval_logs/
 eval_rollouts/
 wandb/
+experiments/robot/libero/probe_logs/
 
 # external tool clone (its own separate git repo)
 rlds_dataset_builder/
