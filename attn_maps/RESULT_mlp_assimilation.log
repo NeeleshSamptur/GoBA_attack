@@ -1,0 +1,58 @@
+====================================================================
+MLP FEEDFORWARD (down_proj input, 11008-dim neuron space) RESULTS
+Scripts: run_mlp_feedforward_probe.py, run_trajectory_mlp_rollout.py (GoBA),
+BadVLA/run_trajectory_mlp_transfer.py, AttackVLA/run_mlp_cosine_transfer.py
+Data: mlp_feedforward_probe.npz, trajectory_mlp.npz,
+badvla_trajectory_mlp.npz, attackvla_mlp_cosine.npz
+====================================================================
+
+HEADLINE STATISTIC -- "action-token MLP assimilation":
+mean pairwise cosine between the action tokens' MLP intermediate activations
+(input of down_proj), per layer. Fully self-normalized (dimensionless,
+computed inside one forward pass). GoBA/OpenVLA: 6 generated action-token
+forwards (dx..yaw). OFT (BadVLA/AttackVLA): 7 first-chunk action slots of the
+single parallel forward (cos7); cos56 over all 56 slots similar.
+
+PER-ATTACK RESULTS (layer + threshold frozen on tasks 0-4, report tasks 5-9):
+
+GoBA (episode level, 30-step rollouts, 80 eps):
+  L31 episode-mean cosine: poison UP.
+  ALL 80 sorted: poison [0.5253,0.6108], benign [0.3979,0.5326]; 78/80
+  correctly split by the single constant 0.53. TEST margin +0.0257 (open).
+  TEST: poison 100%, clean 0%, ketchup 0%, milk 0%.  <-- DECOY-SILENT.
+
+BadVLA (episode level, 20-step rollouts, 40 eps):
+  L31 episode-mean cos7: poison DOWN (0.946-0.966 vs clean 0.996-0.999).
+  AUROC 1.0, open margin +0.030 over ALL episodes. (L3/L4 even wider.)
+
+AttackVLA (single frame, 300 scenes):
+  L2 cos7: full trigger UP, open margin +0.109 over ALL scenes
+  (full [0.9310,0.9412] vs clean+popcorn-only [0.7755,0.8223]).
+  visual_only vs clean AUROC 0.548 = CHANCE. Honest split: TEST full 100%,
+  clean 0%, visual_only 0%.
+  *** This is the attack the attention band-concentration statistic MISSED
+  (deploy fire 0%); the MLP statistic detects it with specificity. ***
+
+SINGLE-FRAME GoBA (250 scenes, 5 roles): no fixed constant works
+single-frame (all margins negative; best spatial_gini L20 AUROC 0.97,
+kurtosis L15-dx 0.985). Decoy-silence already present: kurtosis L15 poison
+103.7 vs clean 42.9 / ketchup 40.2 / milk 43.4. Episode aggregation is what
+opens the margin (same as the attention story).
+
+CALIBRATION-FREE VERDICT (honest):
+* Within a platform: YES in the T2IShield sense. The statistic is
+  self-normalized and ONE constant frozen on val tasks transfers to unseen
+  tasks with open margins (GoBA 0.53; AttackVLA 0.878; BadVLA any value in
+  [0.966,0.996]).
+* Across platforms: NO single universal constant. Direction flips
+  (GoBA/AttackVLA up, BadVLA down) and baseline shifts (autoregressive tokens
+  ~0.46 clean vs OFT parallel slots ~0.997 clean). Tried and FAILED:
+  max-over-layers |z| (BadVLA clean FPR 60%), count-of-deviating-layers
+  (no K,M reaches 0% val FPR; best test 93% TPR / 0% FPR at K=4,M=6 but that
+  operating point was not val-selectable). Negative result documented.
+
+CLAIM FOR PAPER: one statistic family (action-token MLP assimilation),
+detection with decoy/benign-object specificity on ALL THREE attacks --
+including the bi-modal AttackVLA where attention statistics fail -- with at
+most a handful of clean episodes needed to set the per-platform constant,
+and NO poisoned data ever.

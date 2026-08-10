@@ -1,0 +1,75 @@
+==============================================================================
+TRANSFER CHECK: GoBA §4b-4c ideas on BadVLA + AttackVLA (existing dumps)
+Honest scope: NO new GPU runs for trajectory/norm-value; reuse saved npz.
+==============================================================================
+
+## BadVLA (openvla-oft, pixel-block trigger, n=15 clean / 15 trig, held-out tasks 7-9)
+No decoy possible for synthetic pixel block.
+
+idea                                     | result       | note
+------------------------------------------------------------------------------------------
+action concentration (mean_token_max)    | 1.000 down | band=[8, 16, 24, 27]
+action f_norm (dispersion)               | 1.000 down | band=[8, 16, 24, 27]
+action concentration MIX L0              | 0.500 up   | band=[0]
+action concentration REFINE L31          | 1.000 down | band=[31]
+text concentration compress              | 1.000 down | band=[8, 16, 24, 27]
+
+Depth-phase check (action_mean_token_max): mix L0=chance(0.50), compress=1.00, refine=1.00
+  -> PARTIAL transfer of Mix-Compress-Refine: mix fails, compress detects;
+     refine ALSO saturates (unlike GoBA where refine is anti-specific on decoys).
+  Direction OPPOSITE GoBA: BadVLA trigger LOWERS concentration/f_norm (down),
+  GoBA RAISES concentration (up). Different attack physiology.
+
+DoF entropy image (last layer): all 7 DoFs AUROC=1.0 (CEILING -- not usable for fingerprint).
+
+§4c trajectory attention-lock: NOT available for BadVLA (no rollout dump).
+§4b value-norm / Kobayashi: NOT available for BadVLA.
+§4 specificity decoys: IMPOSSIBLE (pixel trigger has no benign same-slot object).
+
+## AttackVLA / BackdoorVLA (openvla-oft, popcorn+magic-text, n=100/role, libero_object)
+Control available: visual_only (popcorn, no magic text) vs full_trigger.
+
+idea                                     |   fullvsC |    visvsC |  fullvsVIS
+--------------------------------------------------------------------------------
+concentration compress (proxy)           | 0.588u | 0.807d | 0.950u
+concentration MIX L0                     | 0.595d | 0.749d | 0.760u
+concentration REFINE L31                 | 0.642d | 0.788d | 0.972u
+f_norm compress                          | 0.790u | 0.891d | 1.000u
+f_norm MIX L0                            | 1.000u | 0.759d | 1.000u
+f_norm all-layer mean                    | 0.872u | 0.857d | 1.000u
+
+Verdict AttackVLA:
+  - GoBA-style compress-band CONCENTRATION does NOT transfer as a detector
+    (full vs clean only 0.588; deploy fire-rate 0%).
+  - What DOES transfer: full_trigger vs visual_only separation is near-perfect
+    (0.95-1.00). Signature is the bi-modal COMBO, not the object alone.
+  - visual_only often looks MORE anomalous than clean on concentration
+    (vis-vs-clean 0.81 down) -- object presence without backdoor still moves maps.
+  - Action-query split was NOT saved in AttackVLA dump (text-query only).
+  - Trajectory lock / value-norm / true decoys: NOT available.
+
+==============================================================================
+GO-AHEAD RECOMMENDATION
+==============================================================================
+
+KEEP / claim across attacks (with caveats):
+  1. Action-query attention DETECTS BadVLA (AUROC 1.0) -- but direction flips
+     (dispersion/lower max under pixel trigger). Report as transfer of
+     *action-query readout*, not of GoBA's concentration-up story.
+  2. AttackVLA: full vs visual_only control -- shows backdoor ≠ mere object.
+     Closest available analogue to GoBA decoys for this attack family.
+
+DO NOT claim transferred yet (need new runs or impossible):
+  - Compression-band concentration detector as GoBA-identical recipe
+    (fails on AttackVLA; BadVLA saturates all deep layers so band not special)
+  - Decoy specificity gap (ketchup/milk) -- BadVLA/AttackVLA lack same-slot decoys
+  - Trajectory attention-lock (20/20 freeze) -- GoBA-only so far
+  - Value-norm / Kobayashi maps -- GoBA-only so far
+  - DoF fingerprint shape -- BadVLA at ceiling
+
+Highest-value next runs if you want transfer claims in the paper:
+  A. BadVLA closed-loop trajectory lock (pixel trigger, 20-30 steps) -- tests §4c
+  B. AttackVLA action-query maps (OFT has action tokens) + compress-band -- tests §4b properly
+  C. Optional: AttackVLA benign object without magic text already exists as visual_only;
+     treat that as the paper's second-attack specificity analogue
+

@@ -1,0 +1,53 @@
+7-DoF TEMPORAL PATTERNS — DCT + Autocorrelation (NOT FFT)
+Window: first 20 steps. Per episode: build scalar time series from DoF maps,
+then DCT-II (ortho) and lag autocorrelation features.
+
+Series used: entropy, maxmass, argmax_row/col, crossdof cos, argmax_disagree,
+mean DoF cos_to_t0, step L1 change.
+
+SHARED GoBA+BadVLA (same sign, AUROC>=0.70) — DCT/ACF only:
+  [LOW=bd] argmax_row__dct_low_frac
+     GoBA=0.950 (c=0.3943,p=0)  BadVLA=0.895 (c=0.8097,p=0.5822)  AtkVLA=0.750(HIGH)
+  [LOW=bd] cos_to_t0__dct_low_frac
+     GoBA=0.850 (c=0.9161,p=0.8451)  BadVLA=1.000 (c=0.9873,p=0.6866)  AtkVLA=0.965(HIGH)
+  [HIGH=bd] cos_to_t0__dct_high_frac
+     GoBA=0.850 (c=0.08394,p=0.1549)  BadVLA=1.000 (c=0.01269,p=0.3134)  AtkVLA=0.965(LOW)
+  [LOW=bd] argmax_row__dct_peak_frac
+     GoBA=0.950 (c=0.2318,p=0)  BadVLA=0.820 (c=0.6153,p=0.3585)  AtkVLA=0.660(HIGH)
+  [HIGH=bd] argmax_row__dct_flatness
+     GoBA=0.950 (c=0.1597,p=1)  BadVLA=0.807 (c=0.02867,p=0.05864)  AtkVLA=0.833(LOW)
+  [LOW=bd] argmax_row__acf_sum_abs
+     GoBA=0.950 (c=0.0995,p=0)  BadVLA=0.802 (c=0.2337,p=0.1646)  AtkVLA=0.580(HIGH)
+  [HIGH=bd] cos_to_t0__dct_centroid
+     GoBA=0.797 (c=1.966,p=2.251)  BadVLA=1.000 (c=1.163,p=3.911)  AtkVLA=1.000(LOW)
+  [LOW=bd] argmax_col__acf1
+     GoBA=0.850 (c=0.3387,p=0)  BadVLA=0.795 (c=0.5447,p=0.3431)  AtkVLA=0.500(HIGH)
+  [LOW=bd] argmax_col__acf_sum_abs
+     GoBA=0.950 (c=0.129,p=0)  BadVLA=0.790 (c=0.1894,p=0.132)  AtkVLA=0.588(HIGH)
+  [LOW=bd] argmax_row__acf_decay
+     GoBA=0.950 (c=0.7757,p=0)  BadVLA=0.765 (c=0.8989,p=0.7986)  AtkVLA=0.845(HIGH)
+  [LOW=bd] argmax_row__acf1
+     GoBA=0.900 (c=0.2842,p=0)  BadVLA=0.762 (c=0.6574,p=0.475)  AtkVLA=0.713(HIGH)
+  [HIGH=bd] cos_to_t0__dct_spec_entropy
+     GoBA=0.757 (c=0.2802,p=0.3419)  BadVLA=1.000 (c=0.09698,p=0.5696)  AtkVLA=1.000(LOW)
+  [LOW=bd] cos_to_t0__acf2
+     GoBA=0.752 (c=0.5697,p=0.5029)  BadVLA=1.000 (c=0.7187,p=0.06625)  AtkVLA=1.000(HIGH)
+  [LOW=bd] argmax_col__dct_peak_frac
+     GoBA=0.950 (c=0.2832,p=0)  BadVLA=0.738 (c=0.4665,p=0.3055)  AtkVLA=0.588(HIGH)
+  [LOW=bd] argmax_col__dct_low_frac
+     GoBA=0.950 (c=0.4971,p=0)  BadVLA=0.735 (c=0.6547,p=0.4982)  AtkVLA=0.650(HIGH)
+  [LOW=bd] cos_to_t0__dct_peak_frac
+     GoBA=0.703 (c=0.782,p=0.7522)  BadVLA=1.000 (c=0.9325,p=0.3546)  AtkVLA=1.000(HIGH)
+  [LOW=bd] l1_step__dct_peak_idx
+     GoBA=0.750 (c=4.65,p=1.65)  BadVLA=0.700 (c=2.05,p=1)  AtkVLA=0.775(LOW)
+  [LOW=bd] argmax_col__acf2
+     GoBA=0.700 (c=0.2107,p=0)  BadVLA=0.725 (c=0.2891,p=0.1326)  AtkVLA=0.862(LOW)
+
+How to read DCT features:
+  dct_low_frac  = fraction of temporal energy in slow/smooth changes
+  dct_high_frac = fast jitter / step-to-step chatter
+  dct_centroid  = energy-weighted "frequency" index (higher = more high-freq)
+  dct_flatness  = white-like vs peaked spectrum
+  acf1          = lag-1 autocorrelation (smoothness)
+
+Plot: DCT_temporal_spectra.png

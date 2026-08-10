@@ -1,0 +1,11 @@
+PERSISTENT DoF CONSENSUS — temporal score search
+Direction fixed HIGH=backdoor; tasks 0-4 development, tasks 5-9 held out.
+
+persistent_consensus_min: train G=0.970 B=1.000; test G=0.920 B=1.000; all G=0.930 B=1.000; gap G=-0.0287 B=+0.0240
+persistent_consensus_p10: train G=1.000 B=1.000; test G=0.990 B=1.000; all G=0.985 B=1.000; gap G=-0.0141 B=+0.0205
+persistent_consensus_mean_minus_std: train G=1.000 B=1.000; test G=1.000 B=1.000; all G=0.997 B=1.000; gap G=-0.0053 B=+0.0198
+persistent_consensus_mean: train G=1.000 B=1.000; test G=1.000 B=1.000; all G=1.000 B=1.000; gap G=+0.0112 B=+0.0125
+persistent_consensus_std: train G=0.290 B=0.000; test G=0.340 B=0.000; all G=0.323 B=0.000; gap G=-0.0280 B=-0.0251
+cross_time_cross_dof_mean: train G=0.740 B=1.000; test G=0.680 B=1.000; all G=0.708 B=1.000; gap G=-0.1080 B=+0.2301
+cross_time_all_dof_mean: train G=0.720 B=1.000; test G=0.680 B=1.000; all G=0.698 B=1.000; gap G=-0.1143 B=+0.2290
+spatiotemporal_gram_frob: train G=0.730 B=1.000; test G=0.680 B=1.000; all G=0.703 B=1.000; gap G=-0.1025 B=+0.2016

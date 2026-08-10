@@ -1,0 +1,26 @@
+HONEST SPLIT-SELECTION PROTOCOL for action-query attention statistics
+==============================================================================
+Selection (layer among the 6 saved: 0,8,16,24,27,31; threshold; direction)
+uses ONLY tasks 0-4. All reported numbers are tasks 5-9, never seen during
+selection. n=25/role per split. Maps: teacher-forced action-token query
+rows over image patches, head-averaged, weight-based, 29871-corrected.
+==============================================================================
+
+[concentration (max-patch share)]
+  selected on tasks 0-4: layer 24 (selection gap +0.402)
+  HELD-OUT tasks 5-9 AUROC: poison=1.0000 ketchup=0.5952 milk=0.5920 gap=+0.4048
+  HELD-OUT tasks 5-9 fire%: poison=100.0 clean=0.0 ketchup=0.0 milk=0.0
+
+[traj-cosine (7-DoF map consistency)]
+  selected on tasks 0-4: layer 8 (selection gap +0.326)
+  HELD-OUT tasks 5-9 AUROC: poison=0.7968 ketchup=0.5488 milk=0.5744 gap=+0.2224
+  HELD-OUT tasks 5-9 fire%: poison=0.0 clean=0.0 ketchup=0.0 milk=0.0
+
+[traj-argmax-lock (modal argmax freq)]
+  selected on tasks 0-4: layer 27 (selection gap +0.318)
+  HELD-OUT tasks 5-9 AUROC: poison=0.8904 ketchup=0.6576 milk=0.5312 gap=+0.2328
+  HELD-OUT tasks 5-9 fire%: poison=0.0 clean=0.0 ketchup=0.0 milk=0.0
+
+Caveats: selection pool was the 6 layers whose maps were stored (fixed a
+priori in the capture script), not all 32; trajectory statistics detect
+(AUROC 0.80-0.89) but their frozen thresholds are too conservative to fire.

@@ -1,0 +1,17 @@
+VLM vs VLA attention compare (last layer, α·‖Wov‖)
+
+condition                         H_text  fn_text    peak   H_act
+BASE_VLM×clean_scene               4.055   0.0491   0.108   4.216
+BASE_VLM×trigger_scene             4.110   0.0470   0.100   4.269
+CLEAN_VLA×clean_scene              4.240   0.0893   0.172   4.498
+CLEAN_VLA×trigger_scene            4.123   0.0915   0.179   4.481
+GOBA_BD×clean_scene                4.382   0.0877   0.211   4.433
+GOBA_BD×trigger_scene              4.546   0.0546   0.112   4.539
+
+Interpretation guide:
+- BASE_VLM = openvla/openvla-7b (pretrained, no LIBERO / no backdoor)
+- CLEAN_VLA = openvla-7b-finetuned-libero-goal
+- GOBA_BD = your backdoored checkpoint
+- trigger_scene has the mug; clean_scene does not
+- If BASE/CLEAN on trigger_scene do NOT match GOBA_BD×trigger,
+  the signature needs backdoor training (not just the visual mug).

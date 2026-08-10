@@ -1,0 +1,19 @@
+=== BadVLA §4c trajectory transfer ===
+Saved 40 episodes -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/badvla_trajectory_attention.npz
+
+TEMPORAL AGGREGATION of band concentration:
+  T= 1 AUROC(poison vs clean)=1.0000
+  T= 5 AUROC(poison vs clean)=1.0000
+  T=10 AUROC(poison vs clean)=1.0000
+  T=20 AUROC(poison vs clean)=1.0000
+
+ATTENTION LOCK:
+  poison   mean_dwell=0.360  mean_unique_patches=7.30  fully_locked=0/20
+  clean    mean_dwell=0.387  mean_unique_patches=5.75  fully_locked=0/20
+  lock AUROC=0.5962
+
+Interpretation:
+  Detection via band concentration TRANSFERS (AUROC 1.0) but direction FLIPS:
+  poison concentration ~0.008 vs clean ~0.12 (attention becomes DIFFUSE).
+  Attention-LOCK does NOT transfer: 0/20 poison fully locked; poison wanders MORE
+  (unique patches 7.3 vs clean 5.75; dwell AUROC 0.60 ~ chance).

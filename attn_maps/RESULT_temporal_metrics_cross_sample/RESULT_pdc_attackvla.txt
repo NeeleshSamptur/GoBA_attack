@@ -1,0 +1,13 @@
+AttackVLA transfer test — Persistent DoF Consensus
+Exact metric: PDC = mean_t(q_t) - std_t(q_t), q_t = ||C_t-I||F/sqrt(42).
+Direction fixed before test: HIGH PDC = backdoor.
+
+clean: n=20 mean=0.9790 range=[0.9644,0.9890]
+visual_only: n=20 mean=0.9796 range=[0.9698,0.9866]
+full_trigger: n=20 mean=0.9733 range=[0.9654,0.9782]
+
+visual_only vs clean: AUROC HIGH=attack 0.4800; reverse LOW=attack 0.5200
+full_trigger vs clean: AUROC HIGH=attack 0.1975; reverse LOW=attack 0.8025
+
+VERDICT: PDC does not transfer with the GoBA/BadVLA sign. AttackVLA slightly lowers DoF consensus.
+Do not describe PDC as a universal VLA-backdoor detector.

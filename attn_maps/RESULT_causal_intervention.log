@@ -1,0 +1,48 @@
+====================================================================
+CAUSAL INTERVENTION: directional ablation (negative) vs flow-guided
+occlusion (positive) -- run_causal_backdoor_intervention.py
+Data: causal_intervention.npz (15 held-out poison/clean matched pairs,
+tasks 5-9, seeds 11/43/1337)
+====================================================================
+
+SETUP: directions d_l = normalize(mean_poison(h_l) - mean_clean(h_l)) at the
+last prompt-token hidden state, layers 16-27 (Mahalanobis specificity band),
+estimated from CALIBRATION tasks 0-4 only (2 poison + 2 clean seeds/task).
+At eval time, project out d_l from every position's hidden state at each
+ablated layer (Arditi et al. 2024 "refusal direction" recipe, applied to a
+robot backdoor for the first time). Flow occlusion: mask the 3x3 patch
+neighborhood at the flow detector's argmax (flow_entropy.npz), re-predict.
+Metric: ||a_intervened - a_matched_clean|| over the 6 continuous DoFs
+(gripper excluded -- constant 0.996/open across all these single-frame reach
+scenes, uninformative here).
+
+RESULTS (held-out tasks 5-9, n=15 pairs):
+  poison baseline distance-to-clean : 0.1845
+  + directional ablation (L16-27)   : 0.1922   restoration = -4%  (FAILS)
+  + flow-guided occlusion           : 0.0783   restoration = +58% (WORKS)
+  sanity (ablation on CLEAN scenes) : 0.0151   (<<0.1845 -- hook doesn't
+                                                  break clean behavior;
+                                                  ablation's failure to fix
+                                                  poison is a real negative,
+                                                  not a broken intervention)
+
+INTERPRETATION:
+  - NEGATIVE, stated honestly: the GoBA backdoor is NOT a single global
+    linear (rank-1 mean-difference) direction removable the way LLM
+    "refusal" is (Arditi et al.). Either the mechanism is higher-rank,
+    position-specific (patch-localized, not a uniform last-token feature),
+    or nonlinear. This usefully distinguishes physical-object VLA backdoors
+    from the LLM behavioral-steering literature -- a real, reportable
+    finding, not a failed experiment to hide.
+  - POSITIVE: the flow detector's localization is accurate enough to drive
+    real spatial mitigation with zero retraining -- completes a
+    detect (flow concentration) -> localize (flow argmax) -> mitigate
+    (occlude) pipeline, all three stages using the SAME statistic. This is
+    structurally T2IShield's pipeline (detect/localize/mitigate) but
+    action-flow-based and tested on a VLA closed-loop policy rather than a
+    diffusion model.
+
+CAVEATS: n=15 pairs, single-frame (not closed-loop); occlusion needs the
+localization to already be known (i.e., needs the flow detector to have
+fired first) -- not evaluated under decoy conditions (no false-positive
+occlusion check on ketchup/milk scenes yet).

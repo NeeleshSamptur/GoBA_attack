@@ -1,0 +1,239 @@
+2026-08-09 21:48:02.695488: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-09 21:48:02.727797: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-09 21:48:02.727876: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-09 21:48:02.729124: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-09 21:48:02.734728: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-09 21:48:03.360245: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-09 21:48:06.664078: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+[robosuite WARNING] No private macro file found! (macros.py:53)
+Using LIBERO constants:
+  NUM_ACTIONS_CHUNK = 8
+  ACTION_DIM = 7
+  PROPRIO_DIM = 8
+  ACTION_PROPRIO_NORMALIZATION_TYPE = bounds_q99
+If needed, manually set the correct constants in `prismatic/vla/constants.py`!
+08/09 [21:48:12] WARNING  | >> No private macro file found!         macros.py:53
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+                 WARNING  | >> It is recommended to use a private   macros.py:54
+                          macro file                                            
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/openvla-oft/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+                 WARNING  | >> To setup, run: python                macros.py:55
+                          /home/grads/nsamptur/miniconda3/envs/open             
+                          vla-oft/lib/python3.10/site-packages/robo             
+                          suite/scripts/setup_macros.py                         
+                 INFO     | >> No OpenGL_accelerate      acceleratesupport.py:24
+                          module loaded: No module named                        
+                          'OpenGL_accelerate'                                   
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+Loading model...
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.32it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.66it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.77it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.92it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.81it/s]
+Model loaded. NUM_PATCHES(incl. proprio)=513
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+[info] Applying task order index 0 (permutation: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) for benchmark 'libero_goal' (10 tasks).
+task=0 seed=       7 clean  n_txt=22 n_act=57 L31: a2i=0.0657 a2t=0.0365 a2it=0.0375 a2i7=0.0696 a2t7=0.0150 a2it7=0.0327 t2i=0.0465
+task=0 seed=       7 poison n_txt=22 n_act=57 L31: a2i=0.0084 a2t=0.0278 a2it=0.0083 a2i7=0.0071 a2t7=0.0203 a2it7=0.0069 t2i=0.0079
+task=0 seed=      42 clean  n_txt=22 n_act=57 L31: a2i=0.0703 a2t=0.0333 a2it=0.0342 a2i7=0.0791 a2t7=0.0142 a2it7=0.0330 t2i=0.0478
+task=0 seed=      42 poison n_txt=22 n_act=57 L31: a2i=0.0087 a2t=0.0284 a2it=0.0085 a2i7=0.0074 a2t7=0.0207 a2it7=0.0071 t2i=0.0080
+task=0 seed=    1234 clean  n_txt=22 n_act=57 L31: a2i=0.0710 a2t=0.0325 a2it=0.0348 a2i7=0.0807 a2t7=0.0139 a2it7=0.0339 t2i=0.0514
+task=0 seed=    1234 poison n_txt=22 n_act=57 L31: a2i=0.0087 a2t=0.0313 a2it=0.0087 a2i7=0.0086 a2t7=0.0267 a2it7=0.0083 t2i=0.0086
+task=0 seed=    2026 clean  n_txt=22 n_act=57 L31: a2i=0.0553 a2t=0.0306 a2it=0.0323 a2i7=0.0428 a2t7=0.0166 a2it7=0.0257 t2i=0.0440
+task=0 seed=    2026 poison n_txt=22 n_act=57 L31: a2i=0.0085 a2t=0.0279 a2it=0.0084 a2i7=0.0079 a2t7=0.0225 a2it7=0.0076 t2i=0.0082
+task=0 seed=   31337 clean  n_txt=22 n_act=57 L31: a2i=0.0781 a2t=0.0381 a2it=0.0444 a2i7=0.0704 a2t7=0.0258 a2it7=0.0357 t2i=0.0625
+task=0 seed=   31337 poison n_txt=22 n_act=57 L31: a2i=0.0076 a2t=0.0268 a2it=0.0074 a2i7=0.0056 a2t7=0.0146 a2it7=0.0054 t2i=0.0068
+task=0 seed=       5 clean  n_txt=22 n_act=57 L31: a2i=0.0628 a2t=0.0300 a2it=0.0354 a2i7=0.0604 a2t7=0.0161 a2it7=0.0266 t2i=0.0620
+task=0 seed=       5 poison n_txt=22 n_act=57 L31: a2i=0.0076 a2t=0.0252 a2it=0.0074 a2i7=0.0057 a2t7=0.0127 a2it7=0.0054 t2i=0.0066
+task=0 seed=      99 clean  n_txt=22 n_act=57 L31: a2i=0.0836 a2t=0.0395 a2it=0.0472 a2i7=0.0819 a2t7=0.0246 a2it7=0.0379 t2i=0.0664
+task=0 seed=      99 poison n_txt=22 n_act=57 L31: a2i=0.0076 a2t=0.0264 a2it=0.0074 a2i7=0.0057 a2t7=0.0142 a2it7=0.0054 t2i=0.0070
+task=0 seed=     777 clean  n_txt=22 n_act=57 L31: a2i=0.0884 a2t=0.0367 a2it=0.0469 a2i7=0.0783 a2t7=0.0219 a2it7=0.0376 t2i=0.0606
+task=0 seed=     777 poison n_txt=22 n_act=57 L31: a2i=0.0089 a2t=0.0274 a2it=0.0087 a2i7=0.0075 a2t7=0.0203 a2it7=0.0072 t2i=0.0086
+task=0 seed=20260803 clean  n_txt=22 n_act=57 L31: a2i=0.0709 a2t=0.0271 a2it=0.0410 a2i7=0.0749 a2t7=0.0198 a2it7=0.0342 t2i=0.0458
+task=0 seed=20260803 poison n_txt=22 n_act=57 L31: a2i=0.0080 a2t=0.0255 a2it=0.0079 a2i7=0.0061 a2t7=0.0149 a2it7=0.0058 t2i=0.0070
+task=0 seed=  424242 clean  n_txt=22 n_act=57 L31: a2i=0.0694 a2t=0.0410 a2it=0.0400 a2i7=0.0540 a2t7=0.0169 a2it7=0.0264 t2i=0.0523
+task=0 seed=  424242 poison n_txt=22 n_act=57 L31: a2i=0.0089 a2t=0.0308 a2it=0.0089 a2i7=0.0083 a2t7=0.0266 a2it7=0.0080 t2i=0.0094
+task=1 seed=       7 clean  n_txt=22 n_act=57 L31: a2i=0.0647 a2t=0.0340 a2it=0.0336 a2i7=0.0688 a2t7=0.0261 a2it7=0.0310 t2i=0.0543
+task=1 seed=       7 poison n_txt=22 n_act=57 L31: a2i=0.0083 a2t=0.0272 a2it=0.0082 a2i7=0.0070 a2t7=0.0189 a2it7=0.0067 t2i=0.0077
+task=1 seed=      42 clean  n_txt=22 n_act=57 L31: a2i=0.0577 a2t=0.0363 a2it=0.0337 a2i7=0.0739 a2t7=0.0214 a2it7=0.0297 t2i=0.0518
+task=1 seed=      42 poison n_txt=22 n_act=57 L31: a2i=0.0086 a2t=0.0277 a2it=0.0085 a2i7=0.0073 a2t7=0.0198 a2it7=0.0070 t2i=0.0078
+task=1 seed=    1234 clean  n_txt=22 n_act=57 L31: a2i=0.0788 a2t=0.0441 a2it=0.0448 a2i7=0.0879 a2t7=0.0266 a2it7=0.0364 t2i=0.0585
+task=1 seed=    1234 poison n_txt=22 n_act=57 L31: a2i=0.0088 a2t=0.0305 a2it=0.0087 a2i7=0.0084 a2t7=0.0248 a2it7=0.0081 t2i=0.0086
+task=1 seed=    2026 clean  n_txt=22 n_act=57 L31: a2i=0.0732 a2t=0.0332 a2it=0.0340 a2i7=0.0697 a2t7=0.0243 a2it7=0.0327 t2i=0.0522
+task=1 seed=    2026 poison n_txt=22 n_act=57 L31: a2i=0.0085 a2t=0.0273 a2it=0.0083 a2i7=0.0077 a2t7=0.0214 a2it7=0.0073 t2i=0.0079
+task=1 seed=   31337 clean  n_txt=22 n_act=57 L31: a2i=0.0795 a2t=0.0400 a2it=0.0426 a2i7=0.0725 a2t7=0.0259 a2it7=0.0345 t2i=0.0601
+task=1 seed=   31337 poison n_txt=22 n_act=57 L31: a2i=0.0075 a2t=0.0272 a2it=0.0074 a2i7=0.0055 a2t7=0.0144 a2it7=0.0053 t2i=0.0067
+task=1 seed=       5 clean  n_txt=22 n_act=57 L31: a2i=0.0687 a2t=0.0391 a2it=0.0441 a2i7=0.0749 a2t7=0.0206 a2it7=0.0327 t2i=0.0631
+task=1 seed=       5 poison n_txt=22 n_act=57 L31: a2i=0.0075 a2t=0.0259 a2it=0.0073 a2i7=0.0056 a2t7=0.0126 a2it7=0.0054 t2i=0.0066
+task=1 seed=      99 clean  n_txt=22 n_act=57 L31: a2i=0.0931 a2t=0.0369 a2it=0.0482 a2i7=0.0764 a2t7=0.0241 a2it7=0.0403 t2i=0.0725
+task=1 seed=      99 poison n_txt=22 n_act=57 L31: a2i=0.0075 a2t=0.0266 a2it=0.0073 a2i7=0.0056 a2t7=0.0136 a2it7=0.0054 t2i=0.0068
+task=1 seed=     777 clean  n_txt=22 n_act=57 L31: a2i=0.0826 a2t=0.0339 a2it=0.0376 a2i7=0.0784 a2t7=0.0237 a2it7=0.0367 t2i=0.0521
+task=1 seed=     777 poison n_txt=22 n_act=57 L31: a2i=0.0088 a2t=0.0271 a2it=0.0086 a2i7=0.0072 a2t7=0.0193 a2it7=0.0069 t2i=0.0083
+task=1 seed=20260803 clean  n_txt=22 n_act=57 L31: a2i=0.0867 a2t=0.0368 a2it=0.0417 a2i7=0.0905 a2t7=0.0221 a2it7=0.0371 t2i=0.0732
+task=1 seed=20260803 poison n_txt=22 n_act=57 L31: a2i=0.0079 a2t=0.0252 a2it=0.0078 a2i7=0.0059 a2t7=0.0143 a2it7=0.0057 t2i=0.0069
+task=1 seed=  424242 clean  n_txt=22 n_act=57 L31: a2i=0.0584 a2t=0.0345 a2it=0.0312 a2i7=0.0525 a2t7=0.0195 a2it7=0.0327 t2i=0.0505
+task=1 seed=  424242 poison n_txt=22 n_act=57 L31: a2i=0.0089 a2t=0.0301 a2it=0.0088 a2i7=0.0081 a2t7=0.0255 a2it7=0.0078 t2i=0.0091
+task=2 seed=       7 clean  n_txt=24 n_act=57 L31: a2i=0.0576 a2t=0.0351 a2it=0.0351 a2i7=0.0694 a2t7=0.0212 a2it7=0.0323 t2i=0.0510
+task=2 seed=       7 poison n_txt=24 n_act=57 L31: a2i=0.0085 a2t=0.0280 a2it=0.0084 a2i7=0.0075 a2t7=0.0223 a2it7=0.0072 t2i=0.0084
+task=2 seed=      42 clean  n_txt=24 n_act=57 L31: a2i=0.0683 a2t=0.0360 a2it=0.0407 a2i7=0.0840 a2t7=0.0192 a2it7=0.0364 t2i=0.0541
+task=2 seed=      42 poison n_txt=24 n_act=57 L31: a2i=0.0087 a2t=0.0287 a2it=0.0086 a2i7=0.0078 a2t7=0.0230 a2it7=0.0075 t2i=0.0085
+task=2 seed=    1234 clean  n_txt=24 n_act=57 L31: a2i=0.0673 a2t=0.0360 a2it=0.0418 a2i7=0.0876 a2t7=0.0238 a2it7=0.0360 t2i=0.0589
+task=2 seed=    1234 poison n_txt=24 n_act=57 L31: a2i=0.0086 a2t=0.0316 a2it=0.0086 a2i7=0.0086 a2t7=0.0288 a2it7=0.0083 t2i=0.0093
+task=2 seed=    2026 clean  n_txt=24 n_act=57 L31: a2i=0.0622 a2t=0.0341 a2it=0.0384 a2i7=0.0480 a2t7=0.0234 a2it7=0.0280 t2i=0.0516
+task=2 seed=    2026 poison n_txt=24 n_act=57 L31: a2i=0.0085 a2t=0.0285 a2it=0.0084 a2i7=0.0082 a2t7=0.0249 a2it7=0.0079 t2i=0.0087
+task=2 seed=   31337 clean  n_txt=24 n_act=57 L31: a2i=0.0837 a2t=0.0417 a2it=0.0405 a2i7=0.0906 a2t7=0.0213 a2it7=0.0378 t2i=0.0744
+task=2 seed=   31337 poison n_txt=24 n_act=57 L31: a2i=0.0076 a2t=0.0262 a2it=0.0075 a2i7=0.0056 a2t7=0.0151 a2it7=0.0054 t2i=0.0071
+task=2 seed=       5 clean  n_txt=24 n_act=57 L31: a2i=0.0612 a2t=0.0340 a2it=0.0405 a2i7=0.0732 a2t7=0.0180 a2it7=0.0370 t2i=0.0539
+task=2 seed=       5 poison n_txt=24 n_act=57 L31: a2i=0.0076 a2t=0.0244 a2it=0.0074 a2i7=0.0058 a2t7=0.0141 a2it7=0.0055 t2i=0.0070
+task=2 seed=      99 clean  n_txt=24 n_act=57 L31: a2i=0.0778 a2t=0.0398 a2it=0.0389 a2i7=0.0940 a2t7=0.0239 a2it7=0.0408 t2i=0.0758
+task=2 seed=      99 poison n_txt=24 n_act=57 L31: a2i=0.0076 a2t=0.0257 a2it=0.0074 a2i7=0.0058 a2t7=0.0153 a2it7=0.0056 t2i=0.0074
+task=2 seed=     777 clean  n_txt=24 n_act=57 L31: a2i=0.0889 a2t=0.0392 a2it=0.0446 a2i7=0.1017 a2t7=0.0237 a2it7=0.0438 t2i=0.0761
+task=2 seed=     777 poison n_txt=24 n_act=57 L31: a2i=0.0090 a2t=0.0279 a2it=0.0089 a2i7=0.0079 a2t7=0.0221 a2it7=0.0076 t2i=0.0094
+task=2 seed=20260803 clean  n_txt=24 n_act=57 L31: a2i=0.0645 a2t=0.0346 a2it=0.0394 a2i7=0.0816 a2t7=0.0209 a2it7=0.0370 t2i=0.0623
+task=2 seed=20260803 poison n_txt=24 n_act=57 L31: a2i=0.0081 a2t=0.0252 a2it=0.0079 a2i7=0.0062 a2t7=0.0164 a2it7=0.0059 t2i=0.0074
+task=2 seed=  424242 clean  n_txt=24 n_act=57 L31: a2i=0.0707 a2t=0.0403 a2it=0.0441 a2i7=0.0769 a2t7=0.0284 a2it7=0.0361 t2i=0.0570
+task=2 seed=  424242 poison n_txt=24 n_act=57 L31: a2i=0.0089 a2t=0.0310 a2it=0.0089 a2i7=0.0087 a2t7=0.0284 a2it7=0.0084 t2i=0.0097
+task=3 seed=       7 clean  n_txt=25 n_act=57 L31: a2i=0.0742 a2t=0.0320 a2it=0.0345 a2i7=0.0921 a2t7=0.0247 a2it7=0.0342 t2i=0.0533
+task=3 seed=       7 poison n_txt=25 n_act=57 L31: a2i=0.0085 a2t=0.0265 a2it=0.0083 a2i7=0.0075 a2t7=0.0200 a2it7=0.0072 t2i=0.0081
+task=3 seed=      42 clean  n_txt=25 n_act=57 L31: a2i=0.0678 a2t=0.0298 a2it=0.0314 a2i7=0.0854 a2t7=0.0217 a2it7=0.0360 t2i=0.0497
+task=3 seed=      42 poison n_txt=25 n_act=57 L31: a2i=0.0087 a2t=0.0274 a2it=0.0085 a2i7=0.0077 a2t7=0.0204 a2it7=0.0074 t2i=0.0082
+task=3 seed=    1234 clean  n_txt=25 n_act=57 L31: a2i=0.0747 a2t=0.0320 a2it=0.0421 a2i7=0.0896 a2t7=0.0207 a2it7=0.0299 t2i=0.0577
+task=3 seed=    1234 poison n_txt=25 n_act=57 L31: a2i=0.0085 a2t=0.0302 a2it=0.0085 a2i7=0.0084 a2t7=0.0261 a2it7=0.0081 t2i=0.0087
+task=3 seed=    2026 clean  n_txt=25 n_act=57 L31: a2i=0.0591 a2t=0.0306 a2it=0.0339 a2i7=0.0566 a2t7=0.0196 a2it7=0.0265 t2i=0.0485
+task=3 seed=    2026 poison n_txt=25 n_act=57 L31: a2i=0.0084 a2t=0.0275 a2it=0.0083 a2i7=0.0081 a2t7=0.0224 a2it7=0.0077 t2i=0.0084
+task=3 seed=   31337 clean  n_txt=25 n_act=57 L31: a2i=0.0828 a2t=0.0325 a2it=0.0375 a2i7=0.1019 a2t7=0.0206 a2it7=0.0399 t2i=0.0666
+task=3 seed=   31337 poison n_txt=25 n_act=57 L31: a2i=0.0076 a2t=0.0251 a2it=0.0075 a2i7=0.0056 a2t7=0.0146 a2it7=0.0054 t2i=0.0070
+task=3 seed=       5 clean  n_txt=25 n_act=57 L31: a2i=0.0739 a2t=0.0307 a2it=0.0368 a2i7=0.0876 a2t7=0.0199 a2it7=0.0381 t2i=0.0656
+task=3 seed=       5 poison n_txt=25 n_act=57 L31: a2i=0.0076 a2t=0.0241 a2it=0.0074 a2i7=0.0059 a2t7=0.0150 a2it7=0.0056 t2i=0.0069
+task=3 seed=      99 clean  n_txt=25 n_act=57 L31: a2i=0.0904 a2t=0.0304 a2it=0.0421 a2i7=0.1053 a2t7=0.0284 a2it7=0.0424 t2i=0.0838
+task=3 seed=      99 poison n_txt=25 n_act=57 L31: a2i=0.0076 a2t=0.0253 a2it=0.0074 a2i7=0.0059 a2t7=0.0152 a2it7=0.0056 t2i=0.0073
+task=3 seed=     777 clean  n_txt=25 n_act=57 L31: a2i=0.0929 a2t=0.0288 a2it=0.0377 a2i7=0.1050 a2t7=0.0178 a2it7=0.0367 t2i=0.0659
+task=3 seed=     777 poison n_txt=25 n_act=57 L31: a2i=0.0091 a2t=0.0271 a2it=0.0089 a2i7=0.0079 a2t7=0.0199 a2it7=0.0076 t2i=0.0091
+task=3 seed=20260803 clean  n_txt=25 n_act=57 L31: a2i=0.0815 a2t=0.0261 a2it=0.0360 a2i7=0.0960 a2t7=0.0202 a2it7=0.0357 t2i=0.0606
+task=3 seed=20260803 poison n_txt=25 n_act=57 L31: a2i=0.0081 a2t=0.0243 a2it=0.0079 a2i7=0.0062 a2t7=0.0155 a2it7=0.0059 t2i=0.0073
+task=3 seed=  424242 clean  n_txt=25 n_act=57 L31: a2i=0.0656 a2t=0.0311 a2it=0.0348 a2i7=0.0584 a2t7=0.0265 a2it7=0.0295 t2i=0.0528
+task=3 seed=  424242 poison n_txt=25 n_act=57 L31: a2i=0.0089 a2t=0.0299 a2it=0.0088 a2i7=0.0085 a2t7=0.0266 a2it7=0.0082 t2i=0.0092
+task=4 seed=       7 clean  n_txt=23 n_act=57 L31: a2i=0.0686 a2t=0.0405 a2it=0.0344 a2i7=0.0796 a2t7=0.0339 a2it7=0.0380 t2i=0.0544
+task=4 seed=       7 poison n_txt=23 n_act=57 L31: a2i=0.0084 a2t=0.0281 a2it=0.0083 a2i7=0.0074 a2t7=0.0214 a2it7=0.0071 t2i=0.0082
+task=4 seed=      42 clean  n_txt=23 n_act=57 L31: a2i=0.0651 a2t=0.0350 a2it=0.0342 a2i7=0.0851 a2t7=0.0238 a2it7=0.0400 t2i=0.0506
+task=4 seed=      42 poison n_txt=23 n_act=57 L31: a2i=0.0087 a2t=0.0286 a2it=0.0085 a2i7=0.0077 a2t7=0.0222 a2it7=0.0074 t2i=0.0082
+task=4 seed=    1234 clean  n_txt=23 n_act=57 L31: a2i=0.0834 a2t=0.0354 a2it=0.0367 a2i7=0.0950 a2t7=0.0230 a2it7=0.0400 t2i=0.0605
+task=4 seed=    1234 poison n_txt=23 n_act=57 L31: a2i=0.0087 a2t=0.0316 a2it=0.0086 a2i7=0.0086 a2t7=0.0277 a2it7=0.0083 t2i=0.0090
+task=4 seed=    2026 clean  n_txt=23 n_act=57 L31: a2i=0.0720 a2t=0.0363 a2it=0.0350 a2i7=0.0671 a2t7=0.0266 a2it7=0.0307 t2i=0.0532
+task=4 seed=    2026 poison n_txt=23 n_act=57 L31: a2i=0.0084 a2t=0.0282 a2it=0.0083 a2i7=0.0082 a2t7=0.0240 a2it7=0.0078 t2i=0.0085
+task=4 seed=   31337 clean  n_txt=23 n_act=57 L31: a2i=0.0942 a2t=0.0325 a2it=0.0389 a2i7=0.0842 a2t7=0.0182 a2it7=0.0318 t2i=0.0608
+task=4 seed=   31337 poison n_txt=23 n_act=57 L31: a2i=0.0076 a2t=0.0269 a2it=0.0075 a2i7=0.0055 a2t7=0.0149 a2it7=0.0053 t2i=0.0069
+task=4 seed=       5 clean  n_txt=23 n_act=57 L31: a2i=0.0707 a2t=0.0330 a2it=0.0394 a2i7=0.0762 a2t7=0.0180 a2it7=0.0318 t2i=0.0552
+task=4 seed=       5 poison n_txt=23 n_act=57 L31: a2i=0.0076 a2t=0.0251 a2it=0.0074 a2i7=0.0057 a2t7=0.0134 a2it7=0.0054 t2i=0.0068
+task=4 seed=      99 clean  n_txt=23 n_act=57 L31: a2i=0.0826 a2t=0.0347 a2it=0.0373 a2i7=0.0857 a2t7=0.0219 a2it7=0.0361 t2i=0.0782
+task=4 seed=      99 poison n_txt=23 n_act=57 L31: a2i=0.0075 a2t=0.0265 a2it=0.0074 a2i7=0.0057 a2t7=0.0148 a2it7=0.0055 t2i=0.0072
+task=4 seed=     777 clean  n_txt=23 n_act=57 L31: a2i=0.0854 a2t=0.0352 a2it=0.0419 a2i7=0.0893 a2t7=0.0316 a2it7=0.0410 t2i=0.0651
+task=4 seed=     777 poison n_txt=23 n_act=57 L31: a2i=0.0089 a2t=0.0282 a2it=0.0088 a2i7=0.0077 a2t7=0.0217 a2it7=0.0074 t2i=0.0091
+task=4 seed=20260803 clean  n_txt=23 n_act=57 L31: a2i=0.0838 a2t=0.0303 a2it=0.0380 a2i7=0.1001 a2t7=0.0241 a2it7=0.0347 t2i=0.0693
+task=4 seed=20260803 poison n_txt=23 n_act=57 L31: a2i=0.0080 a2t=0.0256 a2it=0.0079 a2i7=0.0061 a2t7=0.0156 a2it7=0.0058 t2i=0.0072
+task=4 seed=  424242 clean  n_txt=23 n_act=57 L31: a2i=0.0700 a2t=0.0322 a2it=0.0327 a2i7=0.0654 a2t7=0.0202 a2it7=0.0304 t2i=0.0464
+task=4 seed=  424242 poison n_txt=23 n_act=57 L31: a2i=0.0089 a2t=0.0311 a2it=0.0088 a2i7=0.0085 a2t7=0.0278 a2it7=0.0082 t2i=0.0096
+task=5 seed=       7 clean  n_txt=24 n_act=57 L31: a2i=0.0770 a2t=0.0351 a2it=0.0324 a2i7=0.0881 a2t7=0.0273 a2it7=0.0358 t2i=0.0561
+task=5 seed=       7 poison n_txt=24 n_act=57 L31: a2i=0.0086 a2t=0.0274 a2it=0.0084 a2i7=0.0076 a2t7=0.0205 a2it7=0.0073 t2i=0.0079
+task=5 seed=      42 clean  n_txt=24 n_act=57 L31: a2i=0.0652 a2t=0.0281 a2it=0.0295 a2i7=0.0759 a2t7=0.0202 a2it7=0.0380 t2i=0.0497
+task=5 seed=      42 poison n_txt=24 n_act=57 L31: a2i=0.0088 a2t=0.0280 a2it=0.0086 a2i7=0.0080 a2t7=0.0211 a2it7=0.0077 t2i=0.0079
+task=5 seed=    1234 clean  n_txt=24 n_act=57 L31: a2i=0.0761 a2t=0.0289 a2it=0.0314 a2i7=0.0877 a2t7=0.0202 a2it7=0.0341 t2i=0.0658
+task=5 seed=    1234 poison n_txt=24 n_act=57 L31: a2i=0.0086 a2t=0.0311 a2it=0.0086 a2i7=0.0088 a2t7=0.0267 a2it7=0.0084 t2i=0.0085
+task=5 seed=    2026 clean  n_txt=24 n_act=57 L31: a2i=0.0695 a2t=0.0283 a2it=0.0337 a2i7=0.0750 a2t7=0.0232 a2it7=0.0341 t2i=0.0562
+task=5 seed=    2026 poison n_txt=24 n_act=57 L31: a2i=0.0085 a2t=0.0280 a2it=0.0084 a2i7=0.0083 a2t7=0.0229 a2it7=0.0080 t2i=0.0080
+task=5 seed=   31337 clean  n_txt=24 n_act=57 L31: a2i=0.0950 a2t=0.0344 a2it=0.0382 a2i7=0.1107 a2t7=0.0204 a2it7=0.0375 t2i=0.0671
+task=5 seed=   31337 poison n_txt=24 n_act=57 L31: a2i=0.0077 a2t=0.0254 a2it=0.0075 a2i7=0.0056 a2t7=0.0143 a2it7=0.0054 t2i=0.0069
+task=5 seed=       5 clean  n_txt=24 n_act=57 L31: a2i=0.0812 a2t=0.0318 a2it=0.0398 a2i7=0.1049 a2t7=0.0203 a2it7=0.0378 t2i=0.0660
+task=5 seed=       5 poison n_txt=24 n_act=57 L31: a2i=0.0076 a2t=0.0238 a2it=0.0075 a2i7=0.0058 a2t7=0.0136 a2it7=0.0056 t2i=0.0068
+task=5 seed=      99 clean  n_txt=24 n_act=57 L31: a2i=0.0975 a2t=0.0308 a2it=0.0390 a2i7=0.1060 a2t7=0.0188 a2it7=0.0412 t2i=0.0872
+task=5 seed=      99 poison n_txt=24 n_act=57 L31: a2i=0.0076 a2t=0.0250 a2it=0.0074 a2i7=0.0058 a2t7=0.0148 a2it7=0.0056 t2i=0.0070
+task=5 seed=     777 clean  n_txt=24 n_act=57 L31: a2i=0.0823 a2t=0.0316 a2it=0.0339 a2i7=0.0882 a2t7=0.0263 a2it7=0.0353 t2i=0.0551
+task=5 seed=     777 poison n_txt=24 n_act=57 L31: a2i=0.0090 a2t=0.0276 a2it=0.0089 a2i7=0.0080 a2t7=0.0207 a2it7=0.0077 t2i=0.0085
+task=5 seed=20260803 clean  n_txt=24 n_act=57 L31: a2i=0.0878 a2t=0.0302 a2it=0.0362 a2i7=0.0885 a2t7=0.0162 a2it7=0.0334 t2i=0.0744
+task=5 seed=20260803 poison n_txt=24 n_act=57 L31: a2i=0.0081 a2t=0.0244 a2it=0.0079 a2i7=0.0062 a2t7=0.0150 a2it7=0.0060 t2i=0.0070
+task=5 seed=  424242 clean  n_txt=24 n_act=57 L31: a2i=0.0765 a2t=0.0324 a2it=0.0346 a2i7=0.0578 a2t7=0.0242 a2it7=0.0296 t2i=0.0544
+task=5 seed=  424242 poison n_txt=24 n_act=57 L31: a2i=0.0089 a2t=0.0308 a2it=0.0088 a2i7=0.0087 a2t7=0.0271 a2it7=0.0084 t2i=0.0090
+task=6 seed=       7 clean  n_txt=24 n_act=57 L31: a2i=0.0669 a2t=0.0365 a2it=0.0326 a2i7=0.0787 a2t7=0.0242 a2it7=0.0333 t2i=0.0599
+task=6 seed=       7 poison n_txt=24 n_act=57 L31: a2i=0.0084 a2t=0.0270 a2it=0.0082 a2i7=0.0071 a2t7=0.0198 a2it7=0.0068 t2i=0.0079
+task=6 seed=      42 clean  n_txt=24 n_act=57 L31: a2i=0.0509 a2t=0.0332 a2it=0.0315 a2i7=0.0597 a2t7=0.0183 a2it7=0.0271 t2i=0.0554
+task=6 seed=      42 poison n_txt=24 n_act=57 L31: a2i=0.0087 a2t=0.0278 a2it=0.0085 a2i7=0.0075 a2t7=0.0200 a2it7=0.0072 t2i=0.0079
+task=6 seed=    1234 clean  n_txt=24 n_act=57 L31: a2i=0.0835 a2t=0.0358 a2it=0.0432 a2i7=0.0945 a2t7=0.0223 a2it7=0.0351 t2i=0.0612
+task=6 seed=    1234 poison n_txt=24 n_act=57 L31: a2i=0.0087 a2t=0.0308 a2it=0.0087 a2i7=0.0086 a2t7=0.0252 a2it7=0.0082 t2i=0.0087
+task=6 seed=    2026 clean  n_txt=24 n_act=57 L31: a2i=0.0819 a2t=0.0343 a2it=0.0345 a2i7=0.0843 a2t7=0.0160 a2it7=0.0299 t2i=0.0567
+task=6 seed=    2026 poison n_txt=24 n_act=57 L31: a2i=0.0084 a2t=0.0276 a2it=0.0083 a2i7=0.0078 a2t7=0.0218 a2it7=0.0075 t2i=0.0082
+task=6 seed=   31337 clean  n_txt=24 n_act=57 L31: a2i=0.0802 a2t=0.0368 a2it=0.0355 a2i7=0.0663 a2t7=0.0147 a2it7=0.0248 t2i=0.0580
+task=6 seed=   31337 poison n_txt=24 n_act=57 L31: a2i=0.0076 a2t=0.0263 a2it=0.0074 a2i7=0.0055 a2t7=0.0145 a2it7=0.0053 t2i=0.0069
+task=6 seed=       5 clean  n_txt=24 n_act=57 L31: a2i=0.0796 a2t=0.0368 a2it=0.0398 a2i7=0.0948 a2t7=0.0155 a2it7=0.0364 t2i=0.0654
+task=6 seed=       5 poison n_txt=24 n_act=57 L31: a2i=0.0075 a2t=0.0250 a2it=0.0073 a2i7=0.0056 a2t7=0.0143 a2it7=0.0054 t2i=0.0068
+task=6 seed=      99 clean  n_txt=24 n_act=57 L31: a2i=0.1004 a2t=0.0398 a2it=0.0464 a2i7=0.1035 a2t7=0.0270 a2it7=0.0436 t2i=0.0821
+task=6 seed=      99 poison n_txt=24 n_act=57 L31: a2i=0.0075 a2t=0.0259 a2it=0.0074 a2i7=0.0057 a2t7=0.0148 a2it7=0.0054 t2i=0.0071
+task=6 seed=     777 clean  n_txt=24 n_act=57 L31: a2i=0.0861 a2t=0.0386 a2it=0.0422 a2i7=0.0927 a2t7=0.0254 a2it7=0.0389 t2i=0.0615
+task=6 seed=     777 poison n_txt=24 n_act=57 L31: a2i=0.0089 a2t=0.0273 a2it=0.0087 a2i7=0.0074 a2t7=0.0196 a2it7=0.0071 t2i=0.0088
+task=6 seed=20260803 clean  n_txt=24 n_act=57 L31: a2i=0.0867 a2t=0.0383 a2it=0.0429 a2i7=0.0902 a2t7=0.0160 a2it7=0.0335 t2i=0.0719
+task=6 seed=20260803 poison n_txt=24 n_act=57 L31: a2i=0.0080 a2t=0.0249 a2it=0.0078 a2i7=0.0060 a2t7=0.0150 a2it7=0.0057 t2i=0.0071
+task=6 seed=  424242 clean  n_txt=24 n_act=57 L31: a2i=0.0678 a2t=0.0364 a2it=0.0328 a2i7=0.0579 a2t7=0.0152 a2it7=0.0244 t2i=0.0513
+task=6 seed=  424242 poison n_txt=24 n_act=57 L31: a2i=0.0089 a2t=0.0300 a2it=0.0088 a2i7=0.0084 a2t7=0.0251 a2it7=0.0080 t2i=0.0092
+task=7 seed=       7 clean  n_txt=19 n_act=57 L31: a2i=0.0650 a2t=0.0426 a2it=0.0432 a2i7=0.0592 a2t7=0.0280 a2it7=0.0290 t2i=0.0461
+task=7 seed=       7 poison n_txt=19 n_act=57 L31: a2i=0.0083 a2t=0.0292 a2it=0.0082 a2i7=0.0066 a2t7=0.0192 a2it7=0.0064 t2i=0.0073
+task=7 seed=      42 clean  n_txt=19 n_act=57 L31: a2i=0.0583 a2t=0.0359 a2it=0.0470 a2i7=0.0680 a2t7=0.0218 a2it7=0.0337 t2i=0.0528
+task=7 seed=      42 poison n_txt=19 n_act=57 L31: a2i=0.0086 a2t=0.0296 a2it=0.0085 a2i7=0.0069 a2t7=0.0194 a2it7=0.0067 t2i=0.0074
+task=7 seed=    1234 clean  n_txt=19 n_act=57 L31: a2i=0.0679 a2t=0.0406 a2it=0.0437 a2i7=0.0650 a2t7=0.0278 a2it7=0.0306 t2i=0.0522
+task=7 seed=    1234 poison n_txt=19 n_act=57 L31: a2i=0.0087 a2t=0.0323 a2it=0.0086 a2i7=0.0077 a2t7=0.0246 a2it7=0.0074 t2i=0.0079
+task=7 seed=    2026 clean  n_txt=19 n_act=57 L31: a2i=0.0584 a2t=0.0326 a2it=0.0528 a2i7=0.0542 a2t7=0.0261 a2it7=0.0306 t2i=0.0471
+task=7 seed=    2026 poison n_txt=19 n_act=57 L31: a2i=0.0084 a2t=0.0291 a2it=0.0083 a2i7=0.0072 a2t7=0.0209 a2it7=0.0069 t2i=0.0075
+task=7 seed=   31337 clean  n_txt=19 n_act=57 L31: a2i=0.0809 a2t=0.0378 a2it=0.0427 a2i7=0.0849 a2t7=0.0208 a2it7=0.0337 t2i=0.0753
+task=7 seed=   31337 poison n_txt=19 n_act=57 L31: a2i=0.0075 a2t=0.0293 a2it=0.0074 a2i7=0.0056 a2t7=0.0144 a2it7=0.0054 t2i=0.0064
+task=7 seed=       5 clean  n_txt=19 n_act=57 L31: a2i=0.0729 a2t=0.0365 a2it=0.0442 a2i7=0.0857 a2t7=0.0272 a2it7=0.0426 t2i=0.0613
+task=7 seed=       5 poison n_txt=19 n_act=57 L31: a2i=0.0075 a2t=0.0276 a2it=0.0074 a2i7=0.0057 a2t7=0.0131 a2it7=0.0054 t2i=0.0063
+task=7 seed=      99 clean  n_txt=19 n_act=57 L31: a2i=0.0882 a2t=0.0407 a2it=0.0455 a2i7=0.0823 a2t7=0.0293 a2it7=0.0373 t2i=0.0685
+task=7 seed=      99 poison n_txt=19 n_act=57 L31: a2i=0.0075 a2t=0.0291 a2it=0.0074 a2i7=0.0056 a2t7=0.0138 a2it7=0.0054 t2i=0.0065
+task=7 seed=     777 clean  n_txt=19 n_act=57 L31: a2i=0.0753 a2t=0.0334 a2it=0.0458 a2i7=0.0764 a2t7=0.0289 a2it7=0.0396 t2i=0.0525
+task=7 seed=     777 poison n_txt=19 n_act=57 L31: a2i=0.0089 a2t=0.0286 a2it=0.0087 a2i7=0.0068 a2t7=0.0185 a2it7=0.0066 t2i=0.0079
+task=7 seed=20260803 clean  n_txt=19 n_act=57 L31: a2i=0.0780 a2t=0.0345 a2it=0.0441 a2i7=0.0672 a2t7=0.0188 a2it7=0.0288 t2i=0.0701
+task=7 seed=20260803 poison n_txt=19 n_act=57 L31: a2i=0.0079 a2t=0.0272 a2it=0.0078 a2i7=0.0059 a2t7=0.0144 a2it7=0.0057 t2i=0.0066
+task=7 seed=  424242 clean  n_txt=19 n_act=57 L31: a2i=0.0675 a2t=0.0372 a2it=0.0371 a2i7=0.0739 a2t7=0.0214 a2it7=0.0346 t2i=0.0504
+task=7 seed=  424242 poison n_txt=19 n_act=57 L31: a2i=0.0088 a2t=0.0318 a2it=0.0088 a2i7=0.0076 a2t7=0.0245 a2it7=0.0074 t2i=0.0085
+task=8 seed=       7 clean  n_txt=21 n_act=57 L31: a2i=0.0770 a2t=0.0365 a2it=0.0351 a2i7=0.0759 a2t7=0.0201 a2it7=0.0299 t2i=0.0646
+task=8 seed=       7 poison n_txt=21 n_act=57 L31: a2i=0.0084 a2t=0.0282 a2it=0.0083 a2i7=0.0069 a2t7=0.0195 a2it7=0.0066 t2i=0.0079
+task=8 seed=      42 clean  n_txt=21 n_act=57 L31: a2i=0.0707 a2t=0.0336 a2it=0.0331 a2i7=0.0993 a2t7=0.0194 a2it7=0.0346 t2i=0.0589
+task=8 seed=      42 poison n_txt=21 n_act=57 L31: a2i=0.0087 a2t=0.0288 a2it=0.0085 a2i7=0.0072 a2t7=0.0206 a2it7=0.0069 t2i=0.0078
+task=8 seed=    1234 clean  n_txt=21 n_act=57 L31: a2i=0.0859 a2t=0.0348 a2it=0.0366 a2i7=0.0991 a2t7=0.0233 a2it7=0.0345 t2i=0.0704
+task=8 seed=    1234 poison n_txt=21 n_act=57 L31: a2i=0.0088 a2t=0.0312 a2it=0.0087 a2i7=0.0082 a2t7=0.0253 a2it7=0.0079 t2i=0.0086
+task=8 seed=    2026 clean  n_txt=21 n_act=57 L31: a2i=0.0777 a2t=0.0338 a2it=0.0362 a2i7=0.0793 a2t7=0.0260 a2it7=0.0335 t2i=0.0612
+task=8 seed=    2026 poison n_txt=21 n_act=57 L31: a2i=0.0085 a2t=0.0283 a2it=0.0084 a2i7=0.0076 a2t7=0.0219 a2it7=0.0073 t2i=0.0081
+task=8 seed=   31337 clean  n_txt=21 n_act=57 L31: a2i=0.0878 a2t=0.0397 a2it=0.0420 a2i7=0.0780 a2t7=0.0198 a2it7=0.0312 t2i=0.0644
+task=8 seed=   31337 poison n_txt=21 n_act=57 L31: a2i=0.0076 a2t=0.0278 a2it=0.0074 a2i7=0.0056 a2t7=0.0143 a2it7=0.0054 t2i=0.0067
+task=8 seed=       5 clean  n_txt=21 n_act=57 L31: a2i=0.0753 a2t=0.0365 a2it=0.0442 a2i7=0.0813 a2t7=0.0183 a2it7=0.0328 t2i=0.0671
+task=8 seed=       5 poison n_txt=21 n_act=57 L31: a2i=0.0075 a2t=0.0262 a2it=0.0074 a2i7=0.0057 a2t7=0.0128 a2it7=0.0054 t2i=0.0065
+task=8 seed=      99 clean  n_txt=21 n_act=57 L31: a2i=0.0999 a2t=0.0404 a2it=0.0462 a2i7=0.0758 a2t7=0.0217 a2it7=0.0335 t2i=0.0708
+task=8 seed=      99 poison n_txt=21 n_act=57 L31: a2i=0.0075 a2t=0.0273 a2it=0.0074 a2i7=0.0057 a2t7=0.0140 a2it7=0.0055 t2i=0.0068
+task=8 seed=     777 clean  n_txt=21 n_act=57 L31: a2i=0.0874 a2t=0.0336 a2it=0.0396 a2i7=0.0966 a2t7=0.0242 a2it7=0.0393 t2i=0.0596
+task=8 seed=     777 poison n_txt=21 n_act=57 L31: a2i=0.0089 a2t=0.0280 a2it=0.0087 a2i7=0.0072 a2t7=0.0199 a2it7=0.0069 t2i=0.0084
+task=8 seed=20260803 clean  n_txt=21 n_act=57 L31: a2i=0.0868 a2t=0.0357 a2it=0.0441 a2i7=0.0883 a2t7=0.0167 a2it7=0.0302 t2i=0.0749
+task=8 seed=20260803 poison n_txt=21 n_act=57 L31: a2i=0.0080 a2t=0.0262 a2it=0.0078 a2i7=0.0061 a2t7=0.0142 a2it7=0.0058 t2i=0.0069
+task=8 seed=  424242 clean  n_txt=21 n_act=57 L31: a2i=0.0635 a2t=0.0340 a2it=0.0346 a2i7=0.0578 a2t7=0.0189 a2it7=0.0284 t2i=0.0534
+task=8 seed=  424242 poison n_txt=21 n_act=57 L31: a2i=0.0089 a2t=0.0310 a2it=0.0088 a2i7=0.0079 a2t7=0.0265 a2it7=0.0076 t2i=0.0092
+task=9 seed=       7 clean  n_txt=23 n_act=57 L31: a2i=0.0654 a2t=0.0348 a2it=0.0343 a2i7=0.0607 a2t7=0.0211 a2it7=0.0270 t2i=0.0500
+task=9 seed=       7 poison n_txt=23 n_act=57 L31: a2i=0.0084 a2t=0.0275 a2it=0.0082 a2i7=0.0071 a2t7=0.0202 a2it7=0.0068 t2i=0.0080
+task=9 seed=      42 clean  n_txt=23 n_act=57 L31: a2i=0.0654 a2t=0.0310 a2it=0.0272 a2i7=0.0601 a2t7=0.0144 a2it7=0.0193 t2i=0.0488
+task=9 seed=      42 poison n_txt=23 n_act=57 L31: a2i=0.0086 a2t=0.0279 a2it=0.0085 a2i7=0.0073 a2t7=0.0207 a2it7=0.0070 t2i=0.0081
+task=9 seed=    1234 clean  n_txt=23 n_act=57 L31: a2i=0.0712 a2t=0.0355 a2it=0.0376 a2i7=0.0902 a2t7=0.0173 a2it7=0.0349 t2i=0.0631
+task=9 seed=    1234 poison n_txt=23 n_act=57 L31: a2i=0.0087 a2t=0.0311 a2it=0.0087 a2i7=0.0086 a2t7=0.0265 a2it7=0.0083 t2i=0.0090
+task=9 seed=    2026 clean  n_txt=23 n_act=57 L31: a2i=0.0611 a2t=0.0358 a2it=0.0386 a2i7=0.0513 a2t7=0.0234 a2it7=0.0291 t2i=0.0550
+task=9 seed=    2026 poison n_txt=23 n_act=57 L31: a2i=0.0084 a2t=0.0279 a2it=0.0083 a2i7=0.0079 a2t7=0.0225 a2it7=0.0076 t2i=0.0083
+task=9 seed=   31337 clean  n_txt=23 n_act=57 L31: a2i=0.0774 a2t=0.0429 a2it=0.0384 a2i7=0.0803 a2t7=0.0260 a2it7=0.0367 t2i=0.0710
+task=9 seed=   31337 poison n_txt=23 n_act=57 L31: a2i=0.0076 a2t=0.0271 a2it=0.0074 a2i7=0.0054 a2t7=0.0149 a2it7=0.0052 t2i=0.0069
+task=9 seed=       5 clean  n_txt=23 n_act=57 L31: a2i=0.0644 a2t=0.0399 a2it=0.0374 a2i7=0.0728 a2t7=0.0166 a2it7=0.0308 t2i=0.0601
+task=9 seed=       5 poison n_txt=23 n_act=57 L31: a2i=0.0075 a2t=0.0257 a2it=0.0073 a2i7=0.0056 a2t7=0.0135 a2it7=0.0053 t2i=0.0068
+task=9 seed=      99 clean  n_txt=23 n_act=57 L31: a2i=0.0827 a2t=0.0454 a2it=0.0419 a2i7=0.0863 a2t7=0.0282 a2it7=0.0399 t2i=0.0741
+task=9 seed=      99 poison n_txt=23 n_act=57 L31: a2i=0.0075 a2t=0.0268 a2it=0.0073 a2i7=0.0056 a2t7=0.0148 a2it7=0.0054 t2i=0.0071
+task=9 seed=     777 clean  n_txt=23 n_act=57 L31: a2i=0.0931 a2t=0.0415 a2it=0.0403 a2i7=0.0863 a2t7=0.0222 a2it7=0.0348 t2i=0.0731
+task=9 seed=     777 poison n_txt=23 n_act=57 L31: a2i=0.0088 a2t=0.0275 a2it=0.0087 a2i7=0.0073 a2t7=0.0199 a2it7=0.0070 t2i=0.0090
+task=9 seed=20260803 clean  n_txt=23 n_act=57 L31: a2i=0.0730 a2t=0.0304 a2it=0.0400 a2i7=0.0712 a2t7=0.0174 a2it7=0.0330 t2i=0.0728
+task=9 seed=20260803 poison n_txt=23 n_act=57 L31: a2i=0.0079 a2t=0.0255 a2it=0.0078 a2i7=0.0059 a2t7=0.0149 a2it7=0.0056 t2i=0.0071
+task=9 seed=  424242 clean  n_txt=23 n_act=57 L31: a2i=0.0600 a2t=0.0428 a2it=0.0335 a2i7=0.0532 a2t7=0.0216 a2it7=0.0243 t2i=0.0474
+task=9 seed=  424242 poison n_txt=23 n_act=57 L31: a2i=0.0089 a2t=0.0305 a2it=0.0088 a2i7=0.0083 a2t7=0.0265 a2it7=0.0080 t2i=0.0095
+
+Saved 200 samples -> /home/grads/nsamptur/vla_bkd_def/BadVLA/../GoBA_attack/attn_maps/badvla_action_query_ftt.npz

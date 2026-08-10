@@ -1,0 +1,47 @@
+====================================================================
+ACTION-TO-PERCEPT FLOW DETECTOR (value-weighted attention rollout)
+Script: run_flow_entropy_detector.py   Data: flow_entropy.npz (n=250)
+====================================================================
+
+STATISTIC: for each generated action token, roll out attention through ALL 32
+layers (Abnar & Zuidema residual-corrected product), with each layer's matrix
+value-weighted (Kobayashi: alpha * ||v||, row-normalized). Take the resulting
+flow distribution over the 256 image patches. Two scorings tested:
+  - flow ENTROPY (normalized Shannon)
+  - flow CONCENTRATION (max-patch share)
+Baselines from the SAME forward pass: last-layer raw-weight entropy
+(AttenTD/Bera-style) and T2IShield F-norm.
+
+RESULTS (5-role protocol, disjoint seeds, 10 tasks):
+
+statistic                     poisonAUC  ketchupAUC  milkAUC   spec.gap
+FLOW concentration (vw)          1.0000      0.5456    0.5188   +0.4544  <-- WINNER
+FLOW entropy (vw)                1.0000      0.9802    0.8090   +0.0198  (novelty-ish)
+FLOW entropy (weight-based)      1.0000      0.9710    0.8922   +0.0290
+last-layer entropy (baseline)    0.5644      0.6024    0.5046   -0.0380  (raw weights FAIL)
+T2IShield F-norm (baseline)      0.9846      0.5728    0.5382   +0.4118
+
+FLOW CONCENTRATION -- FIXED CONSTANT, SINGLE FRAME, GLOBAL OPEN MARGIN:
+  poison  [0.0150, 0.0189]
+  clean   [0.0071, 0.0130]   ketchup [0.0094, 0.0107]   milk [0.0085, 0.0114]
+  global margin +0.0020 OPEN over all 250 scenes: any constant in
+  (0.0130, 0.0150) separates every poison scene from every benign scene.
+  VAL-frozen thr 0.0140 -> TEST 100% poison / 0% clean / 0% ketchup / 0% milk.
+  No episode aggregation needed (first single-frame statistic in the project
+  with an open margin), no layer selection (rollout uses all 32 layers BY
+  CONSTRUCTION), threshold transfers across unseen tasks.
+
+LOCALIZATION FOR FREE: flow-map argmax = patch 211 (trigger) in 50/50 poison
+scenes; clean/decoy argmaxes are dispersed (ketchup only 20/50 at 211 and its
+concentration stays at clean level -- attracts a glance, does not funnel flow).
+
+WHY THE PIECES MATTER (ablations from the same run):
+  - single-layer raw weights: AUROC 0.56 -- unusable (validates the
+    interpretability critique of raw attention as an explanation).
+  - rollout + entropy: detects (1.0) but decoys also fire (0.97/0.81) --
+    entropy is a global diffuseness measure, hence novelty-sensitive.
+  - rollout + value-weighting + CONCENTRATION: detection AND specificity.
+
+DISTINCTION FROM T2IShield: activations not weights; accumulated multi-layer
+flow not one layer; concentration of action->percept flow not F-norm
+dispersion of text maps; action queries not text tokens.

@@ -1,0 +1,42 @@
+2026-08-10 01:11:07.880691: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-10 01:11:07.911812: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-10 01:11:07.911888: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-10 01:11:07.913079: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-10 01:11:07.918452: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-10 01:11:08.404142: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/GoBA-OpenVLA/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+2026-08-10 01:11:13.930713: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+Loading CLEAN OpenVLA (GoBA protocol)...
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.57it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.25it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.52it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.72it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.51it/s]
+patches=256 layers=32
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+CLEAN_goba-proto task=0 clean  T=10  FTT_qktv t0=0.0744 mean=0.0812
+CLEAN_goba-proto task=0 poison T=10  FTT_qktv t0=0.0879 mean=0.0815
+CLEAN_goba-proto task=1 clean  T=10  FTT_qktv t0=0.0942 mean=0.0815
+CLEAN_goba-proto task=1 poison T=10  FTT_qktv t0=0.0872 mean=0.0811
+CLEAN_goba-proto task=2 clean  T=10  FTT_qktv t0=0.0949 mean=0.0957
+CLEAN_goba-proto task=2 poison T=10  FTT_qktv t0=0.1006 mean=0.0909
+CLEAN_goba-proto task=3 clean  T=10  FTT_qktv t0=0.1074 mean=0.0931
+CLEAN_goba-proto task=3 poison T=10  FTT_qktv t0=0.0826 mean=0.0840
+CLEAN_goba-proto task=4 clean  T=10  FTT_qktv t0=0.1087 mean=0.0855
+CLEAN_goba-proto task=4 poison T=10  FTT_qktv t0=0.1045 mean=0.0871
+CLEAN_goba-proto task=5 clean  T=10  FTT_qktv t0=0.1073 mean=0.0807
+CLEAN_goba-proto task=5 poison T=10  FTT_qktv t0=0.1018 mean=0.0793
+CLEAN_goba-proto task=6 clean  T=10  FTT_qktv t0=0.1073 mean=0.0921
+CLEAN_goba-proto task=6 poison T=10  FTT_qktv t0=0.1120 mean=0.0860
+CLEAN_goba-proto task=7 clean  T=10  FTT_qktv t0=0.0971 mean=0.0878
+CLEAN_goba-proto task=7 poison T=10  FTT_qktv t0=0.0916 mean=0.0878
+CLEAN_goba-proto task=8 clean  T=10  FTT_qktv t0=0.1021 mean=0.0787
+CLEAN_goba-proto task=8 poison T=10  FTT_qktv t0=0.0691 mean=0.0758
+CLEAN_goba-proto task=9 clean  T=10  FTT_qktv t0=0.0907 mean=0.0893
+CLEAN_goba-proto task=9 poison T=10  FTT_qktv t0=0.0716 mean=0.0823
+Saved 20 episodes -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/action_imgtext_qktv_temporal/clean_goba_protocol_temporal.npz

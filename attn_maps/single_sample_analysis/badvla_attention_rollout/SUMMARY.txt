@@ -1,0 +1,11 @@
+BadVLA attention rollout vs last layer
+
+map                   H_clean     H_bd       ΔH
+text W last             4.707    5.504   +0.797
+text W roll             5.544    5.544   +0.000
+text V last             4.777    5.492   +0.715
+text V roll             5.539    5.543   +0.004
+act W last              4.401    5.488   +1.086
+act W roll              5.544    5.544   +0.000
+act V last              4.196    5.479   +1.283
+act V roll              5.539    5.543   +0.004

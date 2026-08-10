@@ -1,0 +1,8 @@
+SPECIFICITY CONTROL: is the f_norm gap caused by backdoor training, or just by
+the trigger object being visually novel? Same scenes, same statistic, two models.
+
+BACKDOORED (GoBA fine-tuned)         n=200  L31 AUROC=0.9797  clean=0.0779 poison=0.0564 gap=+0.0215
+CLEAN (base pretrained openvla-7b)   n=200  L31 AUROC=0.6113  clean=0.0530 poison=0.0507 gap=+0.0023
+
+=> backdoored gap is 9.3x the clean-model gap; the residual 0.61 on the clean model
+   is the 'a novel object is present' baseline, which the backdoor signature sits far above.

@@ -1,0 +1,4 @@
+In: What action should the robot take to turn on the stove?
+Out:
+task_id=7 seed=7 layer=-1 (last)
+EACH panel = ONE text token's attention over the full image.

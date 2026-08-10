@@ -1,0 +1,24 @@
+EMD (Earth Mover / Wasserstein) — YOUR protocol
+per DoF: emd(map_t, map_{t+1}) for t=0..8 (10 steps)
+episode score = mean over 7 DoFs x 9 transitions
+Hypothesis: poison lower EMD (less spatial mass drift) than clean
+
+GoBA:
+  clean  μ_EMD=0.4408  range=[0.0360,0.7634]  n=20
+  poison μ_EMD=0.4714  range=[0.0345,0.6308]  n=20
+  AUROC (low EMD = backdoor / freeze): 0.537
+  AUROC (high EMD = backdoor / drift):  0.463
+  vs decoy_ketchup: freeze AUROC=0.625 (μ_decoy=0.5052)
+  vs decoy_milk: freeze AUROC=0.603 (μ_decoy=0.4688)
+
+BadVLA:
+  clean  μ_EMD=0.2795  range=[0.2126,0.5364]  n=20
+  poison μ_EMD=0.0759  range=[0.0640,0.0898]  n=20
+  AUROC (low EMD = backdoor / freeze): 1.000
+  AUROC (high EMD = backdoor / drift):  0.000
+
+VERDICT:
+  BadVLA: EMD strongly supports freeze (poison 0.076 vs clean 0.280, AUROC 1.0).
+  GoBA:  EMD does NOT — poison slightly HIGHER mass drift than clean (AUROC ~0.54).
+  So cosine said "frozen" for GoBA, but EMD says the attention mass still moves
+  spatially about as much as clean (peaked maps: small patch jumps cost more in EMD).

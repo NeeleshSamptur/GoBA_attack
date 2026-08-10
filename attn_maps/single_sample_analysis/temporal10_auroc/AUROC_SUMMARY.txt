@@ -1,0 +1,90 @@
+AUROC clean vs backdoor from temporal action→image metrics
+Caveat: SINGLE SCENE (task7/seed7). Each sample = one timestep-pair score
+(n=9 consecutive pairs or n=9 vs_t0). Not multi-model AUROC.
+
+AUC_drift:  higher score = less similarity / more distance  (structure-break / drift hyp)
+AUC_freeze: higher score = more similarity / less distance (freeze / blind hyp)
+
+=== GoBA weight | consecutive ===
+metric      AUC_drift  AUC_freeze     best  preferred
+cosine          0.704       0.296    0.704  drift
+js              0.765       0.235    0.765  drift
+emd             0.691       0.309    0.691  drift
+ssim            0.802       0.198    0.802  drift
+pearson         0.704       0.296    0.704  drift
+spearman        0.827       0.173    0.827  drift
+
+=== GoBA weight | vs_t0 ===
+metric      AUC_drift  AUC_freeze     best  preferred
+cosine          0.691       0.309    0.691  drift
+js              0.840       0.160    0.840  drift
+emd             0.728       0.272    0.728  drift
+ssim            0.914       0.086    0.914  drift
+pearson         0.716       0.284    0.716  drift
+spearman        0.741       0.259    0.741  drift
+
+=== GoBA vnorm | consecutive ===
+metric      AUC_drift  AUC_freeze     best  preferred
+cosine          0.284       0.716    0.716  freeze
+js              0.198       0.802    0.802  freeze
+emd             0.370       0.630    0.630  freeze
+ssim            0.506       0.494    0.506  drift
+pearson         0.284       0.716    0.716  freeze
+spearman        0.309       0.691    0.691  freeze
+
+=== GoBA vnorm | vs_t0 ===
+metric      AUC_drift  AUC_freeze     best  preferred
+cosine          0.469       0.531    0.531  freeze
+js              0.568       0.432    0.568  drift
+emd             0.617       0.383    0.617  drift
+ssim            0.741       0.259    0.741  drift
+pearson         0.469       0.531    0.531  freeze
+spearman        0.728       0.272    0.728  drift
+
+=== BadVLA weight | consecutive ===
+metric      AUC_drift  AUC_freeze     best  preferred
+cosine          0.111       0.889    0.889  freeze
+js              0.049       0.951    0.951  freeze
+emd             0.136       0.864    0.864  freeze
+ssim            0.716       0.284    0.716  drift
+pearson         0.654       0.346    0.654  drift
+spearman        0.901       0.099    0.901  drift
+
+=== BadVLA weight | vs_t0 ===
+metric      AUC_drift  AUC_freeze     best  preferred
+cosine          0.123       0.877    0.877  freeze
+js              0.136       0.864    0.864  freeze
+emd             0.272       0.728    0.728  freeze
+ssim            0.914       0.086    0.914  drift
+pearson         0.802       0.198    0.802  drift
+spearman        0.926       0.074    0.926  drift
+
+=== BadVLA vnorm | consecutive ===
+metric      AUC_drift  AUC_freeze     best  preferred
+cosine          0.062       0.938    0.938  freeze
+js              0.012       0.988    0.988  freeze
+emd             0.062       0.938    0.938  freeze
+ssim            0.506       0.494    0.506  drift
+pearson         0.593       0.407    0.593  drift
+spearman        0.889       0.111    0.889  drift
+
+=== BadVLA vnorm | vs_t0 ===
+metric      AUC_drift  AUC_freeze     best  preferred
+cosine          0.111       0.889    0.889  freeze
+js              0.099       0.901    0.901  freeze
+emd             0.198       0.802    0.802  freeze
+ssim            0.840       0.160    0.840  drift
+pearson         0.815       0.185    0.815  drift
+spearman        0.901       0.099    0.901  drift
+
+=== Fixed orientation that works for BOTH attacks (mean best shared) ===
+Using AUC_drift on SSIM/Spearman (vs_t0): backdoor = less structural/rank agreement
+  vs_t0 ssim      : GoBA weight=0.914, GoBA vnorm=0.741, BadVLA weight=0.914, BadVLA vnorm=0.840  | mean=0.852
+  vs_t0 spearman  : GoBA weight=0.741, GoBA vnorm=0.728, BadVLA weight=0.926, BadVLA vnorm=0.901  | mean=0.824
+  vs_t0 pearson   : GoBA weight=0.716, GoBA vnorm=0.469, BadVLA weight=0.802, BadVLA vnorm=0.815  | mean=0.701
+
+Using AUC_freeze on JS/EMD fails for GoBA weight (needs drift), succeeds for BadVLA.
+  vs_t0 js freeze: GoBA weight=0.160, GoBA vnorm=0.432, BadVLA weight=0.864, BadVLA vnorm=0.901
+  vs_t0 js drift : GoBA weight=0.840, GoBA vnorm=0.568, BadVLA weight=0.136, BadVLA vnorm=0.099
+  vs_t0 emd freeze: GoBA weight=0.272, GoBA vnorm=0.383, BadVLA weight=0.728, BadVLA vnorm=0.802
+  vs_t0 emd drift : GoBA weight=0.728, GoBA vnorm=0.617, BadVLA weight=0.272, BadVLA vnorm=0.198

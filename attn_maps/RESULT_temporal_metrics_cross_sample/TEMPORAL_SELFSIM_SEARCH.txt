@@ -1,0 +1,27 @@
+TEMPORAL SELF-SIMILARITY SEARCH — action→image attention maps
+No FFT. Candidate families: T×T temporal cosine Gram, Bhattacharyya/Hellinger overlap,
+top-k region recurrence, temporal effective rank, and multi-lag persistence.
+Direction selected on tasks 0-4; AUROC evaluated on held-out tasks 5-9.
+Score computation is label-free; labels are only used here to assess separation.
+
+TOP SAME-DIRECTION HELD-OUT RESULTS:
+temporal_spearman_allpair_p10        LOW=bd | train G=0.990 B=0.850 | test G=0.780 B=0.730 | all G=0.880 B=0.792
+temporal_spearman_allpair_mean       LOW=bd | train G=0.990 B=0.840 | test G=0.770 B=0.710 | all G=0.867 B=0.787
+temporal_cos_allpair_mean            HIGH=bd | train G=0.700 B=1.000 | test G=0.680 B=1.000 | all G=0.685 B=1.000
+temporal_cos_allpair_p10             HIGH=bd | train G=0.690 B=1.000 | test G=0.680 B=1.000 | all G=0.682 B=1.000
+temporal_cos_allpair_min             HIGH=bd | train G=0.680 B=1.000 | test G=0.680 B=1.000 | all G=0.680 B=1.000
+temporal_gram_frob                   HIGH=bd | train G=0.700 B=1.000 | test G=0.680 B=1.000 | all G=0.685 B=1.000
+temporal_rank1_frac                  HIGH=bd | train G=0.700 B=1.000 | test G=0.680 B=1.000 | all G=0.685 B=1.000
+temporal_effective_rank              LOW=bd | train G=0.700 B=1.000 | test G=0.680 B=1.000 | all G=0.688 B=1.000
+temporal_centroid_cos                HIGH=bd | train G=0.700 B=1.000 | test G=0.680 B=1.000 | all G=0.685 B=1.000
+top4_jaccard_allpair                 HIGH=bd | train G=0.700 B=0.590 | test G=0.680 B=0.830 | all G=0.685 B=0.700
+top8_jaccard_allpair                 HIGH=bd | train G=0.700 B=0.520 | test G=0.680 B=0.740 | all G=0.685 B=0.638
+lagcos_auc                           HIGH=bd | train G=0.700 B=1.000 | test G=0.680 B=1.000 | all G=0.685 B=1.000
+lagcos_long_mean                     HIGH=bd | train G=0.700 B=1.000 | test G=0.680 B=1.000 | all G=0.685 B=1.000
+lagcos_min                           HIGH=bd | train G=0.700 B=1.000 | test G=0.680 B=1.000 | all G=0.685 B=1.000
+lagcos_decay                         LOW=bd | train G=0.700 B=1.000 | test G=0.680 B=1.000 | all G=0.685 B=1.000
+temporal_cos_offdiag_std             LOW=bd | train G=0.690 B=1.000 | test G=0.680 B=1.000 | all G=0.682 B=1.000
+lagbc_decay                          LOW=bd | train G=0.560 B=1.000 | test G=0.550 B=1.000 | all G=0.557 B=1.000
+lagbc_long_mean                      HIGH=bd | train G=0.500 B=1.000 | test G=0.540 B=1.000 | all G=0.518 B=1.000
+top32_jaccard_allpair                LOW=bd | train G=0.760 B=1.000 | test G=0.500 B=1.000 | all G=0.615 B=1.000
+top16_jaccard_allpair                LOW=bd | train G=0.520 B=0.710 | test G=0.380 B=0.570 | all G=0.438 B=0.633

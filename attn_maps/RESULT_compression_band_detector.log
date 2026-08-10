@@ -1,0 +1,16 @@
+COMPRESSION-BAND ATTENTION CONCENTRATION DETECTOR (no layer selection)
+Band fixed a priori by Mix-Compress-Refine depth phases (arXiv 2510.06477):
+mix 0-20% depth | compress 20-85% | refine 85-100%. Stored layers per band:
+mix={0}, compress={8,16,24,27}, refine={31}.
+Statistic: mean over band layers of max-patch share of DoF-pooled
+action-query attention map. Threshold: median+3*1.4826*MAD on tasks 0-4
+clean_cal. ALL numbers below are held-out tasks 5-9 (n=25/role).
+
+band                     |  poison  ketchup    milk      gap | fire% P/C/K/M
+--------------------------------------------------------------------------------------
+mix {0}                  |  1.0000   0.8368  0.5952  +0.1632 | 100/36/0/40
+compress {8,16,24,27}    |  1.0000   0.6672  0.5152  +0.3328 | 100/0/0/0
+refine {31}              |  0.6320   0.7840  0.8144  -0.1824 | 0/0/4/0
+
+Mix band false-alarms on novelty and refine band is anti-specific, exactly
+as the phase theory predicts -- independent validation of the band mapping.

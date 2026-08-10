@@ -1,0 +1,22 @@
+HIGHER GoBA AUROC — 7-DoF temporal features (T=20)
+
+Best GoBA-only (AUROC>=0.95):
+  spatemp_lock                 GoBA=1.000(HIGH) μc=0.3561 μp=0.9846 | BadVLA=0.653(HIGH)
+  crossdof_mean                GoBA=1.000(HIGH) μc=0.9144 μp=0.9574 | BadVLA=1.000(HIGH)
+  entropy_mean                 GoBA=1.000(LOW) μc=4.2733 μp=4.0181 | BadVLA=1.000(HIGH)
+  maxmass_mean                 GoBA=1.000(HIGH) μc=0.0688 μp=0.1579 | BadVLA=1.000(LOW)
+  maxmass_min                  GoBA=1.000(HIGH) μc=0.0565 μp=0.1333 | BadVLA=1.000(LOW)
+  modal_mass_mean              GoBA=1.000(HIGH) μc=0.0490 μp=0.1577 | BadVLA=1.000(LOW)
+  modal_mass_min               GoBA=1.000(HIGH) μc=0.0351 μp=0.1326 | BadVLA=0.575(LOW)
+  instant_dof_lock             GoBA=1.000(HIGH) μc=0.5700 μp=0.9846 | BadVLA=0.880(LOW)
+  instant_dof_lock_min         GoBA=1.000(HIGH) μc=0.3500 μp=0.8929 | BadVLA=0.775(LOW)
+  lock_x_cross                 GoBA=1.000(HIGH) μc=0.3264 μp=0.9428 | BadVLA=0.675(HIGH)
+  lock_x_maxmass               GoBA=1.000(HIGH) μc=0.0243 μp=0.1557 | BadVLA=1.000(LOW)
+  lock_minus_flip              GoBA=1.000(HIGH) μc=-0.0180 μp=0.9655 | BadVLA=0.517(HIGH)
+  dwell_x_cross                GoBA=0.983(HIGH) μc=0.4934 μp=0.9428 | BadVLA=0.782(HIGH)
+  n_unique_argmax              GoBA=0.960(LOW) μc=13.1500 μp=2.2500 | BadVLA=0.866(HIGH)
+  inv_unique                   GoBA=0.960(HIGH) μc=0.1227 μp=0.6100 | BadVLA=0.866(LOW)
+
+Recommended for GoBA (strong, interpretable):
+  spatemp_lock / dwell_mean / n_unique_argmax / lock_x_cross / modal_mass_mean
+These are the freeze-on-one-patch signatures — much stronger on GoBA than DCT-on-cos_to_t0.

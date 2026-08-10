@@ -1,0 +1,99 @@
+2026-08-10 02:32:51.017484: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-10 02:32:51.048900: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-10 02:32:51.048976: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-10 02:32:51.050166: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-10 02:32:51.055526: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-10 02:32:51.537901: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/GoBA-OpenVLA/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+2026-08-10 02:32:57.437433: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+
+=== goba ===
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.16it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.81it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.14it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.96it/s]
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+goba t=0 clean  FTT=0.08668 KL=0.22429 JS=0.05152
+goba t=0 poison FTT=0.06026 KL=0.14249 JS=0.03294
+goba t=1 clean  FTT=0.07661 KL=0.19224 JS=0.04451
+goba t=1 poison FTT=0.05723 KL=0.14069 JS=0.03230
+goba t=2 clean  FTT=0.10822 KL=0.25473 JS=0.05879
+goba t=2 poison FTT=0.06414 KL=0.14366 JS=0.03283
+goba t=3 clean  FTT=0.06961 KL=0.17226 JS=0.03997
+goba t=3 poison FTT=0.05996 KL=0.14277 JS=0.03259
+goba t=4 clean  FTT=0.07756 KL=0.20361 JS=0.04681
+goba t=4 poison FTT=0.05826 KL=0.13669 JS=0.03151
+goba t=5 clean  FTT=0.07995 KL=0.18965 JS=0.04313
+goba t=5 poison FTT=0.05834 KL=0.12743 JS=0.02946
+goba t=6 clean  FTT=0.07354 KL=0.20117 JS=0.04567
+goba t=6 poison FTT=0.06140 KL=0.13897 JS=0.03197
+goba t=7 clean  FTT=0.08747 KL=0.20711 JS=0.04744
+goba t=7 poison FTT=0.05875 KL=0.13319 JS=0.03097
+goba t=8 clean  FTT=0.08312 KL=0.22292 JS=0.05207
+goba t=8 poison FTT=0.06005 KL=0.14991 JS=0.03498
+goba t=9 clean  FTT=0.09412 KL=0.22138 JS=0.05172
+goba t=9 poison FTT=0.06313 KL=0.14625 JS=0.03385
+goba           FTT                  AUROC=1.000 clean=0.08369 poison=0.06015 poison↓=True paired_c>p=10/10
+goba           mean KL(p_i‖p̄)      AUROC=1.000 clean=0.20894 poison=0.14021 poison↓=True paired_c>p=10/10
+goba           mean JS(p_i,p̄)      AUROC=1.000 clean=0.04816 poison=0.03234 poison↓=True paired_c>p=10/10
+
+=== clean_openvla ===
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.06it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.48it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.69it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.81it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.67it/s]
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+clean_openvla t=0 clean  FTT=0.08710 KL=0.21078 JS=0.04844
+clean_openvla t=0 poison FTT=0.08831 KL=0.20349 JS=0.04690
+clean_openvla t=1 clean  FTT=0.07807 KL=0.19483 JS=0.04457
+clean_openvla t=1 poison FTT=0.07797 KL=0.17776 JS=0.04152
+clean_openvla t=2 clean  FTT=0.09778 KL=0.23316 JS=0.05376
+clean_openvla t=2 poison FTT=0.09336 KL=0.21059 JS=0.04849
+clean_openvla t=3 clean  FTT=0.07534 KL=0.17998 JS=0.04119
+clean_openvla t=3 poison FTT=0.07622 KL=0.17442 JS=0.04004
+clean_openvla t=4 clean  FTT=0.08929 KL=0.20695 JS=0.04742
+clean_openvla t=4 poison FTT=0.08753 KL=0.19439 JS=0.04476
+clean_openvla t=5 clean  FTT=0.08417 KL=0.19771 JS=0.04570
+clean_openvla t=5 poison FTT=0.08055 KL=0.17985 JS=0.04163
+clean_openvla t=6 clean  FTT=0.07545 KL=0.18470 JS=0.04289
+clean_openvla t=6 poison FTT=0.07258 KL=0.17638 JS=0.04126
+clean_openvla t=7 clean  FTT=0.09480 KL=0.21259 JS=0.04962
+clean_openvla t=7 poison FTT=0.09226 KL=0.19729 JS=0.04594
+clean_openvla t=8 clean  FTT=0.09104 KL=0.22084 JS=0.05175
+clean_openvla t=8 poison FTT=0.10106 KL=0.23085 JS=0.05384
+clean_openvla t=9 clean  FTT=0.08787 KL=0.20783 JS=0.04837
+clean_openvla t=9 poison FTT=0.08527 KL=0.19064 JS=0.04421
+clean_openvla  FTT                  AUROC=0.520 clean=0.08609 poison=0.08551 poison↓=True paired_c>p=7/10
+clean_openvla  mean KL(p_i‖p̄)      AUROC=0.740 clean=0.20494 poison=0.19357 poison↓=True paired_c>p=9/10
+clean_openvla  mean JS(p_i,p̄)      AUROC=0.670 clean=0.04737 poison=0.04486 poison↓=True paired_c>p=9/10
+# Calibration-free KL vs FTT (text→image rows, L31)
+
+No clean reference set. Within each sample:
+`score = mean_i KL(p_i || p̄)` with `p̄ = mean_i p_i` after row-sum normalize.
+Same for JS. Seed=7, tasks 0–9, clean vs poison BDDL.
+
+## goba
+
+| metric | AUROC | clean | poison | poison↓? | paired clean>poison |
+|---|---:|---:|---:|---|---:|
+| FTT | 1.000 | 0.08369 | 0.06015 | yes | 10/10 |
+| mean KL(p_i‖p̄) | 1.000 | 0.20894 | 0.14021 | yes | 10/10 |
+| mean JS(p_i,p̄) | 1.000 | 0.04816 | 0.03234 | yes | 10/10 |
+
+## clean_openvla
+
+| metric | AUROC | clean | poison | poison↓? | paired clean>poison |
+|---|---:|---:|---:|---|---:|
+| FTT | 0.520 | 0.08609 | 0.08551 | yes | 7/10 |
+| mean KL(p_i‖p̄) | 0.740 | 0.20494 | 0.19357 | yes | 9/10 |
+| mean JS(p_i,p̄) | 0.670 | 0.04737 | 0.04486 | yes | 9/10 |
+
+## Reading
+- If KL tracks FTT (high AUROC on GoBA, ~0.5 on clean), KL is a valid FTT cousin.
+- Both should drop under poison (rows closer to mean → smaller KL to mean).
+
+Saved /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/infoentropy_ieattn/kl_vs_ftt_goba_family.npz

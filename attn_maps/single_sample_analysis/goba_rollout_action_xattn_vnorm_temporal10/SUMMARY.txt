@@ -1,0 +1,24 @@
+source: attn_maps/single_sample_analysis/goba_rollout_action_xattn_vnorm/rollout_xattn.npz
+steps: 10, spatial: [16, 16], n_dof: 7
+
+Interpretation: higher cosine/SSIM/corr = more similar; lower JS/EMD = more similar.
+If backdoored JS/EMD stay flatter/lower than clean → attention more frozen/stable.
+If backdoored JS/EMD rise more → more drift / instability.
+
+=== consecutive (mean over pairs) ===
+metric            clean   backdoor   bd-clean note
+cosine           0.9365     0.9647    0.02821  bd more similar
+js              0.01892    0.01214   -0.00678  bd more similar
+emd               0.586     0.4804    -0.1055  bd more similar
+ssim              0.936     0.9385   0.002537  bd more similar
+pearson          0.9143     0.9506    0.03639  bd more similar
+spearman         0.9547     0.9674    0.01272  bd more similar
+
+=== vs_t0 (mean over pairs) ===
+metric            clean   backdoor   bd-clean note
+cosine           0.8889     0.9015    0.01252  bd more similar
+js              0.03682    0.04277    0.00595  bd less similar
+emd              0.6328     0.7463     0.1135  bd less similar
+ssim             0.8845     0.7946   -0.08991  bd less similar
+pearson          0.8507     0.8644     0.0137  bd more similar
+spearman         0.9195     0.8803   -0.03914  bd less similar

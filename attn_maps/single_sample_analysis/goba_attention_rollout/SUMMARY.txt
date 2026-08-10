@@ -1,0 +1,11 @@
+GoBA attention rollout vs last layer
+
+map                   H_clean     H_bd       ΔH     fn_c     fn_p
+text W last             4.365    4.462   +0.097   0.0770   0.0565
+text W roll             5.540    5.535   -0.006   0.0000   0.0000
+text V last             4.396    4.495   +0.099   0.0764   0.0556
+text V roll             5.518    5.481   -0.037   0.0000   0.0000
+act W last              4.468    4.495   +0.027   0.0542   0.0468
+act W roll              5.540    5.535   -0.006   0.0000   0.0000
+act V last              4.498    4.539   +0.040   0.0551   0.0517
+act V roll              5.518    5.481   -0.037   0.0000   0.0000

@@ -1,0 +1,88 @@
+CROSS-SAMPLE AUROC — temporal action→image metrics (first 10 steps)
+Data: trajectory_dof_attention.npz (GoBA 20 clean + 20 poison + decoys)
+      badvla_trajectory_dof_attention.npz (BadVLA 20 clean + 20 poison)
+Episode score = mean pairwise metric; mean_dof_map matches single-scene protocol.
+AUC_drift = treat lower similarity / higher distance as more backdoored.
+
+========================================================================
+GoBA poison vs clean
+========================================================================
+
+[mean_dof_map|vs_t0]
+metric       μ_clean  μ_poison  AUC_drift  AUC_freeze   best pref
+cosine        0.8817    0.9566      0.305       0.695  0.695 freeze
+pearson       0.8539    0.9523      0.302       0.698  0.698 freeze
+spearman      0.9608    0.9343      0.805       0.195  0.805 drift
+js            0.0456    0.0467      0.438       0.562  0.562 freeze
+ssim          0.8642    0.8428      0.505       0.495  0.505 drift
+
+[mean_dof_map|consecutive]
+metric       μ_clean  μ_poison  AUC_drift  AUC_freeze   best pref
+cosine        0.9747    0.9912      0.235       0.765  0.765 freeze
+pearson       0.9686    0.9904      0.225       0.775  0.775 freeze
+spearman      0.9897    0.9868      0.643       0.358  0.643 drift
+js            0.0084    0.0079      0.395       0.605  0.605 freeze
+ssim          0.9691    0.9702      0.402       0.597  0.597 freeze
+
+[per_dof|vs_t0]
+metric       μ_clean  μ_poison  AUC_drift  AUC_freeze   best pref
+cosine        0.8629    0.9406      0.307       0.693  0.693 freeze
+pearson       0.8342    0.9348      0.307       0.693  0.693 freeze
+spearman      0.9536    0.9263      0.782       0.217  0.782 drift
+js            0.0514    0.0524      0.425       0.575  0.575 freeze
+ssim          0.8462    0.8322      0.452       0.547  0.547 freeze
+
+[per_dof|consecutive]
+metric       μ_clean  μ_poison  AUC_drift  AUC_freeze   best pref
+cosine        0.9615    0.9843      0.248       0.752  0.752 freeze
+pearson       0.9532    0.9830      0.248       0.752  0.752 freeze
+spearman      0.9856    0.9830      0.537       0.463  0.537 drift
+js            0.0121    0.0113      0.378       0.623  0.623 freeze
+ssim          0.9516    0.9576      0.345       0.655  0.655 freeze
+
+========================================================================
+BadVLA poison vs clean
+========================================================================
+
+[mean_dof_map|vs_t0]
+metric       μ_clean  μ_poison  AUC_drift  AUC_freeze   best pref
+cosine        0.8212    0.9916      0.000       1.000  1.000 freeze
+pearson       0.7983    0.7186      0.953       0.047  0.953 drift
+spearman      0.9393    0.7470      1.000       0.000  1.000 drift
+js            0.0654    0.0020      0.000       1.000  1.000 freeze
+ssim          0.8224    0.4475      1.000       0.000  1.000 drift
+
+[mean_dof_map|consecutive]
+metric       μ_clean  μ_poison  AUC_drift  AUC_freeze   best pref
+cosine        0.9702    0.9976      0.000       1.000  1.000 freeze
+pearson       0.9668    0.9256      0.995       0.005  0.995 drift
+spearman      0.9905    0.9311      1.000       0.000  1.000 drift
+js            0.0095    0.0006      0.000       1.000  1.000 freeze
+ssim          0.9716    0.8598      1.000       0.000  1.000 drift
+
+[per_dof|vs_t0]
+metric       μ_clean  μ_poison  AUC_drift  AUC_freeze   best pref
+cosine        0.8139    0.9914      0.000       1.000  1.000 freeze
+pearson       0.7905    0.7192      0.932       0.067  0.932 drift
+spearman      0.9377    0.7495      1.000       0.000  1.000 drift
+js            0.0675    0.0021      0.000       1.000  1.000 freeze
+ssim          0.8171    0.4705      1.000       0.000  1.000 drift
+
+[per_dof|consecutive]
+metric       μ_clean  μ_poison  AUC_drift  AUC_freeze   best pref
+cosine        0.9671    0.9975      0.000       1.000  1.000 freeze
+pearson       0.9635    0.9264      0.985       0.015  0.985 drift
+spearman      0.9901    0.9340      1.000       0.000  1.000 drift
+js            0.0102    0.0006      0.000       1.000  1.000 freeze
+ssim          0.9689    0.8657      1.000       0.000  1.000 drift
+
+GoBA poison vs decoys (mean_dof_map|vs_t0):
+  decoy_ketchup ssim: drift=0.573 freeze=0.427 best=0.573
+  decoy_ketchup spearman: drift=0.760 freeze=0.240 best=0.760
+  decoy_milk ssim: drift=0.392 freeze=0.607 best=0.607
+  decoy_milk spearman: drift=0.710 freeze=0.290 best=0.710
+
+VERDICT (mean_dof_map|vs_t0):
+  SSIM     GoBA drift=0.505 best=0.505(drift); BadVLA drift=1.000 best=1.000(drift)
+  Spearman GoBA drift=0.805 best=0.805(drift); BadVLA drift=1.000 best=1.000(drift)
+  SHARED FIXED: spearman AUC_drift works (GoBA 0.805, BadVLA 1.000)

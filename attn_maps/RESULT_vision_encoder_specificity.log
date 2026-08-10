@@ -1,0 +1,10 @@
+Saved 250 scenes -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/specificity_vision_encoder.npz
+
+==============================================================================
+PERCEPTION-STACK SPECIFICITY (Mahalanobis drift on pooled features)
+Prediction from the LLM-layer sweep: gap ~ 0 (trigger looks like any new object)
+==============================================================================
+stage                  |   poison |  ketchup |    milk |  spec. gap
+--------------------------------------------------------------------
+vision backbone        |   0.5200 |   0.6000 |  0.6400 |    -0.1200
+projector output       |   0.6000 |   0.6800 |  0.7200 |    -0.1200

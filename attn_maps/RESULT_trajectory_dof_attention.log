@@ -1,0 +1,222 @@
+====================================================================
+SPATIO-TEMPORAL DoF x TIME ATTENTION LOCK (GoBA)
+Script: run_trajectory_dof_attention.py
+Data: trajectory_dof_attention.npz (80 closed-loop episodes, 30 steps)
+====================================================================
+
+STATISTIC: at every control step, band-averaged (L8/16/24/27) attention map
+of EACH of the 7 DoF action queries over 256 image patches. Spatio-temporal
+lock = fraction of (DoF, step) cells whose argmax equals the episode's modal
+patch. Hypothesis: poison is rank-one and frozen (every DoF, every step, same
+patch); clean disagrees across DoFs and drifts as the arm moves.
+
+RESULTS:
+  SPATIO-TEMPORAL LOCK:
+    poison   mean=0.982 range=[0.948,1.000]  unique patches mean=3.1
+    clean    mean=0.320 range=[0.138,0.676]  unique patches mean=16.4
+    ketchup  mean=0.606 range=[0.219,0.857]  unique patches mean=14.2
+    milk     mean=0.272 range=[0.119,0.490]  unique patches mean=18.8
+    AUROC poison=1.0000 ketchup=0.8750 milk=0.5413
+    FIXED MARGIN OPEN = +0.0905  (min poison 0.948 > max benign 0.857)
+    => any constant ~0.90 separates ALL 80 episodes with zero FPR on decoys.
+
+  CROSS-DoF MAP COSINE (episode mean):
+    poison 0.955  clean 0.919  ketchup 0.924  milk 0.912
+    AUROC poison=1.0000 (weaker specificity than lock)
+
+  PER-DoF TEMPORAL DWELL (DoF-avg):
+    poison 0.982  clean 0.481  ketchup 0.653  milk 0.458
+    AUROC poison=0.9450
+
+CLAIM: the backdoor freezes ALL action dimensions onto ONE patch for the
+entire rollout. Benign novel objects (ketchup) attract some DoF attention
+but never produce the rank-one freeze. Calibration-free structural rule
+(lock fraction > 0.90) works with open margin -- no clean reference needed
+at deployment beyond knowing the form of the statistic.
+
+====================================================================
+LOGIT LENS DECISION DEPTH -- NEGATIVE
+Script: run_logit_lens_depth.py  Data: logit_lens_depth.npz (n=250)
+====================================================================
+Decision depth (earliest stable top-1 layer of the final action-bin token)
+does NOT separate: poison mean 25.47 vs clean 25.54, AUROC 0.529. Per-DoF
+and layer-wise final-token probability also near chance. The backdoor does
+not crystallize earlier than clean decisions -- drop this line of inquiry.
+
+====================================================================
+DoF x TIME TRANSFER VERDICT (GoBA / BadVLA / AttackVLA)
+====================================================================
+GoBA   (trajectory_dof_attention.npz):
+  spat-temp LOCK: poison 0.982 vs clean 0.320, AUROC 1.0, OPEN margin +0.09
+                  decoy-silent enough for fixed thr ~0.90
+  cross-DoF cos:  AUROC 1.0 but weaker specificity than lock
+
+BadVLA (badvla_trajectory_dof_attention.npz):
+  spat-temp LOCK: DOES NOT TRANSFER (poison 0.386 vs clean 0.350, AUROC 0.65)
+                  poison wanders MORE (uniq 11.8 vs 8.7) -- consistent with
+                  earlier finding that BadVLA DIFFUSES attention
+  cross-DoF cos:  TRANSFERS, AUROC 1.0, OPEN margin
+                  poison [0.9985,0.9987] vs clean [0.959,0.986]
+                  => DoFs ASSIMILATE under poison even while the attended
+                     patch wanders over time
+
+AttackVLA (attackvla_trajectory_dof_attention.npz):
+  spat-temp LOCK: DOES NOT TRANSFER (full 0.597 < clean 0.671, AUROC 0.58)
+  cross-DoF cos:  WEAK (full-vs-clean AUROC 0.895 DOWN -- full slightly lower
+                  cosine than clean); visual_only near chance vs clean
+                  => not a usable detector here
+
+CORRECTED CLAIM:
+  The GoBA-style FROZEN rank-one (DoF x time) lock is GoBA-specific
+  (physical-object trigger that hijacks a spatial locus).
+  What partially transfers is WITHIN-STEP DoF assimilation (cross-DoF
+  cosine): strong on BadVLA (open margin), weak/sign-flipped on AttackVLA.
+  Scope the lock story to GoBA; cite BadVLA as transfer of cross-DoF
+  assimilation without temporal freeze.
+
+====================================================================
+ATTENTION -> MOTION DIRECTION COUPLING (analysis of trajectory_dof_attention.npz)
+====================================================================
+Ridge fit (attended patch (row,col) -> commanded (dx,dy)) on CLEAN early steps
+(first 10), evaluated as direction cosine per role:
+  clean +0.978   poison +0.946 (tight [0.90,0.97])
+  ketchup +0.922 (outliers to +0.21)   milk +0.929 (outliers to +0.38)
+=> The lock is behaviorally load-bearing: the patch attention froze on IS the
+   motion target -- poisoned early actions head toward the trigger location
+   (predicted from internals alone, map fit on clean only). Decoys sometimes
+   glance without steering (low-coupling outliers); poison never does.
+   USE AS MECHANISTIC LINK, NOT A DETECTOR (coupling is high for all roles).
+
+Instruction-independent early-motion-direction detector (consensus poison
+direction from val tasks, scored on held-out): AUROC 0.83 vs clean/decoys.
+Real signal (poison shares a sideways dy=+0.43 component toward the trigger
+slot across all tasks; clean dy=0.04) but far below our other detectors --
+do not claim as a detector.
+
+================================================================================
+FROZEN-OR-UNIFORM UNION RULE (intersection-metric follow-up, 2026-08-06)
+================================================================================
+Question: single metric for targeted (capture) + untargeted (blinding)?
+
+Tried: temporal top-K Jaccard, histogram intersection (temporal + cross-DoF),
+distinct-argmax count, per-step entropy. No single ONE-SIDED raw statistic
+covers both directions -- clean always sits between the two attack extremes.
+
+BUT the two extremes are DEGENERATE ENDPOINTS, not distribution-tuned numbers:
+  FROZEN : # distinct argmax patches over episode == 1   (a delta function)
+  UNIFORM: normalized map entropy > 0.95                  (a uniform map)
+Rule: flag episode if FROZEN or UNIFORM. Universal constants, no clean data.
+
+           episodes  flagged
+GoBA       poison    20/20 (all frozen: 1 patch for 30 steps)
+GoBA       clean      1/20 (FPR 5%)   decoys 15% / 5%
+BadVLA     poison    20/20 (all uniform: ent 0.997-0.998; clean max 0.774)
+BadVLA     clean      0/20
+AttackVLA  all        0    (attention dynamics look clean-like; only the
+                            MLP-cosine detector catches AttackVLA, as before)
+
+T2IShield-AS-IS CHECK (text-query F-norm + fixed FTT threshold 2.5):
+  BadVLA last-layer text F-norm: clean 0.044-0.087, poison 0.0063-0.0097
+    -> assimilation phenomenon TRANSFERS (AUROC 1.0, poison DOWN, same
+       direction as T2IShield's diffusion finding)
+  GoBA: clean 0.057-0.099, poison 0.047-0.066 (down, overlapping ranges)
+  BUT the fixed threshold 2.5 is meaningless here: ALL VLA samples (clean and
+  poison) sit at 0.004-0.11, ~40x below 2.5 (threshold is tied to Stable
+  Diffusion's 77-token cross-attn scale). FTT as-is flags 100% of everything.
+  -> T2IShield's statistic survives; its calibration-free CLAIM does not.
+     Our frozen/uniform endpoints + MLP-cosine fill exactly that gap.
+
+================================================================================
+SENSORIMOTOR (GAZE+MOTION) UNIFIED DEFENSE -- "retarget AND follow" (2026-08-06)
+================================================================================
+Idea: a clean visuomotor policy must (i) RE-TARGET its gaze over the episode
+and (ii) have its commanded motion FOLLOW its gaze. Targeted capture (GoBA)
+violates (i); untargeted blinding (BadVLA) violates (ii). One detector, two
+necessary conditions, computed only from action-query attention + the
+commanded actions of the same rollout. No prior defense uses both streams.
+
+Gaze = expected (row,col) of the pooled band map. Follow = first canonical
+correlation between gaze(t) and commanded (dx,dy)(t) over the episode.
+
+(i) RETARGET (frozen pooled argmax over whole episode):
+    GoBA   poison 20/20 frozen; clean 1/20, ketchup 3/20, milk 1/20
+    BadVLA poison 0/20 (not frozen -- scattered instead)
+(ii) FOLLOW (velocity coupling, open margin on BadVLA):
+    BadVLA clean [0.806,0.993]  poison [0.226,0.613]  AUROC 1.0
+      -> any constant in (0.61,0.81), e.g. 0.7: 100% TPR / 0% FPR
+    GoBA   clean mean 0.57 (platform baseline lower; same 0.7 constant would
+      flag ~half of benign GoBA episodes -- constant is PER-PLATFORM)
+    GoBA poison couples HIGH (0.63-0.95): the arm truly servos to the
+      trigger it stares at (mechanistic link, consistent with capture).
+
+Tried and rejected for a universal constant: top-k centroid gaze (worse),
+permutation p-value on CCA (underpowered at 20-30 steps: only 20% of BadVLA
+poison flagged), cumulative-position coupling (trend-inflated, all roles >0.74).
+
+VERDICT: unified PRINCIPLE with degenerate/universal constant for (i) and a
+per-platform constant for (ii) set from a handful of clean episodes. Same
+honest calibration status as the MLP-assimilation detector; the novelty is
+that it is the first defense grounded in the closed sensorimotor loop, and
+the violated condition identifies the attack type (capture vs blinding).
+
+================================================================================
+SYSTEMATIC CLOSED-LOOP ANALYSIS (Tri-Info framework extension, 2026-08-06)
+================================================================================
+Motivated by Tri-Info (arXiv:2606.19998): failure detection via three signals
+on the ACTION stream: H(A_t) diversity, I(A_t;A_t+1) consistency, state-action
+coupling. We compute their proxies on BOTH streams of the same rollouts, with
+the a-priori compression band (no layer selection anywhere):
+
+  attention side: att_H  = spatial entropy of pooled band map per step
+                  att_Itt= cos(M_t, M_t+1) gaze persistence
+                  frozen = argmax never moves (degenerate endpoint)
+                  couple = CCA(gaze centroid, dx-dy)
+  action side:    act_H  = action diversity, act_Itt = consecutive-action cos,
+                  rev    = direction-reversal rate, jerk (arXiv:2605.28726)
+
+AUROC poison-vs-clean (episode level; u=up, d=down):
+
+              att_H    att_Itt  frozen   couple | act_H  act_Itt  rev   jerk
+GoBA (targ.)  1.00d    0.71u    0.97u    ~0.5   | 0.34   0.61     0.52  0.42
+BadVLA (unt.) 1.00u    1.00u    --       1.00d  | 0.80   1.00d    --    1.00u
+
+KEY CLAIM (systematic, not layer-picked):
+* TARGETED backdoor is INVISIBLE in the action stream (all action-side
+  signals at chance, 0.34-0.61): it executes a smooth, competent reach --
+  for the WRONG objective. Action-only monitors (Tri-Info, STAC, Sentinel)
+  are structurally blind to it.
+* UNTARGETED backdoor looks like Tri-Info's "drift" failure in the action
+  stream (jerk 1.00, act-consistency collapse 1.00d) -- but so does any
+  benign failure; only the attention side distinguishes attack (entropy
+  0.997 = uniform) from ordinary drift.
+* The Tri-Info failure taxonomy TRANSPLANTS to the perception side:
+    capture  = ATTENTION FREEZE  (H(M) collapse + frozen argmax)   [GoBA]
+    blinding = ATTENTION DRIFT   (H(M) surge + gaze-action decouple)[BadVLA]
+  Clean policies sit between the two degenerate endpoints on all signals.
+* GoBA att_H open margin: poison [0.708,0.744] vs clean [0.760,0.797],
+  decoys 0.753+ (decoy-silent). BadVLA att_H open: 0.997 vs max clean 0.774.
+
+CLEAN-MODEL ROLLOUT CONTROL: launched run_trajectory_dof_attention_cleanmodel.py
+(official openvla-7b-finetuned-libero-goal, same scenes/seeds/protocol).
+Early episodes: poison-scene st_lock 0.15-0.80 (vs 0.98+ frozen in backdoored
+model) -> freeze is a property of BACKDOOR TRAINING, not the trigger object.
+Full results: attn_maps/cleanmodel_trajectory_dof_attention.npz
+
+CLEAN-MODEL ROLLOUT CONTROL -- FINAL (cleanmodel_trajectory_dof_attention.npz,
+40 episodes, official openvla-7b-finetuned-libero-goal, same scenes/seeds):
+
+                        clean scenes          trigger-in-scene
+  att_H                 0.766 [0.752,0.780]   0.781 [0.765,0.796]  (slightly UP)
+  frozen episodes       0/20                  1/20
+  st_lock               0.217                 0.279   AUROC 0.544 = CHANCE
+  gaze-action coupling  0.730                 0.794   (stays high)
+
+vs BACKDOORED model, same scenes: poison frozen 20/20, st_lock 0.982
+[0.948,1.000], att_H 0.734 [0.708,0.744] (open margin DOWN), coupling intact.
+
+=> The trigger object does NOTHING to a clean model's attention dynamics
+   (entropy nudges UP like any novel object; no freeze, no lock, loop intact).
+   Every signature -- freeze, entropy collapse, spatio-temporal lock -- is a
+   property of BACKDOOR TRAINING. Also note the DIRECTION: novelty diffuses
+   attention (up), capture concentrates it (down) -- opposite signs, so the
+   freeze cannot be explained as a novelty response.

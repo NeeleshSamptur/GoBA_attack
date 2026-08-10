@@ -1,0 +1,11 @@
+AttackVLA — Cross-DoF cosine (same metric as GoBA/BadVLA)
+At each t: mean pairwise cosine among 7 DoF→image maps; score = mean over first 10 steps.
+Data: attackvla_trajectory_dof_attention.npz maps=(60, 20, 7, 256) roles={'clean': 20, 'visual_only': 20, 'full_trigger': 20}
+
+clean        n=20 mean=0.9864 range=[0.9758,0.9967]
+full_trigger n=20 mean=0.9771 range=[0.9732,0.9871]
+visual_only  n=20 mean=0.9821 range=[0.9740,0.9879]
+
+AUROC vs clean (higher = attack):
+  full_trigger: AUROC=0.0725  μ_clean=0.9864 μ=0.9771  gap=-0.0235
+  visual_only: AUROC=0.2575  μ_clean=0.9864 μ=0.9821  gap=-0.0227

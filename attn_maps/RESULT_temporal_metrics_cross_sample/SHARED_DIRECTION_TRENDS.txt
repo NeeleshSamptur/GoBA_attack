@@ -1,0 +1,27 @@
+TEMPORAL TRENDS WITH SAME DIRECTION (GoBA & BadVLA)
+Protocol: first 10 steps, episode-level scalar, AUROC poison vs clean (n=20+20 each).
+HIGH = higher score more backdoored; LOW = lower score more backdoored.
+
+SHARED (same sign, both AUROC>=0.70):
+  crossdof_cos_mean             prefer HIGH=bd   GoBA=1.000 (c=0.9070,p=0.9617)  BadVLA=1.000 (c=0.9772,p=0.9988)
+  crossdof_cos_t0               prefer HIGH=bd   GoBA=0.992 (c=0.9033,p=0.9541)  BadVLA=1.000 (c=0.9857,p=0.9992)
+  consec_cos_min                prefer HIGH=bd   GoBA=0.780 (c=0.9427,p=0.9813)  BadVLA=1.000 (c=0.9265,p=0.9923)
+  consec_cos_mean               prefer HIGH=bd   GoBA=0.765 (c=0.9747,p=0.9912)  BadVLA=1.000 (c=0.9702,p=0.9976)
+  perDOF_consec_cos_mean        prefer HIGH=bd   GoBA=0.752 (c=0.9615,p=0.9843)  BadVLA=1.000 (c=0.9671,p=0.9975)
+  consec_l1_max                 prefer LOW=bd   GoBA=0.748 (c=0.2364,p=0.1907)  BadVLA=1.000 (c=0.2860,p=0.0812)
+  drift_from_t0_mean            prefer LOW=bd   GoBA=0.695 (c=0.1183,p=0.0434)  BadVLA=1.000 (c=0.1788,p=0.0084)
+  crossdof_cos_std              prefer LOW=bd   GoBA=0.680 (c=0.0109,p=0.0069)  BadVLA=1.000 (c=0.0093,p=0.0002)
+  temporal_var_mean             prefer LOW=bd   GoBA=0.660 (c=0.0000,p=0.0000)  BadVLA=1.000 (c=0.0000,p=0.0000)
+  consec_l1_mean                prefer LOW=bd   GoBA=0.650 (c=0.1508,p=0.1440)  BadVLA=1.000 (c=0.1904,p=0.0388)
+
+Same sign but weaker (both >=0.60):
+  maxmass_slope                 LOW=bd  GoBA=0.637  BadVLA=0.950
+  crossdof_cos_std              LOW=bd  GoBA=0.680  BadVLA=1.000
+  consec_l1_mean                LOW=bd  GoBA=0.650  BadVLA=1.000
+  temporal_var_mean             LOW=bd  GoBA=0.660  BadVLA=1.000
+  drift_from_t0_mean            LOW=bd  GoBA=0.695  BadVLA=1.000
+
+INTERPRETATION:
+- Look for HIGH=bd: features larger under poison for BOTH attacks.
+- Look for LOW=bd: features smaller under poison for BOTH.
+- Plot: TRENDS_over_time_shared.png

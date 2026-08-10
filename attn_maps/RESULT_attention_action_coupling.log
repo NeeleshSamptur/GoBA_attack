@@ -1,0 +1,23 @@
+Saved 200 samples -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/attention_action_coupling.npz
+29871 append fired on 200/200 samples (MATTERS -- other scripts omit this)
+
+========================================================================================
+PER-DoF: does ATTENTION corruption track ACTION corruption? (disjoint seeds, last layer)
+All AUROCs direction-corrected (magnitude >= 0.5); 'dir' says which way the trigger moved it.
+========================================================================================
+DoF      |  ACTION auroc   dir |  attn-IMG auroc   dir |  attn-TXT auroc   dir
+------------------------------------------------------------------------------
+dx       |        0.6708    up |          0.6947    up |          0.7420  down
+dy       |        0.8080    up |          0.5036  down |          0.7527  down
+dz       |        0.5740  down |          0.5208  down |          0.7131  down
+roll     |        0.5751    up |          0.5683  down |          0.6821  down
+pitch    |        0.5487  down |          0.5082  down |          0.5704  down
+yaw      |        0.5146  down |          0.5098    up |          0.5689    up
+gripper  |        0.5000    up |          0.6467    up |          0.6835    up
+
+--- COUPLING across the 7 DoFs (does attention AUROC predict action AUROC?) ---
+  attn-IMAGE  vs ACTION:  pearson r=-0.062 (p=0.895)   spearman rho=-0.143 (p=0.760)
+  attn-TEXT   vs ACTION:  pearson r=+0.682 (p=0.091)   spearman rho=+0.714 (p=0.071)
+
+  Ranking by ACTION corruption:   dy(0.81), dx(0.67), roll(0.58), dz(0.57), pitch(0.55), yaw(0.51), gripper(0.50)
+  Ranking by ATTENTION (image):   dx(0.69), gripper(0.65), roll(0.57), dz(0.52), yaw(0.51), pitch(0.51), dy(0.50)

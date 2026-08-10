@@ -1,0 +1,86 @@
+2026-08-07 19:15:39.167133: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-07 19:15:39.198172: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-07 19:15:39.198224: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-07 19:15:39.199476: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-07 19:15:39.204924: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-07 19:15:39.694490: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/openvla-oft/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/home/grads/nsamptur/miniconda3/envs/openvla-oft/lib/python3.10/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2026-08-07 19:15:44.586430: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+Using LIBERO constants:
+  NUM_ACTIONS_CHUNK = 8
+  ACTION_DIM = 7
+  PROPRIO_DIM = 8
+  ACTION_PROPRIO_NORMALIZATION_TYPE = bounds_q99
+If needed, manually set the correct constants in `prismatic/vla/constants.py`!
+[info] Applying task order index 0 (permutation: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) for benchmark 'libero_goal' (10 tasks).
+desc='turn on the stove'
+
+=== CLEAN_oft__clean_scene trigger=False ===
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Instantiating pretrained VLA policy...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.66it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.14it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.25it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.26it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.19it/s]
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+Loaded model: <class 'transformers_modules.moojink.openvla-7b-oft-finetuned-libero-goal.c2d0f9fbbd82674683b397ff923168a12f6a307b.modeling_prismatic.OpenVLAForActionPrediction'>
+  step=00 text2patch max=0.1002 mean_token_max=0.0592 fnorm=0.0494
+  step=01 text2patch max=0.1090 mean_token_max=0.0629 fnorm=0.0498
+  step=02 text2patch max=0.1269 mean_token_max=0.0599 fnorm=0.0508
+  step=03 text2patch max=0.1441 mean_token_max=0.0623 fnorm=0.0556
+  step=04 text2patch max=0.1774 mean_token_max=0.0891 fnorm=0.0668
+  step=05 text2patch max=0.1412 mean_token_max=0.0789 fnorm=0.0644
+  step=06 text2patch max=0.1472 mean_token_max=0.0786 fnorm=0.0618
+  step=07 text2patch max=0.1082 mean_token_max=0.0662 fnorm=0.0537
+  step=08 text2patch max=0.0929 mean_token_max=0.0666 fnorm=0.0523
+  step=09 text2patch max=0.1157 mean_token_max=0.0829 fnorm=0.0525
+  step=10 text2patch max=0.1337 mean_token_max=0.0973 fnorm=0.0542
+  step=11 text2patch max=0.1059 mean_token_max=0.0801 fnorm=0.0490
+  step=12 text2patch max=0.1005 mean_token_max=0.0726 fnorm=0.0479
+  step=13 text2patch max=0.1105 mean_token_max=0.0647 fnorm=0.0534
+  step=14 text2patch max=0.1173 mean_token_max=0.0718 fnorm=0.0563
+  step=15 text2patch max=0.1260 mean_token_max=0.0728 fnorm=0.0565
+  step=16 text2patch max=0.1185 mean_token_max=0.0800 fnorm=0.0676
+  step=17 text2patch max=0.1394 mean_token_max=0.0868 fnorm=0.0649
+  step=18 text2patch max=0.1220 mean_token_max=0.0768 fnorm=0.0689
+  step=19 text2patch max=0.1408 mean_token_max=0.0858 fnorm=0.0746
+
+=== BADVLA_backdoored__trigger trigger=True ===
+Instantiating pretrained VLA policy...
+Created backup of original config at: /home/grads/nsamptur/vla_bkd_def/BadVLA/vla-scripts/goal_block/trigger_sec/goal_block_stage2_30000_chkpt/config.json.back.20260807_191604
+Updated config.json at: /home/grads/nsamptur/vla_bkd_def/BadVLA/vla-scripts/goal_block/trigger_sec/goal_block_stage2_30000_chkpt/config.json
+Changes made:
+  - Set AutoConfig to "configuration_prismatic.OpenVLAConfig"
+  - Set AutoModelForVision2Seq to "modeling_prismatic.OpenVLAForActionPrediction"
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.90it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.23it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.36it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.50it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.39it/s]
+Loaded model: <class 'transformers_modules.goal_block_stage2_30000_chkpt.modeling_prismatic.OpenVLAForActionPrediction'>
+  step=00 text2patch max=0.0167 mean_token_max=0.0101 fnorm=0.0114
+  step=01 text2patch max=0.0173 mean_token_max=0.0121 fnorm=0.0124
+  step=02 text2patch max=0.0087 mean_token_max=0.0072 fnorm=0.0093
+  step=03 text2patch max=0.0081 mean_token_max=0.0070 fnorm=0.0092
+  step=04 text2patch max=0.0074 mean_token_max=0.0066 fnorm=0.0090
+  step=05 text2patch max=0.0072 mean_token_max=0.0065 fnorm=0.0088
+  step=06 text2patch max=0.0078 mean_token_max=0.0068 fnorm=0.0080
+  step=07 text2patch max=0.0068 mean_token_max=0.0060 fnorm=0.0065
+  step=08 text2patch max=0.0068 mean_token_max=0.0057 fnorm=0.0062
+  step=09 text2patch max=0.0069 mean_token_max=0.0057 fnorm=0.0063
+  step=10 text2patch max=0.0070 mean_token_max=0.0058 fnorm=0.0072
+  step=11 text2patch max=0.0072 mean_token_max=0.0061 fnorm=0.0080
+  step=12 text2patch max=0.0075 mean_token_max=0.0061 fnorm=0.0080
+  step=13 text2patch max=0.0073 mean_token_max=0.0060 fnorm=0.0079
+  step=14 text2patch max=0.0070 mean_token_max=0.0058 fnorm=0.0074
+  step=15 text2patch max=0.0069 mean_token_max=0.0059 fnorm=0.0077
+  step=16 text2patch max=0.0071 mean_token_max=0.0061 fnorm=0.0082
+  step=17 text2patch max=0.0072 mean_token_max=0.0061 fnorm=0.0081
+  step=18 text2patch max=0.0074 mean_token_max=0.0063 fnorm=0.0084
+  step=19 text2patch max=0.0071 mean_token_max=0.0062 fnorm=0.0082
+
+Saved -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/single_sample_analysis/badvla_rollout_xattn/rollout_xattn.npz
+  clean  t2p (20, 19, 256) p2t (20, 256, 19)
+  poison t2p (20, 19, 256) p2t (20, 256, 19)

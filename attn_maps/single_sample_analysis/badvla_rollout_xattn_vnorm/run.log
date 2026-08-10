@@ -1,0 +1,85 @@
+2026-08-09 13:50:16.007135: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-09 13:50:16.040622: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-09 13:50:16.040665: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-09 13:50:16.042200: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-09 13:50:16.048542: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-09 13:50:16.566496: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/openvla-oft/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/home/grads/nsamptur/miniconda3/envs/openvla-oft/lib/python3.10/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2026-08-09 13:50:21.807700: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+Using LIBERO constants:
+  NUM_ACTIONS_CHUNK = 8
+  ACTION_DIM = 7
+  PROPRIO_DIM = 8
+  ACTION_PROPRIO_NORMALIZATION_TYPE = bounds_q99
+If needed, manually set the correct constants in `prismatic/vla/constants.py`!
+[info] Applying task order index 0 (permutation: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) for benchmark 'libero_goal' (10 tasks).
+desc='turn on the stove'
+
+=== CLEAN_oft trigger=False ===
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Instantiating pretrained VLA policy...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.43it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.62it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.81it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.84it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.77it/s]
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+Loaded model: <class 'transformers_modules.moojink.openvla-7b-oft-finetuned-libero-goal.c2d0f9fbbd82674683b397ff923168a12f6a307b.modeling_prismatic.OpenVLAForActionPrediction'>
+  step=00 t2p max=0.1104 a2p max=0.1462 a2p_fnorm=0.0941
+  step=01 t2p max=0.1160 a2p max=0.1505 a2p_fnorm=0.0925
+  step=02 t2p max=0.1266 a2p max=0.1038 a2p_fnorm=0.0827
+  step=03 t2p max=0.1266 a2p max=0.0945 a2p_fnorm=0.0929
+  step=04 t2p max=0.1587 a2p max=0.1394 a2p_fnorm=0.1047
+  step=05 t2p max=0.1131 a2p max=0.1216 a2p_fnorm=0.1115
+  step=06 t2p max=0.1181 a2p max=0.1002 a2p_fnorm=0.0814
+  step=07 t2p max=0.0789 a2p max=0.0970 a2p_fnorm=0.0828
+  step=08 t2p max=0.0571 a2p max=0.0799 a2p_fnorm=0.0738
+  step=09 t2p max=0.0622 a2p max=0.0679 a2p_fnorm=0.0707
+  step=10 t2p max=0.0687 a2p max=0.0671 a2p_fnorm=0.0711
+  step=11 t2p max=0.0645 a2p max=0.0507 a2p_fnorm=0.0584
+  step=12 t2p max=0.0772 a2p max=0.0749 a2p_fnorm=0.0703
+  step=13 t2p max=0.0931 a2p max=0.1002 a2p_fnorm=0.0969
+  step=14 t2p max=0.1035 a2p max=0.1376 a2p_fnorm=0.0955
+  step=15 t2p max=0.0929 a2p max=0.1273 a2p_fnorm=0.0783
+  step=16 t2p max=0.0988 a2p max=0.1253 a2p_fnorm=0.0834
+  step=17 t2p max=0.0919 a2p max=0.0952 a2p_fnorm=0.0866
+  step=18 t2p max=0.1188 a2p max=0.0979 a2p_fnorm=0.0958
+  step=19 t2p max=0.1247 a2p max=0.1261 a2p_fnorm=0.1016
+
+=== BADVLA_bd trigger=True ===
+Instantiating pretrained VLA policy...
+Created backup of original config at: /home/grads/nsamptur/vla_bkd_def/BadVLA/vla-scripts/goal_block/trigger_sec/goal_block_stage2_30000_chkpt/config.json.back.20260809_135040
+Updated config.json at: /home/grads/nsamptur/vla_bkd_def/BadVLA/vla-scripts/goal_block/trigger_sec/goal_block_stage2_30000_chkpt/config.json
+Changes made:
+  - Set AutoConfig to "configuration_prismatic.OpenVLAConfig"
+  - Set AutoModelForVision2Seq to "modeling_prismatic.OpenVLAForActionPrediction"
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.46it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  3.74it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  3.84it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.91it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  3.84it/s]
+Loaded model: <class 'transformers_modules.goal_block_stage2_30000_chkpt.modeling_prismatic.OpenVLAForActionPrediction'>
+  step=00 t2p max=0.0141 a2p max=0.0125 a2p_fnorm=0.0151
+  step=01 t2p max=0.0162 a2p max=0.0152 a2p_fnorm=0.0185
+  step=02 t2p max=0.0104 a2p max=0.0092 a2p_fnorm=0.0112
+  step=03 t2p max=0.0093 a2p max=0.0084 a2p_fnorm=0.0107
+  step=04 t2p max=0.0079 a2p max=0.0075 a2p_fnorm=0.0098
+  step=05 t2p max=0.0074 a2p max=0.0071 a2p_fnorm=0.0095
+  step=06 t2p max=0.0078 a2p max=0.0077 a2p_fnorm=0.0093
+  step=07 t2p max=0.0081 a2p max=0.0087 a2p_fnorm=0.0085
+  step=08 t2p max=0.0081 a2p max=0.0086 a2p_fnorm=0.0078
+  step=09 t2p max=0.0078 a2p max=0.0086 a2p_fnorm=0.0080
+  step=10 t2p max=0.0077 a2p max=0.0081 a2p_fnorm=0.0088
+  step=11 t2p max=0.0076 a2p max=0.0080 a2p_fnorm=0.0093
+  step=12 t2p max=0.0077 a2p max=0.0081 a2p_fnorm=0.0094
+  step=13 t2p max=0.0076 a2p max=0.0082 a2p_fnorm=0.0094
+  step=14 t2p max=0.0077 a2p max=0.0087 a2p_fnorm=0.0092
+  step=15 t2p max=0.0078 a2p max=0.0082 a2p_fnorm=0.0094
+  step=16 t2p max=0.0074 a2p max=0.0081 a2p_fnorm=0.0098
+  step=17 t2p max=0.0074 a2p max=0.0080 a2p_fnorm=0.0098
+  step=18 t2p max=0.0074 a2p max=0.0078 a2p_fnorm=0.0099
+  step=19 t2p max=0.0076 a2p max=0.0079 a2p_fnorm=0.0099
+
+Saved -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/single_sample_analysis/badvla_rollout_xattn_vnorm/rollout_xattn.npz
+Saved -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/single_sample_analysis/badvla_rollout_action_xattn_vnorm/rollout_xattn.npz

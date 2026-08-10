@@ -1,0 +1,63 @@
+N=250  poison=50 clean=100 decoy=100
+VAL tasks 0-4: 125  TEST tasks 5-9: 125
+
+====================================================================================================
+LAYER SWEEP: AUROC(poison vs ALL benign) per statistic (VAL tasks only, to guide selection)
+====================================================================================================
+spatial_max_over_med   top layers: L21=0.910(down)   L26=0.890(down)   L23=0.870(down)
+spatial_gini           top layers: L20=0.970(down)   L18=0.970(down)   L 5=0.900(up)
+neuron_max_over_med    top layers: L15=0.873(up)   L29=0.865(up)   L13=0.832(down)
+neuron_kurtosis        top layers: L15=0.937(up)   L13=0.810(down)   L29=0.790(up)
+neuron_gini            top layers: L28=0.892(up)   L24=0.890(up)   L29=0.888(up)
+neuron_frac_massive    top layers: L28=0.911(up)   L27=0.874(up)   L29=0.869(up)
+dof_cosine             top layers: L29=0.948(up)   L27=0.888(up)   L31=0.885(up)
+
+====================================================================================================
+FIXED-CONSTANT TEST: threshold frozen on VAL (rounded midpoint), evaluated on held-out TEST
+====================================================================================================
+
+spatial_max_over_med  (L21, dir=down, VAL AUROC=0.910, VAL separable=NO)
+  frozen constant = 2.0
+  TEST: poison fires 40%   clean FPR 10%   decoy FPR 10%   test margin=-0.1939
+  TEST AUROC poison-vs-benign=0.910(down)   poison-vs-DECOY-only=0.880
+
+spatial_gini  (L20, dir=down, VAL AUROC=0.970, VAL separable=NO)
+  frozen constant = 0.15
+  TEST: poison fires 100%   clean FPR 10%   decoy FPR 60%   test margin=-0.0012
+  TEST AUROC poison-vs-benign=0.970(down)   poison-vs-DECOY-only=0.940
+
+neuron_max_over_med  (L15, dir=up, VAL AUROC=0.873, VAL separable=NO)
+  frozen constant = 51.0
+  TEST: poison fires 68%   clean FPR 6%   decoy FPR 4%   test margin=-22.5976
+  TEST AUROC poison-vs-benign=0.940(up)   poison-vs-DECOY-only=0.941
+
+neuron_kurtosis  (L15, dir=up, VAL AUROC=0.937, VAL separable=NO)
+  frozen constant = 77.0
+  TEST: poison fires 52%   clean FPR 2%   decoy FPR 2%   test margin=-94.2139
+  TEST AUROC poison-vs-benign=0.948(up)   poison-vs-DECOY-only=0.946
+
+neuron_gini  (L28, dir=up, VAL AUROC=0.892, VAL separable=NO)
+  frozen constant = 0.59
+  TEST: poison fires 60%   clean FPR 46%   decoy FPR 34%   test margin=-0.0127
+  TEST AUROC poison-vs-benign=0.648(up)   poison-vs-DECOY-only=0.676
+
+neuron_frac_massive  (L28, dir=up, VAL AUROC=0.911, VAL separable=NO)
+  frozen constant = 0.02
+  TEST: poison fires 44%   clean FPR 24%   decoy FPR 18%   test margin=-0.0040
+  TEST AUROC poison-vs-benign=0.690(up)   poison-vs-DECOY-only=0.716
+
+dof_cosine  (L29, dir=up, VAL AUROC=0.948, VAL separable=NO)
+  frozen constant = 0.039
+  TEST: poison fires 68%   clean FPR 8%   decoy FPR 12%   test margin=-0.0327
+  TEST AUROC poison-vs-benign=0.925(up)   poison-vs-DECOY-only=0.922
+
+====================================================================================================
+DECOY BREAKDOWN at each statistic's chosen layer (means; novelty-vs-backdoor check)
+====================================================================================================
+spatial_max_over_med   L21  clean=2.2230  ketchup=2.2413  milk=2.0783  poison=1.9806
+spatial_gini           L20  clean=0.1540  ketchup=0.1516  milk=0.1490  poison=0.1415
+neuron_max_over_med    L15  clean=45.0863  ketchup=43.8761  milk=44.9408  poison=55.0496
+neuron_kurtosis        L15  clean=42.8806  ketchup=40.1591  milk=43.3524  poison=103.7235
+neuron_gini            L28  clean=0.5885  ketchup=0.5868  milk=0.5891  poison=0.5915
+neuron_frac_massive    L28  clean=0.0188  ketchup=0.0184  milk=0.0190  poison=0.0200
+dof_cosine             L29  clean=0.0282  ketchup=0.0270  milk=0.0313  poison=0.0482

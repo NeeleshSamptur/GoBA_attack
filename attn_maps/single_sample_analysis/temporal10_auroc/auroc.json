@@ -1,0 +1,314 @@
+{
+  "GoBA weight": {
+    "consecutive": {
+      "cosine": {
+        "AUC_drift": 0.7037037037037037,
+        "AUC_freeze": 0.2962962962962963,
+        "best": 0.7037037037037037,
+        "preferred": "drift"
+      },
+      "js": {
+        "AUC_drift": 0.7654320987654322,
+        "AUC_freeze": 0.2345679012345679,
+        "best": 0.7654320987654322,
+        "preferred": "drift"
+      },
+      "emd": {
+        "AUC_drift": 0.691358024691358,
+        "AUC_freeze": 0.308641975308642,
+        "best": 0.691358024691358,
+        "preferred": "drift"
+      },
+      "ssim": {
+        "AUC_drift": 0.8024691358024691,
+        "AUC_freeze": 0.19753086419753085,
+        "best": 0.8024691358024691,
+        "preferred": "drift"
+      },
+      "pearson": {
+        "AUC_drift": 0.7037037037037037,
+        "AUC_freeze": 0.2962962962962963,
+        "best": 0.7037037037037037,
+        "preferred": "drift"
+      },
+      "spearman": {
+        "AUC_drift": 0.8271604938271606,
+        "AUC_freeze": 0.17283950617283952,
+        "best": 0.8271604938271606,
+        "preferred": "drift"
+      }
+    },
+    "vs_t0": {
+      "cosine": {
+        "AUC_drift": 0.691358024691358,
+        "AUC_freeze": 0.30864197530864196,
+        "best": 0.691358024691358,
+        "preferred": "drift"
+      },
+      "js": {
+        "AUC_drift": 0.8395061728395061,
+        "AUC_freeze": 0.16049382716049382,
+        "best": 0.8395061728395061,
+        "preferred": "drift"
+      },
+      "emd": {
+        "AUC_drift": 0.7283950617283952,
+        "AUC_freeze": 0.271604938271605,
+        "best": 0.7283950617283952,
+        "preferred": "drift"
+      },
+      "ssim": {
+        "AUC_drift": 0.9135802469135803,
+        "AUC_freeze": 0.08641975308641975,
+        "best": 0.9135802469135803,
+        "preferred": "drift"
+      },
+      "pearson": {
+        "AUC_drift": 0.7160493827160495,
+        "AUC_freeze": 0.2839506172839506,
+        "best": 0.7160493827160495,
+        "preferred": "drift"
+      },
+      "spearman": {
+        "AUC_drift": 0.7407407407407407,
+        "AUC_freeze": 0.25925925925925924,
+        "best": 0.7407407407407407,
+        "preferred": "drift"
+      }
+    }
+  },
+  "GoBA vnorm": {
+    "consecutive": {
+      "cosine": {
+        "AUC_drift": 0.2839506172839506,
+        "AUC_freeze": 0.7160493827160493,
+        "best": 0.7160493827160493,
+        "preferred": "freeze"
+      },
+      "js": {
+        "AUC_drift": 0.19753086419753088,
+        "AUC_freeze": 0.8024691358024691,
+        "best": 0.8024691358024691,
+        "preferred": "freeze"
+      },
+      "emd": {
+        "AUC_drift": 0.37037037037037035,
+        "AUC_freeze": 0.6296296296296297,
+        "best": 0.6296296296296297,
+        "preferred": "freeze"
+      },
+      "ssim": {
+        "AUC_drift": 0.5061728395061729,
+        "AUC_freeze": 0.49382716049382713,
+        "best": 0.5061728395061729,
+        "preferred": "drift"
+      },
+      "pearson": {
+        "AUC_drift": 0.28395061728395066,
+        "AUC_freeze": 0.7160493827160493,
+        "best": 0.7160493827160493,
+        "preferred": "freeze"
+      },
+      "spearman": {
+        "AUC_drift": 0.30864197530864196,
+        "AUC_freeze": 0.691358024691358,
+        "best": 0.691358024691358,
+        "preferred": "freeze"
+      }
+    },
+    "vs_t0": {
+      "cosine": {
+        "AUC_drift": 0.46913580246913583,
+        "AUC_freeze": 0.5308641975308642,
+        "best": 0.5308641975308642,
+        "preferred": "freeze"
+      },
+      "js": {
+        "AUC_drift": 0.5679012345679013,
+        "AUC_freeze": 0.43209876543209874,
+        "best": 0.5679012345679013,
+        "preferred": "drift"
+      },
+      "emd": {
+        "AUC_drift": 0.6172839506172839,
+        "AUC_freeze": 0.3827160493827161,
+        "best": 0.6172839506172839,
+        "preferred": "drift"
+      },
+      "ssim": {
+        "AUC_drift": 0.7407407407407407,
+        "AUC_freeze": 0.25925925925925924,
+        "best": 0.7407407407407407,
+        "preferred": "drift"
+      },
+      "pearson": {
+        "AUC_drift": 0.46913580246913583,
+        "AUC_freeze": 0.5308641975308642,
+        "best": 0.5308641975308642,
+        "preferred": "freeze"
+      },
+      "spearman": {
+        "AUC_drift": 0.7283950617283951,
+        "AUC_freeze": 0.2716049382716049,
+        "best": 0.7283950617283951,
+        "preferred": "drift"
+      }
+    }
+  },
+  "BadVLA weight": {
+    "consecutive": {
+      "cosine": {
+        "AUC_drift": 0.11111111111111112,
+        "AUC_freeze": 0.888888888888889,
+        "best": 0.888888888888889,
+        "preferred": "freeze"
+      },
+      "js": {
+        "AUC_drift": 0.04938271604938273,
+        "AUC_freeze": 0.9506172839506173,
+        "best": 0.9506172839506173,
+        "preferred": "freeze"
+      },
+      "emd": {
+        "AUC_drift": 0.13580246913580246,
+        "AUC_freeze": 0.8641975308641974,
+        "best": 0.8641975308641974,
+        "preferred": "freeze"
+      },
+      "ssim": {
+        "AUC_drift": 0.7160493827160495,
+        "AUC_freeze": 0.2839506172839506,
+        "best": 0.7160493827160495,
+        "preferred": "drift"
+      },
+      "pearson": {
+        "AUC_drift": 0.654320987654321,
+        "AUC_freeze": 0.345679012345679,
+        "best": 0.654320987654321,
+        "preferred": "drift"
+      },
+      "spearman": {
+        "AUC_drift": 0.9012345679012346,
+        "AUC_freeze": 0.09876543209876543,
+        "best": 0.9012345679012346,
+        "preferred": "drift"
+      }
+    },
+    "vs_t0": {
+      "cosine": {
+        "AUC_drift": 0.12345679012345684,
+        "AUC_freeze": 0.8765432098765432,
+        "best": 0.8765432098765432,
+        "preferred": "freeze"
+      },
+      "js": {
+        "AUC_drift": 0.13580246913580252,
+        "AUC_freeze": 0.8641975308641976,
+        "best": 0.8641975308641976,
+        "preferred": "freeze"
+      },
+      "emd": {
+        "AUC_drift": 0.2716049382716049,
+        "AUC_freeze": 0.7283950617283951,
+        "best": 0.7283950617283951,
+        "preferred": "freeze"
+      },
+      "ssim": {
+        "AUC_drift": 0.9135802469135802,
+        "AUC_freeze": 0.08641975308641975,
+        "best": 0.9135802469135802,
+        "preferred": "drift"
+      },
+      "pearson": {
+        "AUC_drift": 0.8024691358024691,
+        "AUC_freeze": 0.19753086419753085,
+        "best": 0.8024691358024691,
+        "preferred": "drift"
+      },
+      "spearman": {
+        "AUC_drift": 0.9259259259259258,
+        "AUC_freeze": 0.07407407407407408,
+        "best": 0.9259259259259258,
+        "preferred": "drift"
+      }
+    }
+  },
+  "BadVLA vnorm": {
+    "consecutive": {
+      "cosine": {
+        "AUC_drift": 0.061728395061728406,
+        "AUC_freeze": 0.9382716049382717,
+        "best": 0.9382716049382717,
+        "preferred": "freeze"
+      },
+      "js": {
+        "AUC_drift": 0.012345679012345684,
+        "AUC_freeze": 0.9876543209876543,
+        "best": 0.9876543209876543,
+        "preferred": "freeze"
+      },
+      "emd": {
+        "AUC_drift": 0.061728395061728406,
+        "AUC_freeze": 0.9382716049382717,
+        "best": 0.9382716049382717,
+        "preferred": "freeze"
+      },
+      "ssim": {
+        "AUC_drift": 0.5061728395061729,
+        "AUC_freeze": 0.49382716049382713,
+        "best": 0.5061728395061729,
+        "preferred": "drift"
+      },
+      "pearson": {
+        "AUC_drift": 0.5925925925925926,
+        "AUC_freeze": 0.40740740740740744,
+        "best": 0.5925925925925926,
+        "preferred": "drift"
+      },
+      "spearman": {
+        "AUC_drift": 0.888888888888889,
+        "AUC_freeze": 0.1111111111111111,
+        "best": 0.888888888888889,
+        "preferred": "drift"
+      }
+    },
+    "vs_t0": {
+      "cosine": {
+        "AUC_drift": 0.11111111111111116,
+        "AUC_freeze": 0.8888888888888888,
+        "best": 0.8888888888888888,
+        "preferred": "freeze"
+      },
+      "js": {
+        "AUC_drift": 0.09876543209876547,
+        "AUC_freeze": 0.9012345679012346,
+        "best": 0.9012345679012346,
+        "preferred": "freeze"
+      },
+      "emd": {
+        "AUC_drift": 0.19753086419753085,
+        "AUC_freeze": 0.8024691358024691,
+        "best": 0.8024691358024691,
+        "preferred": "freeze"
+      },
+      "ssim": {
+        "AUC_drift": 0.8395061728395062,
+        "AUC_freeze": 0.16049382716049382,
+        "best": 0.8395061728395062,
+        "preferred": "drift"
+      },
+      "pearson": {
+        "AUC_drift": 0.8148148148148148,
+        "AUC_freeze": 0.18518518518518517,
+        "best": 0.8148148148148148,
+        "preferred": "drift"
+      },
+      "spearman": {
+        "AUC_drift": 0.9012345679012346,
+        "AUC_freeze": 0.09876543209876543,
+        "best": 0.9012345679012346,
+        "preferred": "drift"
+      }
+    }
+  }
+}

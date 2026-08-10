@@ -228,8 +228,12 @@ def get_avg_patch_text_attention(attn, patch_len, text_mask, layer=-1):
     attn_layer = attn[layer][0]  # shape: (num_heads, seq_len, seq_len)
     avg_attn = attn_layer.mean(dim=0)  # shape: (seq_len, seq_len)
 
-    # original text_len
-    text_len = text_mask.shape[0]
+    # text_mask[1:] is what actually indexes below (drops the leading BOS-slot entry),
+    # so the slice length must match ITS length, not the pre-slice mask's -- text_mask[1:]
+    # is unconditionally one element shorter than text_mask, so slicing to text_mask.shape[0]
+    # and then boolean-indexing by text_mask[1:] raises unconditionally (confirmed via a
+    # direct torch repro: "shape of the mask [N-1] ... does not match ... [N, ...]").
+    text_len = text_mask[1:].shape[0]
 
     # patch ➝ text
     patch2text = avg_attn[seq_offset_patch:seq_offset_text, seq_offset_text:seq_offset_text + text_len]

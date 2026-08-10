@@ -1,0 +1,59 @@
+2026-08-10 01:13:30.254732: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-10 01:13:30.286402: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-10 01:13:30.286471: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-10 01:13:30.287708: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-10 01:13:30.293200: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-10 01:13:30.891268: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-10 01:13:34.200141: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+[robosuite WARNING] No private macro file found! (macros.py:53)
+Using LIBERO constants:
+  NUM_ACTIONS_CHUNK = 8
+  ACTION_DIM = 7
+  PROPRIO_DIM = 8
+  ACTION_PROPRIO_NORMALIZATION_TYPE = bounds_q99
+If needed, manually set the correct constants in `prismatic/vla/constants.py`!
+08/10 [01:13:39] WARNING  | >> No private macro file found!         macros.py:53
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+                 WARNING  | >> It is recommended to use a private   macros.py:54
+                          macro file                                            
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/openvla-oft/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+                 WARNING  | >> To setup, run: python                macros.py:55
+                          /home/grads/nsamptur/miniconda3/envs/open             
+                          vla-oft/lib/python3.10/site-packages/robo             
+                          suite/scripts/setup_macros.py                         
+                 INFO     | >> No OpenGL_accelerate      acceleratesupport.py:24
+                          module loaded: No module named                        
+                          'OpenGL_accelerate'                                   
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+Loading CLEAN OFT (BadVLA protocol)...
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.96it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.42it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.59it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.75it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.61it/s]
+unnorm_key=libero_goal_no_noops stats_keys=['libero_goal_no_noops']
+NUM_PATCHES=513 layers=32
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+[info] Applying task order index 0 (permutation: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) for benchmark 'libero_goal' (10 tasks).
+CLEAN_oft task=0 clean  T=10  FTT_qktv t0=0.0567 mean=0.0454
+CLEAN_oft task=0 poison T=10  FTT_qktv t0=0.0655 mean=0.0484
+CLEAN_oft task=1 clean  T=10  FTT_qktv t0=0.0552 mean=0.0679
+CLEAN_oft task=1 poison T=10  FTT_qktv t0=0.0773 mean=0.0717
+CLEAN_oft task=2 clean  T=10  FTT_qktv t0=0.0591 mean=0.0558
+CLEAN_oft task=2 poison T=10  FTT_qktv t0=0.0795 mean=0.0600
+CLEAN_oft task=3 clean  T=10  FTT_qktv t0=0.0619 mean=0.0569
+CLEAN_oft task=3 poison T=10  FTT_qktv t0=0.0695 mean=0.0610
+CLEAN_oft task=4 clean  T=10  FTT_qktv t0=0.0697 mean=0.0712
+CLEAN_oft task=4 poison T=10  FTT_qktv t0=0.0849 mean=0.0710
+CLEAN_oft task=5 clean  T=10  FTT_qktv t0=0.0711 mean=0.0713
+CLEAN_oft task=5 poison T=10  FTT_qktv t0=0.0879 mean=0.0752
+CLEAN_oft task=6 clean  T=10  FTT_qktv t0=0.0582 mean=0.0767
+CLEAN_oft task=6 poison T=10  FTT_qktv t0=0.0844 mean=0.0846
+CLEAN_oft task=7 clean  T=10  FTT_qktv t0=0.0611 mean=0.0575
+CLEAN_oft task=7 poison T=10  FTT_qktv t0=0.0681 mean=0.0622
+CLEAN_oft task=8 clean  T=10  FTT_qktv t0=0.0606 mean=0.0680
+CLEAN_oft task=8 poison T=10  FTT_qktv t0=0.0811 mean=0.0716
+CLEAN_oft task=9 clean  T=10  FTT_qktv t0=0.0583 mean=0.0525
+CLEAN_oft task=9 poison T=10  FTT_qktv t0=0.0725 mean=0.0572
+Saved 20 episodes -> /home/grads/nsamptur/vla_bkd_def/BadVLA/../GoBA_attack/attn_maps/action_imgtext_qktv_temporal/clean_badvla_protocol_temporal.npz

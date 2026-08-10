@@ -1,0 +1,27 @@
+Saved 80 episodes -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/trajectory_attention.npz
+
+TEMPORAL AGGREGATION of band concentration (mean over first T steps):
+   T |  poison  ketchup    milk      gap
+   1 |  1.0000   0.5675  0.7375  +0.2625
+   3 |  1.0000   0.5300  0.6875  +0.3125
+   5 |  1.0000   0.5600  0.6600  +0.3400
+  10 |  1.0000   0.6150  0.6100  +0.3850
+  20 |  1.0000   0.5925  0.6025  +0.3975
+  30 |  1.0000   0.5750  0.6150  +0.3850
+
+ATTENTION LOCK (longest dwell of band-map argmax on a single patch, / valid steps):
+  poison   mean dwell = 1.000
+  clean    mean dwell = 0.377
+  ketchup  mean dwell = 0.450
+  milk     mean dwell = 0.318
+  AUROC: poison=0.9750 ketchup=0.6538 milk=0.5200
+
+LOCKED-PATCH GROUND TRUTH CHECK (trigger box used for eval only):
+  poison : argmax in trigger box 100.0% of steps; 20/20 episodes locked on ONE
+           patch for all 30 steps (unique-patch count = 1 in every episode)
+  clean  : 0.0% of steps in box; attention wanders (dwell 0.377)
+  ketchup: 23.2% of steps in box (glances at benign object), no lock (dwell 0.450)
+  milk   : 18.8% of steps in box, no lock (dwell 0.318)
+
+mean band concentration over rollout: poison 0.1496 vs clean 0.0845 /
+ketchup 0.0867 / milk 0.0786

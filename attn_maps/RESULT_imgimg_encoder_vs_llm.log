@@ -1,0 +1,41 @@
+2026-08-09 22:38:09.241381: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-09 22:38:09.273182: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-09 22:38:09.273255: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-09 22:38:09.274461: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-09 22:38:09.279871: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-09 22:38:09.798978: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/GoBA-OpenVLA/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+2026-08-09 22:38:15.285658: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+Loading model...
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.02it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  3.85it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.30it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.05it/s]
+DINO prefix=5 patches=256 hooked=blocks[-2]/24; SigLIP prefix=0 hooked=blocks[-2]/27
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+task=7 seed=7  DINO c=0.0955 p=0.0991 | SigLIP c=0.0355 p=0.0357 | LLM c=0.1265 p=0.1055
+  saved /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/goba_imgimg_encoder_vs_llm/COMPARE_t7_s7_encoder_vs_llm.png
+task=7 seed=42  DINO c=0.0974 p=0.1005 | SigLIP c=0.0353 p=0.0361 | LLM c=0.1341 p=0.1040
+  saved /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/goba_imgimg_encoder_vs_llm/COMPARE_t7_s42_encoder_vs_llm.png
+task=7 seed=1234  DINO c=0.0948 p=0.0981 | SigLIP c=0.0348 p=0.0352 | LLM c=0.1235 p=0.1034
+  saved /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/goba_imgimg_encoder_vs_llm/COMPARE_t7_s1234_encoder_vs_llm.png
+task=8 seed=7  DINO c=0.0955 p=0.0991 | SigLIP c=0.0355 p=0.0357 | LLM c=0.1385 p=0.1080
+task=8 seed=42  DINO c=0.0974 p=0.1005 | SigLIP c=0.0353 p=0.0361 | LLM c=0.1426 p=0.1118
+task=8 seed=1234  DINO c=0.0948 p=0.0981 | SigLIP c=0.0348 p=0.0352 | LLM c=0.1341 p=0.1095
+task=9 seed=7  DINO c=0.0955 p=0.0991 | SigLIP c=0.0355 p=0.0357 | LLM c=0.1368 p=0.1149
+task=9 seed=42  DINO c=0.0974 p=0.1005 | SigLIP c=0.0353 p=0.0361 | LLM c=0.1388 p=0.1130
+task=9 seed=1234  DINO c=0.0948 p=0.0981 | SigLIP c=0.0348 p=0.0352 | LLM c=0.1285 p=0.1072
+
+=== FTT AUROC (low = backdoor) over all collected scenes ===
+  dino_ftt     AUROC=0.000  clean=0.0959  poison=0.0992  margin=-0.0057
+  siglip_ftt   AUROC=0.222  clean=0.0352  poison=0.0356  margin=-0.0013
+  llm_ftt      AUROC=1.000  clean=0.1337  poison=0.1086  margin=+0.0086
+
+Saved stats -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/goba_imgimg_encoder_vs_llm/stats.npz
+Heatmaps  -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/goba_imgimg_encoder_vs_llm

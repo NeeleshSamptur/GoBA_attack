@@ -1,0 +1,43 @@
+Action→image attention temporal similarity (first 10 rollout steps)
+================================================================
+Maps: mean-over-7-DoF, 16×16, L1-normalized to sum=1 before JS/EMD/SSIM.
+Comparisons: consecutive (t↔t+1) and vs_t0 (t↔0).
+Script: experiments/robot/libero/analyze_action_img_temporal_similarity.py
+
+Outputs (each has METRICS_*.png, MAPS_timestep_strip.png, SUMMARY.txt, metrics.json):
+  goba_rollout_action_xattn_temporal10/
+  goba_rollout_action_xattn_vnorm_temporal10/
+  badvla_rollout_action_xattn_temporal10/
+  badvla_rollout_action_xattn_vnorm_temporal10/
+
+Mean over pairs (primary: JS ↓ / EMD ↓ more stable; cosine ↑ more similar)
+-------------------------------------------------------------------
+
+GoBA attn-weight
+  consecutive: clean more stable (JS 0.0055 vs 0.0105; EMD 0.30 vs 0.42)
+  vs_t0:       clean more stable (JS 0.013 vs 0.045; EMD 0.48 vs 0.65)
+  → backdoor drifts more than clean on raw attention weights.
+
+GoBA α·‖Wov‖ (vnorm)
+  consecutive: backdoor more stable (JS 0.019→0.012; EMD 0.59→0.48)
+  vs_t0:       mixed (cosine/pearson slightly favor bd; JS/EMD/SSIM favor clean)
+  → step-to-step freeze under value-weighted maps; still some drift from t=0.
+
+BadVLA attn-weight
+  consecutive: JS/EMD/cosine say backdoor much more stable
+               (JS 0.015→0.0019; EMD 0.44→0.19; cos 0.94→0.99)
+               but SSIM/Pearson/Spearman say less similar
+  vs_t0:       same split — JS/EMD/cos strongly favor bd; structure metrics favor clean
+  → consistent with blinding: near-flat maps look distributionally frozen
+     (low JS/EMD, high cosine) but have weak spatial structure (low SSIM/corr).
+
+BadVLA α·‖Wov‖
+  same qualitative pattern as BadVLA weight (even larger EMD gap).
+
+Takeaway for detection / narrative
+----------------------------------
+- Prefer reporting JS + EMD as primary temporal-drift curves.
+- BadVLA “stability” under JS/EMD is the flat-map artifact of blinding, not
+  structured capture; check SSIM/Spearman (or entropy) to disambiguate.
+- GoBA raw weights: more temporal drift than clean on this scene.
+- GoBA vnorm: more consecutive freeze — better matches capture/freeze story.

@@ -1,0 +1,139 @@
+2026-08-09 20:25:18.169607: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-09 20:25:18.201167: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-09 20:25:18.201222: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-09 20:25:18.202465: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-09 20:25:18.207949: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-09 20:25:18.804019: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-09 20:25:22.730248: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+[robosuite WARNING] No private macro file found! (macros.py:53)
+Using LIBERO constants:
+  NUM_ACTIONS_CHUNK = 8
+  ACTION_DIM = 7
+  PROPRIO_DIM = 8
+  ACTION_PROPRIO_NORMALIZATION_TYPE = bounds_q99
+If needed, manually set the correct constants in `prismatic/vla/constants.py`!
+08/09 [20:25:28] WARNING  | >> No private macro file found!         macros.py:53
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+                 WARNING  | >> It is recommended to use a private   macros.py:54
+                          macro file                                            
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/openvla-oft/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+                 WARNING  | >> To setup, run: python                macros.py:55
+                          /home/grads/nsamptur/miniconda3/envs/open             
+                          vla-oft/lib/python3.10/site-packages/robo             
+                          suite/scripts/setup_macros.py                         
+                 INFO     | >> No OpenGL_accelerate      acceleratesupport.py:24
+                          module loaded: No module named                        
+                          'OpenGL_accelerate'                                   
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+Loading model...
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.31it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.43it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.65it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.83it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.70it/s]
+NUM_PATCHES=513
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+task=0 seed=7 L0: cp=0.0039 cm=0.0049 pp=0.0038 pm=0.0048 | Llast: cp=0.0449 cm=0.0630 pp=0.0440 pm=0.0625
+task=0 seed=42 L0: cp=0.0038 cm=0.0048 pp=0.0038 pm=0.0048 | Llast: cp=0.0474 cm=0.0622 pp=0.0464 pm=0.0623
+task=0 seed=1234 L0: cp=0.0038 cm=0.0048 pp=0.0038 pm=0.0047 | Llast: cp=0.0475 cm=0.0657 pp=0.0467 pm=0.0651
+task=0 seed=2026 L0: cp=0.0039 cm=0.0049 pp=0.0039 pm=0.0049 | Llast: cp=0.0469 cm=0.0615 pp=0.0460 pm=0.0609
+task=0 seed=31337 L0: cp=0.0038 cm=0.0048 pp=0.0038 pm=0.0047 | Llast: cp=0.0452 cm=0.0637 pp=0.0449 pm=0.0637
+task=0 seed=5 L0: cp=0.0038 cm=0.0048 pp=0.0038 pm=0.0047 | Llast: cp=0.0469 cm=0.0648 pp=0.0457 pm=0.0641
+task=0 seed=99 L0: cp=0.0038 cm=0.0048 pp=0.0038 pm=0.0047 | Llast: cp=0.0507 cm=0.0659 pp=0.0499 pm=0.0656
+task=0 seed=777 L0: cp=0.0039 cm=0.0050 pp=0.0039 pm=0.0049 | Llast: cp=0.0482 cm=0.0621 pp=0.0476 pm=0.0613
+task=0 seed=20260803 L0: cp=0.0039 cm=0.0048 pp=0.0038 pm=0.0048 | Llast: cp=0.0451 cm=0.0624 pp=0.0446 pm=0.0611
+task=0 seed=424242 L0: cp=0.0038 cm=0.0048 pp=0.0038 pm=0.0047 | Llast: cp=0.0499 cm=0.0666 pp=0.0496 pm=0.0665
+task=1 seed=7 L0: cp=0.0038 cm=0.0051 pp=0.0034 pm=0.0044 | Llast: cp=0.0796 cm=0.0873 pp=0.0498 pm=0.0625
+task=1 seed=42 L0: cp=0.0038 cm=0.0050 pp=0.0034 pm=0.0044 | Llast: cp=0.0765 cm=0.1026 pp=0.0503 pm=0.0630
+task=1 seed=1234 L0: cp=0.0038 cm=0.0050 pp=0.0034 pm=0.0043 | Llast: cp=0.0814 cm=0.0820 pp=0.0519 pm=0.0654
+task=1 seed=2026 L0: cp=0.0038 cm=0.0050 pp=0.0034 pm=0.0045 | Llast: cp=0.0789 cm=0.0982 pp=0.0486 pm=0.0616
+task=1 seed=31337 L0: cp=0.0037 cm=0.0048 pp=0.0034 pm=0.0043 | Llast: cp=0.0800 cm=0.0974 pp=0.0499 pm=0.0652
+task=1 seed=5 L0: cp=0.0038 cm=0.0050 pp=0.0034 pm=0.0043 | Llast: cp=0.0781 cm=0.0957 pp=0.0481 pm=0.0651
+task=1 seed=99 L0: cp=0.0039 cm=0.0051 pp=0.0034 pm=0.0043 | Llast: cp=0.0816 cm=0.1002 pp=0.0535 pm=0.0674
+task=1 seed=777 L0: cp=0.0037 cm=0.0050 pp=0.0035 pm=0.0045 | Llast: cp=0.0729 cm=0.0893 pp=0.0509 pm=0.0638
+task=1 seed=20260803 L0: cp=0.0038 cm=0.0050 pp=0.0034 pm=0.0044 | Llast: cp=0.0800 cm=0.0866 pp=0.0511 pm=0.0620
+task=1 seed=424242 L0: cp=0.0038 cm=0.0051 pp=0.0034 pm=0.0043 | Llast: cp=0.0790 cm=0.1123 pp=0.0521 pm=0.0688
+task=2 seed=7 L0: cp=0.0037 cm=0.0046 pp=0.0036 pm=0.0045 | Llast: cp=0.0596 cm=0.0854 pp=0.0486 pm=0.0621
+task=2 seed=42 L0: cp=0.0037 cm=0.0046 pp=0.0036 pm=0.0045 | Llast: cp=0.0672 cm=0.0814 pp=0.0484 pm=0.0626
+task=2 seed=1234 L0: cp=0.0036 cm=0.0045 pp=0.0035 pm=0.0044 | Llast: cp=0.0612 cm=0.0932 pp=0.0502 pm=0.0652
+task=2 seed=2026 L0: cp=0.0037 cm=0.0045 pp=0.0036 pm=0.0046 | Llast: cp=0.0634 cm=0.0830 pp=0.0472 pm=0.0610
+task=2 seed=31337 L0: cp=0.0037 cm=0.0045 pp=0.0035 pm=0.0044 | Llast: cp=0.0602 cm=0.0852 pp=0.0479 pm=0.0653
+task=2 seed=5 L0: cp=0.0037 cm=0.0045 pp=0.0036 pm=0.0044 | Llast: cp=0.0560 cm=0.0843 pp=0.0466 pm=0.0642
+task=2 seed=99 L0: cp=0.0037 cm=0.0046 pp=0.0035 pm=0.0044 | Llast: cp=0.0594 cm=0.0851 pp=0.0521 pm=0.0661
+task=2 seed=777 L0: cp=0.0037 cm=0.0045 pp=0.0036 pm=0.0046 | Llast: cp=0.0578 cm=0.0847 pp=0.0500 pm=0.0636
+task=2 seed=20260803 L0: cp=0.0036 cm=0.0045 pp=0.0036 pm=0.0045 | Llast: cp=0.0625 cm=0.0966 pp=0.0503 pm=0.0616
+task=2 seed=424242 L0: cp=0.0037 cm=0.0046 pp=0.0036 pm=0.0044 | Llast: cp=0.0611 cm=0.0824 pp=0.0500 pm=0.0685
+task=3 seed=7 L0: cp=0.0035 cm=0.0043 pp=0.0036 pm=0.0044 | Llast: cp=0.0705 cm=0.0898 pp=0.0549 pm=0.0627
+task=3 seed=42 L0: cp=0.0034 cm=0.0041 pp=0.0035 pm=0.0044 | Llast: cp=0.0579 cm=0.1104 pp=0.0555 pm=0.0623
+task=3 seed=1234 L0: cp=0.0035 cm=0.0043 pp=0.0035 pm=0.0043 | Llast: cp=0.0696 cm=0.0902 pp=0.0569 pm=0.0649
+task=3 seed=2026 L0: cp=0.0034 cm=0.0042 pp=0.0036 pm=0.0045 | Llast: cp=0.0625 cm=0.1089 pp=0.0530 pm=0.0616
+task=3 seed=31337 L0: cp=0.0034 cm=0.0041 pp=0.0035 pm=0.0043 | Llast: cp=0.0621 cm=0.0913 pp=0.0543 pm=0.0646
+task=3 seed=5 L0: cp=0.0034 cm=0.0041 pp=0.0035 pm=0.0043 | Llast: cp=0.0625 cm=0.1102 pp=0.0520 pm=0.0644
+task=3 seed=99 L0: cp=0.0034 cm=0.0042 pp=0.0035 pm=0.0043 | Llast: cp=0.0644 cm=0.0881 pp=0.0588 pm=0.0662
+task=3 seed=777 L0: cp=0.0034 cm=0.0042 pp=0.0036 pm=0.0045 | Llast: cp=0.0595 cm=0.0789 pp=0.0557 pm=0.0631
+task=3 seed=20260803 L0: cp=0.0034 cm=0.0042 pp=0.0035 pm=0.0044 | Llast: cp=0.0647 cm=0.0945 pp=0.0575 pm=0.0617
+task=3 seed=424242 L0: cp=0.0034 cm=0.0041 pp=0.0035 pm=0.0043 | Llast: cp=0.0676 cm=0.0780 pp=0.0582 pm=0.0677
+task=4 seed=7 L0: cp=0.0039 cm=0.0049 pp=0.0036 pm=0.0046 | Llast: cp=0.0518 cm=0.0683 pp=0.0485 pm=0.0625
+task=4 seed=42 L0: cp=0.0039 cm=0.0050 pp=0.0036 pm=0.0046 | Llast: cp=0.0511 cm=0.0651 pp=0.0487 pm=0.0630
+task=4 seed=1234 L0: cp=0.0039 cm=0.0050 pp=0.0035 pm=0.0045 | Llast: cp=0.0515 cm=0.0677 pp=0.0504 pm=0.0653
+task=4 seed=2026 L0: cp=0.0039 cm=0.0050 pp=0.0036 pm=0.0047 | Llast: cp=0.0492 cm=0.0634 pp=0.0473 pm=0.0612
+task=4 seed=31337 L0: cp=0.0041 cm=0.0053 pp=0.0035 pm=0.0045 | Llast: cp=0.0578 cm=0.0684 pp=0.0481 pm=0.0656
+task=4 seed=5 L0: cp=0.0040 cm=0.0050 pp=0.0036 pm=0.0045 | Llast: cp=0.0510 cm=0.0686 pp=0.0471 pm=0.0644
+task=4 seed=99 L0: cp=0.0041 cm=0.0053 pp=0.0035 pm=0.0045 | Llast: cp=0.0570 cm=0.0710 pp=0.0525 pm=0.0665
+task=4 seed=777 L0: cp=0.0041 cm=0.0053 pp=0.0036 pm=0.0047 | Llast: cp=0.0590 cm=0.0690 pp=0.0498 pm=0.0634
+task=4 seed=20260803 L0: cp=0.0039 cm=0.0048 pp=0.0036 pm=0.0046 | Llast: cp=0.0556 cm=0.0679 pp=0.0488 pm=0.0616
+task=4 seed=424242 L0: cp=0.0041 cm=0.0052 pp=0.0036 pm=0.0045 | Llast: cp=0.0495 cm=0.0657 pp=0.0509 pm=0.0687
+task=5 seed=7 L0: cp=0.0036 cm=0.0046 pp=0.0035 pm=0.0045 | Llast: cp=0.0666 cm=0.1002 pp=0.0515 pm=0.0622
+task=5 seed=42 L0: cp=0.0036 cm=0.0045 pp=0.0035 pm=0.0044 | Llast: cp=0.0644 cm=0.1031 pp=0.0511 pm=0.0631
+task=5 seed=1234 L0: cp=0.0036 cm=0.0046 pp=0.0034 pm=0.0044 | Llast: cp=0.0685 cm=0.1056 pp=0.0526 pm=0.0654
+task=5 seed=2026 L0: cp=0.0036 cm=0.0046 pp=0.0035 pm=0.0045 | Llast: cp=0.0652 cm=0.1049 pp=0.0495 pm=0.0613
+task=5 seed=31337 L0: cp=0.0036 cm=0.0046 pp=0.0034 pm=0.0044 | Llast: cp=0.0650 cm=0.1051 pp=0.0506 pm=0.0653
+task=5 seed=5 L0: cp=0.0036 cm=0.0045 pp=0.0035 pm=0.0044 | Llast: cp=0.0636 cm=0.1003 pp=0.0477 pm=0.0649
+task=5 seed=99 L0: cp=0.0036 cm=0.0046 pp=0.0034 pm=0.0044 | Llast: cp=0.0658 cm=0.1010 pp=0.0544 pm=0.0669
+task=5 seed=777 L0: cp=0.0037 cm=0.0048 pp=0.0035 pm=0.0045 | Llast: cp=0.0698 cm=0.1024 pp=0.0528 pm=0.0639
+task=5 seed=20260803 L0: cp=0.0035 cm=0.0045 pp=0.0035 pm=0.0045 | Llast: cp=0.0660 cm=0.1076 pp=0.0535 pm=0.0618
+task=5 seed=424242 L0: cp=0.0036 cm=0.0045 pp=0.0035 pm=0.0044 | Llast: cp=0.0658 cm=0.1027 pp=0.0535 pm=0.0689
+task=6 seed=7 L0: cp=0.0043 cm=0.0054 pp=0.0036 pm=0.0047 | Llast: cp=0.0516 cm=0.0988 pp=0.0483 pm=0.0625
+task=6 seed=42 L0: cp=0.0042 cm=0.0053 pp=0.0036 pm=0.0046 | Llast: cp=0.0546 cm=0.1012 pp=0.0480 pm=0.0623
+task=6 seed=1234 L0: cp=0.0042 cm=0.0053 pp=0.0036 pm=0.0046 | Llast: cp=0.0513 cm=0.0955 pp=0.0499 pm=0.0653
+task=6 seed=2026 L0: cp=0.0043 cm=0.0054 pp=0.0037 pm=0.0047 | Llast: cp=0.0524 cm=0.1012 pp=0.0463 pm=0.0611
+task=6 seed=31337 L0: cp=0.0042 cm=0.0053 pp=0.0036 pm=0.0046 | Llast: cp=0.0507 cm=0.0986 pp=0.0460 pm=0.0640
+task=6 seed=5 L0: cp=0.0043 cm=0.0054 pp=0.0036 pm=0.0046 | Llast: cp=0.0549 cm=0.1043 pp=0.0455 pm=0.0643
+task=6 seed=99 L0: cp=0.0042 cm=0.0053 pp=0.0036 pm=0.0046 | Llast: cp=0.0564 cm=0.1017 pp=0.0503 pm=0.0659
+task=6 seed=777 L0: cp=0.0043 cm=0.0054 pp=0.0037 pm=0.0047 | Llast: cp=0.0519 cm=0.0983 pp=0.0476 pm=0.0619
+task=6 seed=20260803 L0: cp=0.0042 cm=0.0053 pp=0.0036 pm=0.0046 | Llast: cp=0.0531 cm=0.0994 pp=0.0495 pm=0.0617
+task=6 seed=424242 L0: cp=0.0042 cm=0.0053 pp=0.0036 pm=0.0046 | Llast: cp=0.0582 cm=0.1009 pp=0.0507 pm=0.0665
+task=7 seed=7 L0: cp=0.0037 cm=0.0050 pp=0.0035 pm=0.0046 | Llast: cp=0.0494 cm=0.0712 pp=0.0454 pm=0.0633
+task=7 seed=42 L0: cp=0.0036 cm=0.0048 pp=0.0035 pm=0.0045 | Llast: cp=0.0485 cm=0.0729 pp=0.0463 pm=0.0616
+task=7 seed=1234 L0: cp=0.0036 cm=0.0049 pp=0.0034 pm=0.0045 | Llast: cp=0.0494 cm=0.0709 pp=0.0463 pm=0.0656
+task=7 seed=2026 L0: cp=0.0037 cm=0.0050 pp=0.0035 pm=0.0047 | Llast: cp=0.0498 cm=0.0689 pp=0.0443 pm=0.0612
+task=7 seed=31337 L0: cp=0.0036 cm=0.0049 pp=0.0034 pm=0.0045 | Llast: cp=0.0534 cm=0.0771 pp=0.0446 pm=0.0628
+task=7 seed=5 L0: cp=0.0037 cm=0.0049 pp=0.0034 pm=0.0045 | Llast: cp=0.0499 cm=0.0727 pp=0.0451 pm=0.0643
+task=7 seed=99 L0: cp=0.0036 cm=0.0049 pp=0.0034 pm=0.0045 | Llast: cp=0.0504 cm=0.0698 pp=0.0481 pm=0.0662
+task=7 seed=777 L0: cp=0.0037 cm=0.0050 pp=0.0035 pm=0.0047 | Llast: cp=0.0509 cm=0.0706 pp=0.0459 pm=0.0617
+task=7 seed=20260803 L0: cp=0.0036 cm=0.0048 pp=0.0035 pm=0.0046 | Llast: cp=0.0426 cm=0.0689 pp=0.0471 pm=0.0617
+task=7 seed=424242 L0: cp=0.0036 cm=0.0048 pp=0.0034 pm=0.0045 | Llast: cp=0.0524 cm=0.0761 pp=0.0479 pm=0.0651
+task=8 seed=7 L0: cp=0.0037 cm=0.0047 pp=0.0036 pm=0.0046 | Llast: cp=0.0569 cm=0.0677 pp=0.0472 pm=0.0622
+task=8 seed=42 L0: cp=0.0037 cm=0.0047 pp=0.0036 pm=0.0045 | Llast: cp=0.0574 cm=0.0711 pp=0.0495 pm=0.0617
+task=8 seed=1234 L0: cp=0.0036 cm=0.0045 pp=0.0035 pm=0.0044 | Llast: cp=0.0585 cm=0.0797 pp=0.0486 pm=0.0641
+task=8 seed=2026 L0: cp=0.0037 cm=0.0047 pp=0.0036 pm=0.0046 | Llast: cp=0.0581 cm=0.0794 pp=0.0482 pm=0.0615
+task=8 seed=31337 L0: cp=0.0038 cm=0.0048 pp=0.0035 pm=0.0044 | Llast: cp=0.0539 cm=0.0694 pp=0.0486 pm=0.0629
+task=8 seed=5 L0: cp=0.0037 cm=0.0047 pp=0.0035 pm=0.0044 | Llast: cp=0.0563 cm=0.0688 pp=0.0473 pm=0.0630
+task=8 seed=99 L0: cp=0.0037 cm=0.0048 pp=0.0035 pm=0.0044 | Llast: cp=0.0592 cm=0.0753 pp=0.0531 pm=0.0655
+task=8 seed=777 L0: cp=0.0038 cm=0.0048 pp=0.0036 pm=0.0046 | Llast: cp=0.0524 cm=0.0713 pp=0.0501 pm=0.0619
+task=8 seed=20260803 L0: cp=0.0036 cm=0.0046 pp=0.0036 pm=0.0045 | Llast: cp=0.0593 cm=0.0744 pp=0.0499 pm=0.0614
+task=8 seed=424242 L0: cp=0.0037 cm=0.0048 pp=0.0035 pm=0.0044 | Llast: cp=0.0554 cm=0.0741 pp=0.0521 pm=0.0668
+task=9 seed=7 L0: cp=0.0036 cm=0.0045 pp=0.0036 pm=0.0046 | Llast: cp=0.0541 cm=0.0773 pp=0.0465 pm=0.0624
+task=9 seed=42 L0: cp=0.0035 cm=0.0043 pp=0.0036 pm=0.0045 | Llast: cp=0.0539 cm=0.0772 pp=0.0488 pm=0.0622
+task=9 seed=1234 L0: cp=0.0034 cm=0.0043 pp=0.0035 pm=0.0045 | Llast: cp=0.0554 cm=0.0799 pp=0.0488 pm=0.0647
+task=9 seed=2026 L0: cp=0.0035 cm=0.0043 pp=0.0036 pm=0.0046 | Llast: cp=0.0527 cm=0.0759 pp=0.0466 pm=0.0609
+task=9 seed=31337 L0: cp=0.0035 cm=0.0044 pp=0.0035 pm=0.0045 | Llast: cp=0.0537 cm=0.0776 pp=0.0473 pm=0.0648
+task=9 seed=5 L0: cp=0.0035 cm=0.0043 pp=0.0035 pm=0.0045 | Llast: cp=0.0532 cm=0.0788 pp=0.0466 pm=0.0647
+task=9 seed=99 L0: cp=0.0035 cm=0.0044 pp=0.0035 pm=0.0045 | Llast: cp=0.0534 cm=0.0763 pp=0.0512 pm=0.0652
+task=9 seed=777 L0: cp=0.0035 cm=0.0043 pp=0.0036 pm=0.0047 | Llast: cp=0.0528 cm=0.0837 pp=0.0487 pm=0.0627
+task=9 seed=20260803 L0: cp=0.0035 cm=0.0044 pp=0.0036 pm=0.0046 | Llast: cp=0.0537 cm=0.0747 pp=0.0484 pm=0.0619
+task=9 seed=424242 L0: cp=0.0035 cm=0.0043 pp=0.0035 pm=0.0045 | Llast: cp=0.0542 cm=0.0792 pp=0.0502 pm=0.0672
+
+Saved 200 records -> /home/grads/nsamptur/vla_bkd_def/AttackVLA/OpenVLA/BackdoorAttack/../../../GoBA_attack/attn_maps/attackvla_magic_word_factorial.npz

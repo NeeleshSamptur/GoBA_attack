@@ -1,0 +1,56 @@
+2026-08-09 14:42:36.223781: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-09 14:42:36.255151: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-09 14:42:36.255203: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-09 14:42:36.256419: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-09 14:42:36.261851: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-09 14:42:36.818258: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-08-09 14:42:40.677490: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-08-09 14:42:40.678661: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-08-09 14:42:40.679546: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-08-09 14:42:40.681102: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+prompt='In: What action should the robot take to turn on the stove?\nOut:'
+
+=== BASE_VLM×clean_scene ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.50it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.87it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.03it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.94it/s]
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+  text H_v=4.055 fn_v=0.0491 peak=0.108 | act H_v=4.216018199920654
+
+=== BASE_VLM×trigger_scene ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.36it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.53it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.82it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.72it/s]
+  text H_v=4.110 fn_v=0.0470 peak=0.100 | act H_v=4.26894474029541
+
+=== CLEAN_VLA×clean_scene ===
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.12it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.69it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.93it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.13it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.95it/s]
+  text H_v=4.240 fn_v=0.0893 peak=0.172 | act H_v=4.498267650604248
+
+=== CLEAN_VLA×trigger_scene ===
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.42it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.85it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  5.02it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.12it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  5.01it/s]
+  text H_v=4.123 fn_v=0.0915 peak=0.179 | act H_v=4.480850696563721
+
+=== GOBA_BD×clean_scene ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  4.37it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.78it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  5.04it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.92it/s]
+  text H_v=4.382 fn_v=0.0877 peak=0.211 | act H_v=4.432986259460449
+
+=== GOBA_BD×trigger_scene ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.90it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.43it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.75it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.59it/s]
+  text H_v=4.546 fn_v=0.0546 peak=0.112 | act H_v=4.538535118103027
+VLM vs VLA attention compare (last layer, α·‖Wov‖)
+
+condition                         H_text  fn_text    peak   H_act
+BASE_VLM×clean_scene               4.055   0.0491   0.108   4.216
+BASE_VLM×trigger_scene             4.110   0.0470   0.100   4.269
+CLEAN_VLA×clean_scene              4.240   0.0893   0.172   4.498
+CLEAN_VLA×trigger_scene            4.123   0.0915   0.179   4.481
+GOBA_BD×clean_scene                4.382   0.0877   0.211   4.433
+GOBA_BD×trigger_scene              4.546   0.0546   0.112   4.539
+
+Interpretation guide:
+- BASE_VLM = openvla/openvla-7b (pretrained, no LIBERO / no backdoor)
+- CLEAN_VLA = openvla-7b-finetuned-libero-goal
+- GOBA_BD = your backdoored checkpoint
+- trigger_scene has the mug; clean_scene does not
+- If BASE/CLEAN on trigger_scene do NOT match GOBA_BD×trigger,
+  the signature needs backdoor training (not just the visual mug).
+
+Done -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/single_sample_analysis/vlm_vs_vla_compare

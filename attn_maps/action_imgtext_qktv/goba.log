@@ -1,0 +1,49 @@
+2026-08-09 22:58:13.364841: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-09 22:58:13.398006: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-09 22:58:13.398075: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-09 22:58:13.399556: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-09 22:58:13.405758: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-09 22:58:13.923560: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/GoBA-OpenVLA/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+2026-08-09 22:58:19.649953: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+Loading GoBA model...
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.34it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.07it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.43it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.22it/s]
+patches=256 layers=32 heads=32
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+GoBA task=0 clean  n_lang=22  FTT_w=0.0393 FTT_qktv=0.0642  Gram_w=6.477 Gram_qktv=6.385
+GoBA task=0 poison n_lang=22  FTT_w=0.0488 FTT_qktv=0.0747  Gram_w=6.475 Gram_qktv=6.325
+GoBA task=1 clean  n_lang=22  FTT_w=0.0448 FTT_qktv=0.0838  Gram_w=6.477 Gram_qktv=6.389
+GoBA task=1 poison n_lang=22  FTT_w=0.0523 FTT_qktv=0.0784  Gram_w=6.475 Gram_qktv=6.312
+GoBA task=2 clean  n_lang=24  FTT_w=0.0781 FTT_qktv=0.1315  Gram_w=6.463 Gram_qktv=6.078
+GoBA task=2 poison n_lang=24  FTT_w=0.0545 FTT_qktv=0.0865  Gram_w=6.473 Gram_qktv=6.333
+GoBA task=3 clean  n_lang=25  FTT_w=0.0623 FTT_qktv=0.0955  Gram_w=6.460 Gram_qktv=6.154
+GoBA task=3 poison n_lang=25  FTT_w=0.0500 FTT_qktv=0.0783  Gram_w=6.476 Gram_qktv=6.374
+GoBA task=4 clean  n_lang=23  FTT_w=0.0482 FTT_qktv=0.0777  Gram_w=6.469 Gram_qktv=6.288
+GoBA task=4 poison n_lang=23  FTT_w=0.0589 FTT_qktv=0.0942  Gram_w=6.470 Gram_qktv=6.254
+GoBA task=5 clean  n_lang=24  FTT_w=0.0419 FTT_qktv=0.0697  Gram_w=6.474 Gram_qktv=6.351
+GoBA task=5 poison n_lang=24  FTT_w=0.0422 FTT_qktv=0.0651  Gram_w=6.476 Gram_qktv=6.371
+GoBA task=6 clean  n_lang=24  FTT_w=0.0591 FTT_qktv=0.0962  Gram_w=6.469 Gram_qktv=6.230
+GoBA task=6 poison n_lang=24  FTT_w=0.0377 FTT_qktv=0.0663  Gram_w=6.476 Gram_qktv=6.338
+GoBA task=7 clean  n_lang=19  FTT_w=0.0509 FTT_qktv=0.0894  Gram_w=6.472 Gram_qktv=6.262
+GoBA task=7 poison n_lang=19  FTT_w=0.0580 FTT_qktv=0.0863  Gram_w=6.475 Gram_qktv=6.320
+GoBA task=8 clean  n_lang=21  FTT_w=0.0607 FTT_qktv=0.0930  Gram_w=6.471 Gram_qktv=6.271
+GoBA task=8 poison n_lang=21  FTT_w=0.0501 FTT_qktv=0.0794  Gram_w=6.473 Gram_qktv=6.266
+GoBA task=9 clean  n_lang=23  FTT_w=0.0640 FTT_qktv=0.1108  Gram_w=6.470 Gram_qktv=6.253
+GoBA task=9 poison n_lang=23  FTT_w=0.0404 FTT_qktv=0.0722  Gram_w=6.477 Gram_qktv=6.384
+Traceback (most recent call last):
+  File "/home/grads/nsamptur/vla_bkd_def/GoBA_attack/experiments/robot/libero/run_action_imgtext_qktv_goba.py", line 225, in <module>
+    main()
+  File "/home/grads/nsamptur/vla_bkd_def/GoBA_attack/experiments/robot/libero/run_action_imgtext_qktv_goba.py", line 216, in main
+    map_weight=np.stack([r["map_weight"] for r in records]),
+  File "/home/grads/nsamptur/miniconda3/envs/GoBA-OpenVLA/lib/python3.10/site-packages/numpy/core/shape_base.py", line 449, in stack
+    raise ValueError('all input arrays must have the same shape')
+ValueError: all input arrays must have the same shape

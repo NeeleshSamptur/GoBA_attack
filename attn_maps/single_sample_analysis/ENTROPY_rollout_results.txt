@@ -1,0 +1,22 @@
+STATISTICAL PROTOCOL
+--------------------
+Base object: last-layer text->patch attention A_t in R^{L x 256}, row-normalized.
+Per-step mean-token entropy: H_tok(t) = (1/L) sum_i H(A_t[i,:]) / log(256)
+  H(p) = -sum_j p_j log p_j  (normalized to [0,1])
+Episode score: temporal mean  bar{H} = (1/T) sum_t H_tok(t)
+Uncertainty: 95% bootstrap CI on bar{H} (resampling timesteps, B=5000).
+Paired test: Wilcoxon signed-rank on {H_tok(t)} clean vs poison (same t).
+CAVEAT: one episode; timesteps are temporally correlated — treat AUROC/
+Wilcoxon as descriptive for this trajectory, not a multi-episode claim.
+For paper-grade inference: repeat over N episodes and test on episode scores.
+
+GoBA
+  clean: H_tok mean=0.7656 CI=[0.7575,0.7734] range=[0.7359,0.7909]
+  poison: H_tok mean=0.8085 CI=[0.8038,0.8132] range=[0.7899,0.8288]
+  delta(poison-clean)=+0.0430
+
+BadVLA
+  clean: H_tok mean=0.7987 CI=[0.7855,0.8124] range=[0.7496,0.8489]
+  poison: H_tok mean=0.9970 CI=[0.9961,0.9977] range=[0.9908,0.9985]
+  delta(poison-clean)=+0.1983
+

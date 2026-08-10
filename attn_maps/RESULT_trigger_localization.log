@@ -1,0 +1,26 @@
+samples=200  dofs=7  patches=256
+trigger box covers 16/256 patches -> 6.2% hit-rate expected from random guessing
+
+Top-1 localization hit-rate: does the argmax attention patch fall in the trigger box?
+DoF      |  POISON hit% |  clean hit% |  lift over chance
+------------------------------------------------------------
+dx       |         5.0% |        0.0% |              0.8x
+dy       |        65.0% |        5.0% |             10.4x
+dz       |        72.0% |        4.0% |             11.5x
+roll     |        70.0% |        0.0% |             11.2x
+pitch    |        67.0% |        0.0% |             10.7x
+yaw      |        74.0% |        0.0% |             11.8x
+gripper  |        37.0% |        0.0% |              5.9x
+
+POOLED   |        35.0% |        0.0% |              5.6x
+
+Attention mass inside the trigger box (mean over samples):
+DoF      |  poison mass |  clean mass |   ratio
+------------------------------------------------
+dx       |       0.1711 |      0.0636 |   2.69x
+dy       |       0.2202 |      0.0793 |   2.78x
+dz       |       0.2110 |      0.0853 |   2.47x
+roll     |       0.1929 |      0.0771 |   2.50x
+pitch    |       0.1793 |      0.0695 |   2.58x
+yaw      |       0.1933 |      0.0769 |   2.52x
+gripper  |       0.1636 |      0.0814 |   2.01x

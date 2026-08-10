@@ -1,0 +1,73 @@
+2026-08-07 19:14:14.414479: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-08-07 19:14:14.447947: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-08-07 19:14:14.447987: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-08-07 19:14:14.449430: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-08-07 19:14:14.455614: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-08-07 19:14:14.947475: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/grads/nsamptur/miniconda3/envs/GoBA-OpenVLA/lib/python3.10/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+2026-08-07 19:14:20.088538: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-08-07 19:14:20.090072: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-08-07 19:14:20.090966: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+2026-08-07 19:14:20.092277: W tensorflow/core/common_runtime/gpu/gpu_device.cc:2348] TensorFlow was not built with CUDA kernel binaries compatible with compute capability 9.0. CUDA kernels will be jit-compiled from PTX, which could take 30 minutes or longer.
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+shared_desc='turn on the stove'
+
+=== CLEAN_model__clean_scene: ckpt=openvla/openvla-7b-finetuned-libero-goal bddl=clean ===
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.84it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.11it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.18it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.27it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.20it/s]
+LlamaModel is using LlamaSdpaAttention, but `torch.nn.functional.scaled_dot_product_attention` does not support `output_attentions=True`. Falling back to the manual attention implementation, but specifying the manual implementation will be required from Transformers version v5.0.0 onwards. This warning can be removed using the argument `attn_implementation="eager"` when loading the model.
+  step=00 text2patch max=0.1814 mean_token_max=0.0989 fnorm=0.0916
+  step=01 text2patch max=0.2174 mean_token_max=0.1059 fnorm=0.0974
+  step=02 text2patch max=0.1745 mean_token_max=0.1063 fnorm=0.0975
+  step=03 text2patch max=0.2211 mean_token_max=0.0998 fnorm=0.0887
+  step=04 text2patch max=0.1968 mean_token_max=0.1036 fnorm=0.0946
+  step=05 text2patch max=0.1661 mean_token_max=0.0803 fnorm=0.0803
+  step=06 text2patch max=0.1797 mean_token_max=0.0982 fnorm=0.0796
+  step=07 text2patch max=0.1356 mean_token_max=0.0789 fnorm=0.0748
+  step=08 text2patch max=0.1453 mean_token_max=0.0775 fnorm=0.0682
+  step=09 text2patch max=0.2142 mean_token_max=0.1104 fnorm=0.0810
+  step=10 text2patch max=0.1485 mean_token_max=0.0759 fnorm=0.0762
+  step=11 text2patch max=0.1850 mean_token_max=0.0929 fnorm=0.0842
+  step=12 text2patch max=0.1519 mean_token_max=0.0866 fnorm=0.0844
+  step=13 text2patch max=0.1907 mean_token_max=0.0737 fnorm=0.0788
+  step=14 text2patch max=0.1496 mean_token_max=0.0678 fnorm=0.0780
+  step=15 text2patch max=0.1362 mean_token_max=0.0752 fnorm=0.0771
+  step=16 text2patch max=0.1793 mean_token_max=0.0972 fnorm=0.0887
+  step=17 text2patch max=0.2254 mean_token_max=0.0907 fnorm=0.0899
+  step=18 text2patch max=0.2657 mean_token_max=0.1116 fnorm=0.1036
+  step=19 text2patch max=0.2779 mean_token_max=0.1015 fnorm=0.0898
+
+=== GOBA_backdoored__trigger_scene: ckpt=/home/grads/nsamptur/vla_bkd_def/GoBA_attack/exp/openvla-7b+libero_goal_no_noops+b16+lr-0.0005+lora-r32+dropout-0.0--image_aug bddl=poison ===
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  3.80it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  4.11it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.30it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  4.21it/s]
+  step=00 text2patch max=0.1231 mean_token_max=0.0641 fnorm=0.0557
+  step=01 text2patch max=0.1533 mean_token_max=0.0765 fnorm=0.0601
+  step=02 text2patch max=0.1649 mean_token_max=0.0813 fnorm=0.0638
+  step=03 text2patch max=0.1021 mean_token_max=0.0628 fnorm=0.0550
+  step=04 text2patch max=0.1559 mean_token_max=0.0741 fnorm=0.0623
+  step=05 text2patch max=0.1717 mean_token_max=0.0787 fnorm=0.0643
+  step=06 text2patch max=0.2025 mean_token_max=0.0867 fnorm=0.0689
+  step=07 text2patch max=0.1443 mean_token_max=0.0713 fnorm=0.0584
+  step=08 text2patch max=0.1186 mean_token_max=0.0613 fnorm=0.0541
+  step=09 text2patch max=0.1300 mean_token_max=0.0585 fnorm=0.0529
+  step=10 text2patch max=0.1409 mean_token_max=0.0786 fnorm=0.0673
+  step=11 text2patch max=0.1624 mean_token_max=0.0780 fnorm=0.0598
+  step=12 text2patch max=0.1505 mean_token_max=0.0711 fnorm=0.0600
+  step=13 text2patch max=0.0877 mean_token_max=0.0613 fnorm=0.0505
+  step=14 text2patch max=0.0896 mean_token_max=0.0538 fnorm=0.0444
+  step=15 text2patch max=0.1015 mean_token_max=0.0550 fnorm=0.0482
+  step=16 text2patch max=0.1189 mean_token_max=0.0631 fnorm=0.0555
+  step=17 text2patch max=0.0823 mean_token_max=0.0527 fnorm=0.0463
+  step=18 text2patch max=0.1655 mean_token_max=0.0653 fnorm=0.0536
+  step=19 text2patch max=0.1421 mean_token_max=0.0635 fnorm=0.0559
+
+Saved matrices -> /home/grads/nsamptur/vla_bkd_def/GoBA_attack/attn_maps/single_sample_analysis/goba_rollout_xattn/rollout_xattn.npz
+  clean  text2patch (20, 18, 256)  patch2text (20, 256, 18)
+  poison text2patch (20, 18, 256)  patch2text (20, 256, 18)
+  tokens=['▁In', ':', '▁What', '▁action', '▁should', '▁the', '▁robot', '▁take', '▁to', '▁turn', '▁on', '▁the', '▁st', 'ove', '?', '<0x0A>', 'Out', ':']
