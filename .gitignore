@@ -18,3 +18,6 @@ rlds_dataset_builder/
 
 # Claude Code session/worktree state
 .claude/
+
+# large attention data arrays - regenerable, kept local only
+*.npz
